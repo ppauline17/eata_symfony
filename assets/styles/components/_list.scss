@@ -1,0 +1,26 @@
+.list{
+    img{
+        height: 15vh;
+        width: 20vh;
+        object-fit: cover;
+    }
+    svg{
+        height: 20px;
+        width: 20px;
+    }
+
+    .bi-trash{
+        fill: $color-1;
+    }
+    .bi-pen{
+        fill: $color-4;
+    }
+
+    @media screen and (min-width: 768px) {
+        .column-invisible{
+            display: table-cell !important;
+        }
+    }
+
+
+}

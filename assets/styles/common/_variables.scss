@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Cookie';
+    src: url("../../font/Cookie/Cookie-Regular.ttf");
+}
+@font-face {
+    font-family: 'Nunito', sans-serif;
+    src: url("../../font/Nunito/Nunito-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: 'Londrina Solid';
+    src: url("../../font/Londrina_Solid/LondrinaSolid-Regular.ttf");
+}
+
+// // fonts
+$title-font: 'Cookie';
+$text-font: 'Nunito', sans-serif;
+$section-title-font: 'Londrina Solid';
+
+// colors
+$light-text: white;
+$dark-text: black;
+
+$color-1: #FF595E;
+$color-2: #FFCA3A;
+$color-3: #8AC926;
+$color-4: #1982C4;
+$color-5: #6A4C93;

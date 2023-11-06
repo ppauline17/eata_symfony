@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// polices d'écriture
+* :not(.title, .section-title) {
+    font-family: $text-font;
+  }
+
+.title {
+    font-family: $title-font;
+}
+
+.section-title {
+    font-family: $section-title-font;
+}
+
+// style des listes et liens
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style-type: none;
+}
+
+.bg-1{
+    background-color: $color-1;
+    color: $light-text;
+}
+.bg-2{
+    background-color: $color-2;
+    color: $light-text;
+}
+.bg-3{
+    background-color: $color-3;
+    color: $light-text;
+}
+.bg-4{
+    background-color: $color-4;
+    color: $light-text;
+}
+.bg-5{
+    background-color: $color-5;
+    color: $light-text;
+}
+

@@ -1,0 +1,72 @@
+.btn-primary{
+    background-color: $color-4;
+    border: 1px solid $color-4;
+    &:hover{
+        background-color: $color-4;
+        border: 1px solid $color-4;
+        opacity: 0.8;
+    }
+}
+
+.btn-outline-primary{
+    color: $color-4;
+    border: 1px solid $color-4;
+    &:hover{
+        background-color: $color-4;
+        border: 1px solid $color-4;
+    }
+}
+
+.btn-danger{
+    background-color: $color-1;
+    border: 1px solid $color-1;
+    &:hover{
+        background-color: $color-1;
+        border: 1px solid $color-1;
+        opacity: 0.8;
+    }
+}
+
+.btn-outline-danger{
+    color: $color-1;
+    border: 1px solid $color-1;
+    &:hover{
+        background-color: $color-1;
+        border: 1px solid $color-1;
+    }
+}
+.btn-warning{
+    background-color: $color-2;
+    border: 1px solid $color-2;
+    &:hover{
+        background-color: $color-2;
+        border: 1px solid $color-2;
+        opacity: 0.8;
+    }
+}
+
+.btn-outline-warning{
+    border: 1px solid $color-2;
+    &:hover{
+        background-color: $color-2;
+        border: 1px solid $color-2;
+    }
+}
+.btn-success{
+    background-color: $color-3;
+    border: 1px solid $color-3;
+    &:hover{
+        background-color: $color-3;
+        border: 1px solid $color-3;
+        opacity: 0.8;
+    }
+}
+
+.btn-outline-success{
+    color: $color-3;
+    border: 1px solid $color-3;
+    &:hover{
+        background-color: $color-3;
+        border: 1px solid $color-3;
+    }
+}

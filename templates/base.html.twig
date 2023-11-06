@@ -2,15 +2,43 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>EATA{{ title }}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+        
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5RW6XH21J"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z5RW6XH21J');
+    </script>
+    <body class={% block class %}{% endblock %}>
+        {% block header %}
+            {{ include('components/header/header.html.twig') }}
+        {% endblock %}
+        <main class="mb-5 mt-5">
+            {% block main %}{% endblock %}
+        </main>
+        {% block footer %}
+            {{ include('components/footer/footer.html.twig') }}
+        {% endblock %}
+        {# bootstrap #}
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        {# aos animations #}
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        </script>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        {% block scripts %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,61 @@
+.periscolaire{
+    .title{
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 20px 0 20px 0;
+        }
+    }
+    .periscolaire-team{
+        .sun, .cloud{
+            position: relative;
+            color: $light-text;
+            font-weight: bold;
+            .name{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .sun-container, .cloud-container{
+                .icon-sun, .icon-cloud{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+
+        .cloud-director{
+            svg{
+                path{
+                    fill: $color-1;
+                }
+            }
+        }
+    }
+    .association-team{
+        .card{
+            border: none;
+            li{
+                color: $light-text;
+                border: 2px solid $light-text;
+            }
+        }
+        .director{
+            li{
+                background-color: $color-1;
+            }
+        }
+        .team{
+            li{
+                background-color: $color-5;
+            }
+        }
+    }
+}

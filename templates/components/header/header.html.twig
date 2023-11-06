@@ -1,0 +1,76 @@
+<header>
+    <div class="container">
+        <div class="first-line-header">
+            {# logo #}
+            <a href="page/accueil">
+                <img src="{{ asset('img/logo.svg') }}" alt="" class="logo m-2">
+            </a>
+            <span class="burger-nav">
+                <nav class="navbar">
+                    <div class="dropstart">
+                        <button class="btn btn-light" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <span class="navbar-toggler-icon">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="./page/accueil">Accueil</a>
+                            </li>
+                            <div class="accordion accordion-flush" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                        La vie du centre
+                                    </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li><a href="page/accueil-periscolaire"><button class="dropdown-item" type="button">L'accueil périscolaire</button></a></li>
+                                                <li><a href="page/accueil-loisirs"><button class="dropdown-item" type="button">L'accueil de loisirs</button></a></li>
+                                                <li><a href="page/association"><button class="dropdown-item" type="button">L'association</button></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <li>
+                                <a class="dropdown-item" href="page/enfants">Le coin des enfants</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="page/parents">Le coin des parents</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="page/informations">Infos pratiques</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </span>
+        </div>
+        <h1 class="text-center">
+            <span class="title first-word">En </span>
+            <span class="title second-word">Avant </span>
+            <span class="title third-word">Ton </span>
+            <span class="title fourth-word">Aventure</span>
+        </h1>
+        <h2 class="text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear">Accueil périscolaire et de loisirs associatif d’Avanton</h2>
+        <nav class="full-screen-nav">
+                <a class="nav-link {% if articles is defined %}active{% endif %}" href="./page/accueil">Accueil</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle nav-dropdown nav-link {% if teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
+                        La vie du centre
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="page/accueil-periscolaire">L'accueil périscolaire</a></li>
+                        <li><a class="dropdown-item" href="page/accueil-loisirs">L'accueil de loisirs</a></li>
+                        <li><a class="dropdown-item" href="page/association">L'association</a></li>
+                    </ul>
+                </div>
+                <a class="nav-link {% if title == "Le coin des enfants" %}active{% endif %}" href="./page/enfants">Le coin des enfants</a>
+                <a class="nav-link {% if title == "Le coin des parents" %}active{% endif %}" href="page/parents">Le coin des parents</a>
+                <a class="nav-link {% if title == "Infos pratiques" %}active{% endif %}" href="page/informations">Infos pratiques</a>
+            </ul>
+        </nav>
+    </div>
+</header>
+

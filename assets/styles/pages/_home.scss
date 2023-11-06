@@ -1,0 +1,94 @@
+.home{
+    .bg-image{
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+    }
+    @media screen and (min-width: 768px) {
+        .bg-image{
+            height: 250px;
+        }
+    }
+    @media screen and (min-width: 900px) {
+        .bg-image{
+            height: 340px;
+        }
+    }
+    .content{
+        padding: 50px 0;
+    }
+    .articles{
+        .card{
+            padding: 10px;
+            border: 2px solid $color-2;
+            img{
+                height: 250px;
+                object-fit: cover;
+            }
+            .btn{
+                color: $dark-text;
+                transform: scale(1);
+                transition: transform 0.1s linear;
+                &:hover{
+                    transform: scale(1.1);
+                    transition: transform 0.1s linear;
+                }
+            }
+            .article-content{
+                height: 125px;
+                font-size: 20px;
+            }
+            @media screen and (min-width: 576px) {
+                .article-content{
+                    height: 100px;
+                }
+            }
+            @media screen and (min-width: 992px) {
+                .article-content{
+                    height: 125px;
+                }
+            }
+            .article-date{
+                font-size: 16px;
+            }
+        }
+    }
+
+    .home-life{
+        a{
+            position: relative;
+            color: $light-text;
+            font-weight: bold;
+            .icon{
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: scale(1);
+                transition: transform 0.1s linear;
+                &:hover{
+                    transform: scale(1.1);
+                    transition: transform 0.1s linear;
+                }
+                .life-icon{
+                    height: 40px;
+                    fill: $light-text;
+                    margin-bottom: 50%;
+                }
+            }
+            .ellipse-container{
+                .icon-ellipse{
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+        }
+        
+    }
+}

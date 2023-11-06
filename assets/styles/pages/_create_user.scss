@@ -1,0 +1,16 @@
+.create-user{
+    .true{
+        svg{
+            height: 16px;
+            width: 16px;
+            fill: $color-3;
+        }
+    }
+    .false{
+        svg{
+            height: 16px;
+            width: 16px;
+            fill: $color-1;
+        }
+    }
+}

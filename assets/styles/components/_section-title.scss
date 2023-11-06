@@ -1,0 +1,25 @@
+.section-title{
+    font-size: 24px;
+    padding: 30px 0;
+    letter-spacing: 2px;
+    @media screen and (min-width: 900px) {
+        font-size: 36px;
+    }
+    p{
+        margin: 0;
+        color: $light-text;
+        font-weight: 600;
+    }
+}
+
+.first-color{
+    background-color: $color-2;
+}
+
+.second-color{
+    background-color: $color-3;
+}
+
+.third-color{
+    background-color: $color-4;
+}

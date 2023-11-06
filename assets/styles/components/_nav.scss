@@ -1,0 +1,54 @@
+.full-screen-nav{
+    display: none;
+}
+
+@media screen and (min-width: 900px) {
+    .full-screen-nav{
+        display: block;
+        background-color: $color-1;
+        border-radius: 50px;
+        margin: 30px 0;
+        padding: 20px;
+        display: flex;
+        justify-content: space-around;
+        .nav-link{
+            transform: scale(1);
+            transition: transform 0.1s linear;
+            font-size: 24px;
+            color: $light-text;
+            &:hover{
+                transform: scale(1.1);
+                transition: transform 0.1s linear;
+            }
+        }
+        .nav-dropdown{
+            font-size: 24px;
+            color: $light-text;
+        }
+        .dropdown-item{
+            font-size: 24px;
+        }
+
+        .active{
+            font-weight: bold;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.burger-nav{
+    background-color: white;
+    a{
+        color: $dark-text;
+        margin: 8px;
+    }
+    .dropdown-menu{
+        width: fit-content;
+    }
+}
+
+.nav-tabs{
+    .nav-link{
+        color: $color-4;
+    }
+}

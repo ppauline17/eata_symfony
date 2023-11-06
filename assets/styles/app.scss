@@ -1,0 +1,25 @@
+@import "bootstrap/scss/bootstrap";
+
+// common
+@import "common/variables";
+@import "common/global";
+
+// components
+@import "components/header";
+@import "components/nav";
+@import "components/footer";
+@import "components/section-title";
+@import "components/list";
+@import "components/buttons";
+@import "components/forms";
+
+// pages
+@import "pages/home";
+@import "pages/article";
+@import "pages/periscolaire";
+@import "pages/create_article";
+@import "pages/create_user";
+@import "pages/update_user";
+
+// admin
+@import "admin/connect";
