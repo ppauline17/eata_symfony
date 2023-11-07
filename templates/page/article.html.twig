@@ -9,15 +9,15 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="card">
-                        {% if article.article_picture %}
-                            <img src="{{ article.article_picture }}" class="card-img-top" alt="image de l'article {{ article.article_title }}">
+                        {% if article.picture is defined %}
+                            <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top" alt="image de l'article {{ article.title }}">
                         {% else %}
-                            <img src="./public/img/avanton-creche-facade-1300x867.jpg" class="card-img-top" alt="...">
+                            <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
                         {% endif %}
                         
                         <div class="card-body">
-                            <h5 class="text-center">{{ article.article_title|upper }}</h5>
-                            <div class="card-text">{{ article.article_content|raw }}</dib>
+                            <h5 class="text-center">{{ article.title|upper }}</h5>
+                            <div class="card-text">{{ article.content|raw }}</dib>
                         </div>
                     </div>
                 </div>

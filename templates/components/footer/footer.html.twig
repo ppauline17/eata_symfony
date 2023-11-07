@@ -7,60 +7,15 @@
             <li>Mentions légales</li>
             <li>Contact</li>
             
-            {% if session is defined %}
             <li>
                 <a href="./page/dashboard">Administration</a>
             </li>
             <li>
                 <a href="./admin/logout">Deconnexion</a>
             </li>
-            {% else %}
             <li>
-                {# <a href="./page/connexion">Connexion</a> #}
-                <a href="#" data-bs-toggle="modal" data-bs-target="#connexion">Connexion</a>
+                <a href="./page/connexion">Connexion</a>
             </li>
-            {% endif %}
         </ul>
     </div>
 </footer>
-<!-- Modal -->
-<div class="modal {% if not message is defined %}fade{% endif %}" id="connexion">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Connexion</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form class="mt-4 mb-4" action ="?controller=pages&action=login" method="post" onsubmit="return inputValidation()">
-                <div class="form-floating mb-4">
-                    <input type="text" class="form-control required-input" id="floatingInput" name="user_login">
-                    <div class="errorMessage d-none">Veuillez saisir votre identifiant</div>
-                    <label for="floatingInput">Identifiant</label>
-                </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control required-input" id="floatingPassword" name="user_password">
-                    <div class="errorMessage d-none">Veuillez saisir votre mot de passe</div>
-                    <label for="floatingPassword">Mot de passe</label>
-                </div>
-                <button class="btn btn-outline-primary" type="submit">Valider</button>
-            </form>
-        </div>
-        {% if message is defined %}
-        <div class="modal-footer">
-            <p>{{ message }}</p>
-        </div>
-        {% endif %}
-    </div>
-</div>
-
-<script src="assets/js/forms/inputValidation.js"></script>
-
-{% if message is defined %}
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var myModal = new bootstrap.Modal(document.getElementById("connexion"));
-        myModal.show();
-    });
-</script>
-{% endif %}

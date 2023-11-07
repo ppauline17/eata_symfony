@@ -38,7 +38,7 @@
                                         {# {% endif %} #}
                                         </small>
                                     </p>
-                                    <a href="page/article/{{ article.id }}" class="btn btn-outline-warning">Lire</a>
+                                    <a href="{{ path('app_page_article_show', {'id': article.id}) }}" class="btn btn-outline-warning">Lire</a>
                                 </div>
                             </div>
                         </div>

@@ -1,39 +1,69 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard.html.twig' %}
 
 {% block title %}Article index{% endblock %}
 
-{% block body %}
-    <h1>Article index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_article_new') }}">Create new</a>
+{% block content %}
+    <h3 class="mt-4">Liste des actualités</h3>
+        <a href="{{ path('app_article_new') }}" class="btn btn-outline-primary">
+            {{ include('icons/plus.html.twig') }}
+        </a>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th class="column-invisible d-none" scope="col">Image</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Contenu</th>
+                    {# <th scope="col">Créé par</th> #}
+                    <th scope="col">Date création</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    {% set article_content = article.content|striptags %}
+                <tr>
+                    <td class="column-invisible d-none">
+                    {% if article.picture is defined %}
+                        <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">
+                    {% else %}
+                        <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="img-thumbnail" alt="...">
+                    {% endif %}
+                    </td>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        {{ article_content|slice(0, 50) }}
+                        {% if article_content|length > 100 %} ...{% endif %}
+                    </td>
+                    {# <td>{{ article.user.user_firstname }}</td> #}
+                    <td>{{ article.createdAt|date('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}">{{ include('icons/eye.html.twig') }}</a>
+                        <a href="{{ path('app_article_edit', {'id': article.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                        <span data-bs-toggle="modal" data-bs-target="#deleteArticleVerif{{ article.id}}">{{ include('icons/delete.html.twig') }}</span>
+                    </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteArticleVerif{{ article.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer un article</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Etes vous certain(e) de vouloir supprimer cet article ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <a href="{{ path('app_article_delete', {'id': article.id}) }}"><button type="button" class="btn btn-outline-danger">Supprimer</button></a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 {% endblock %}
