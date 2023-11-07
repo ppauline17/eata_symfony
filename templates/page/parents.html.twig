@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Le coin des parents{% endblock %}
+{% block class %}parents{% endblock %}
+
+{% block body %}
+    <section class="title">
+        <div class="section-title second-color mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Le coin des parents</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-4 border-0">
+                        <div class="card-body text-center">
+                            Bons plans
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card bg-3 border-0">
+                        <div class="card-body text-center">
+                            Conseils
+                        </div>
+                    </div>
+                </div>
+                {# <div class="col-md-3">
+                    <div class="card bg-3 border-0">
+                        <div class="card-body text-center">
+                            ...
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-4 border-0">
+                        <div class="card-body text-center">
+                            ...
+                        </div>
+                    </div>
+                </div> #}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="first-line-header">
             {# logo #}
-            <a href="page/accueil">
+            <a href="{{ path('app_page_home') }}">
                 <img src="{{ asset('img/logo.svg') }}" alt="" class="logo m-2">
             </a>
             <span class="burger-nav">
@@ -13,7 +13,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="./page/accueil">Accueil</a>
+                                <a class="dropdown-item" href="{{ path('app_page_home') }}">Accueil</a>
                             </li>
                             <div class="accordion accordion-flush" id="accordionFlushExample">
                                 <div class="accordion-item">
@@ -25,22 +25,22 @@
                                     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
                                             <ul>
-                                                <li><a href="page/accueil-periscolaire"><button class="dropdown-item" type="button">L'accueil périscolaire</button></a></li>
-                                                <li><a href="page/accueil-loisirs"><button class="dropdown-item" type="button">L'accueil de loisirs</button></a></li>
-                                                <li><a href="page/association"><button class="dropdown-item" type="button">L'association</button></a></li>
+                                                <li><a href="{{ path('app_page_periscolaire') }}"><button class="dropdown-item" type="button">L'accueil périscolaire</button></a></li>
+                                                <li><a href="{{ path('app_page_loisirs') }}"><button class="dropdown-item" type="button">L'accueil de loisirs</button></a></li>
+                                                <li><a href="{{ path('app_page_association') }}"><button class="dropdown-item" type="button">L'association</button></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <li>
-                                <a class="dropdown-item" href="page/enfants">Le coin des enfants</a>
+                                <a class="dropdown-item" href="{{ path('app_page_children') }}">Le coin des enfants</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="page/parents">Le coin des parents</a>
+                                <a class="dropdown-item" href="{{ path('app_page_parents') }}">Le coin des parents</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="page/informations">Infos pratiques</a>
+                                <a class="dropdown-item" href="{{ path('app_page_informations') }}">Infos pratiques</a>
                             </li>
                         </ul>
                     </div>
@@ -61,14 +61,14 @@
                         La vie du centre
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="page/accueil-periscolaire">L'accueil périscolaire</a></li>
-                        <li><a class="dropdown-item" href="page/accueil-loisirs">L'accueil de loisirs</a></li>
-                        <li><a class="dropdown-item" href="page/association">L'association</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_page_association') }}">L'association</a></li>
                     </ul>
                 </div>
-                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="./page/enfants">Le coin des enfants</a>
-                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="page/parents">Le coin des parents</a>
-                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="page/informations">Infos pratiques</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_children') }}">Le coin des enfants</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_parents') }}">Le coin des parents</a>
+                <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_informations') }}">Infos pratiques</a>
             </ul>
         </nav>
     </div>
