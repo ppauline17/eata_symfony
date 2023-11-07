@@ -34,12 +34,12 @@
             <div class="container">
                 <div class="row mb-5 director">
                     {% for teammate in teammates %}
-                    {% if teammate.teammate_director == 1 or teammate.teammate_director == 2 %}
+                    {% if teammate.hierarchy == 1 or teammate.hierarchy == 2 %}
                     <div class="col-md-4 offset-md-4 mb-3">
                         <div class="card " data-aos="flip-down">
                             <ul class="list-group list-group-flush rounded-5">
-                                <li class="list-group-item text-center">{{ teammate.teammate_firstname }} {{ teammate.teammate_name }}</li>
-                                <li class="list-group-item text-center">{{ teammate.teammate_job|upper }}</li>
+                                <li class="list-group-item text-center">{{ teammate.firstname }} {{ teammate.lastname }}</li>
+                                <li class="list-group-item text-center">{{ teammate.job|upper }}</li>
                             </ul>
                         </div>
                     </div>
@@ -48,12 +48,12 @@
                 </div>
                 <div class="row mb-5 team">
                     {% for teammate in teammates %}
-                    {% if teammate.teammate_director == 0 %}
+                    {% if teammate.hierarchy == 0 %}
                     <div class="col-md-4 mb-3">
                         <div class="card" data-aos="flip-down">
                             <ul class="list-group list-group-flush rounded-5">
-                                <li class="list-group-item text-center">{{ teammate.teammate_firstname }} {{ teammate.teammate_name }}</li>
-                                <li class="list-group-item text-center">{{ teammate.teammate_job|upper }}</li>
+                                <li class="list-group-item text-center">{{ teammate.firstname }} {{ teammate.lastname }}</li>
+                                <li class="list-group-item text-center">{{ teammate.job|upper }}</li>
                             </ul>
                         </div>
                     </div>

@@ -1,0 +1,37 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Teammate index{% endblock %}
+
+{% block content %}
+    <h3>{{ category|capitalize }}</h3>
+    <a href="{{ path('app_teammate_new', {'category': category}) }}" class="btn btn-outline-primary">
+            {{ include('icons/plus.html.twig') }}
+        </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Poste</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for teammate in teammates %}
+            <tr>
+                <td>{{ teammate.lastname }}</td>
+                <td>{{ teammate.firstname }}</td>
+                <td>{{ teammate.job }}</td>
+                <td>
+                    <a href="{{ path('app_teammate_show', {'id': teammate.id}) }}">show</a>
+                    <a href="{{ path('app_teammate_edit', {'id': teammate.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune donnée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

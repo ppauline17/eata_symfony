@@ -34,7 +34,6 @@
                         {{ article_content|slice(0, 50) }}
                         {% if article_content|length > 100 %} ...{% endif %}
                     </td>
-                    {# <td>{{ article.user.user_firstname }}</td> #}
                     <td>{{ article.createdAt|date('d/m/Y') }}</td>
                     <td>
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">{{ include('icons/eye.html.twig') }}</a>

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Teammate{% endblock %}
+
+{% block body %}
+    <h1>Edit Teammate</h1>
+
+    {{ include('teammate/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {{ include('teammate/_delete_form.html.twig') }}
+{% endblock %}

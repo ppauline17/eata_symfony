@@ -20,6 +20,7 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findBy([], ['createdAt' => 'DESC']),
+            'crud_article' => true
         ]);
     }
 
@@ -35,12 +36,13 @@ class ArticleController extends AbstractController
             $entityManager->persist($article);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_article_index', ['crud_article' => true], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('article/new.html.twig', [
             'article' => $article,
             'form' => $form,
+            'crud_article' => true
         ]);
     }
 
@@ -49,6 +51,7 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
+            'crud_article' => true
         ]);
     }
 
@@ -61,12 +64,13 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_article_index', ['crud_article' => true], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('article/edit.html.twig', [
             'article' => $article,
             'form' => $form,
+            'crud_article' => true
         ]);
     }
 
@@ -78,6 +82,6 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_article_index', ['crud_article' => true], Response::HTTP_SEE_OTHER);
     }
 }

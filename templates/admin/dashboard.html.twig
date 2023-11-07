@@ -4,25 +4,24 @@
 
 {% block body %}
 {# Navigation #}
-    <section>
+    <section class="mb-5">
         <div class="container">
         <h2 class="mb-5">Administration</h2>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_article_index') }}">Articles</a>
+                    <a class="nav-link {% if crud_article is defined %}active{% endif %}" href="{{ path('app_article_index') }}">Articles</a>
                 </li>
-                {# {% if session.user_role_id == 1 or session.user_role_id == 2 %}
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-dropdown nav-link {% if teammates %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="dropdown-toggle nav-dropdown nav-link {% if crud_teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
                         Equipes
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="page/equipe/periscolaire">Accueil périscolaire</a></li>
-                        <li><a class="dropdown-item" href="page/equipe/loisirs">Accueil de loisirs</a></li>
-                        <li><a class="dropdown-item" href="page/equipe/association">Association</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'periscolaire'}) }}">Accueil périscolaire</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'loisirs'}) }}">Accueil de loisirs</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'association'}) }}">Association</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                {# <li class="nav-item">
                     <a class="nav-link disabled text-secondary {% if users %}active{% endif %}" href="#">Coin enfants</a>
                 </li>
                 <li class="nav-item">
@@ -31,15 +30,12 @@
                 <li class="nav-item">
                     <a class="nav-link disabled text-secondary {% if users %}active{% endif %}" href="#">Infos pratiques</a>
                 </li>
-                {% endif %} #}
                 {# <li class="nav-item">
                     <a class="nav-link" href="page/compte">Mon compte</a>
                 </li> #}
-                {# {% if session.user_role_id == 1 or session.user_role_id == 2 %}
-                <li class="nav-item">
+                {# <li class="nav-item">
                     <a class="nav-link {% if users %}active{% endif %}" href="page/utilisateurs">Utilisateurs du site</a>
-                </li>
-                {% endif %} #}
+                </li> #}
             </ul>
         </div>
     </section>

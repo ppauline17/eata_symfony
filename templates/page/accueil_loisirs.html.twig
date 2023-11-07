@@ -34,51 +34,51 @@
             <div class="container">
                 <div class="row mb-5">
                     {% for teammate in teammates %}
-                    {% if teammate.teammate_director == 1 %}
+                    {% if teammate.hierarchy == 1 %}
                     <div class="col-md-6 offset-md-3">
                         <div class="sun position-relative" data-aos="zoom-in">
                             <div class="sun-container">
                                 {{ include('icons/sun.html.twig') }}
                             </div>
                             <div class="name">
-                                <span>{{ teammate.teammate_firstname }} {{ teammate.teammate_name }}</span>
+                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
                             </div>
                         </div>
-                        <div class="text-center mb-3 mt-3">{{ teammate.teammate_job }}</div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job|upper }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="row mb-5">
                     {% for teammate in teammates %}
-                    {% if teammate.teammate_director == 2 %}
+                    {% if teammate.hierarchy == 2 %}
                     <div class="col-md-6 offset-md-3">
                         <div class="cloud position-relative" data-aos="zoom-in-up">
                             <div class="cloud-container cloud-director">
                                 {{ include('icons/cloud.html.twig') }}
                             </div>
                             <div class="name mt-3">
-                                <span>{{ teammate.teammate_firstname }} {{ teammate.teammate_name }}</span>
+                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
                             </div>
                         </div>
-                        <div class="text-center mb-3 mt-3">{{ teammate.teammate_job }}</div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job|upper }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
                 </div>
                 <div class="row">
                     {% for teammate in teammates %}
-                    {% if teammate.teammate_director == 0 %}
+                    {% if teammate.hierarchy == 3 %}
                     <div class="col-sm-6 col-md-4 mb-3">
                         <div class="cloud position-relative" data-aos="zoom-in-up">
                             <div class="cloud-container">
                                 {{ include('icons/cloud.html.twig') }}
                             </div>
                             <div class="name mt-3">
-                                <span>{{ teammate.teammate_firstname }} {{ teammate.teammate_name }}</span>
+                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
                             </div>
                         </div>
-                        <div class="text-center mb-3 mt-3">{{ teammate.teammate_job }}</div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job|upper }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
