@@ -1,4 +1,31 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-12 mb-3">
+            <label>
+                Photo
+                <sup class="icon-container" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Pour un meilleur rendu, choisissez une image orientée en paysage">
+                    {{ include('icons/info.html.twig') }}
+                </sup>
+            </label>
+            {{ form_widget(form.picture) }}
+        </div>
+        <div class="col-12 mb-3">
+            <label>Titre de l'article</label>
+            {{ form_widget(form.title) }}
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        {% if article.picture != null %}
+            <img src="{{ asset('uploads/img/' ~ article.picture) }}" alt="">
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <label>Contenu de l'article</label>
+            {{ form_widget(form.content, {'attr': {'id': 'article_content'}}) }}
+    </div>
+</div>
+    <button class="btn">{{ button_label|default('Créer') }}</button>
 {{ form_end(form) }}

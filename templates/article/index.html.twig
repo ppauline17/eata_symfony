@@ -13,7 +13,6 @@
                     <th class="column-invisible d-none" scope="col">Image</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Contenu</th>
-                    {# <th scope="col">Créé par</th> #}
                     <th scope="col">Date création</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -22,23 +21,41 @@
                 {% for article in articles %}
                     {% set article_content = article.content|striptags %}
                 <tr>
+                    
                     <td class="column-invisible d-none">
-                    {% if article.picture is defined %}
-                        <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">
-                    {% else %}
-                        <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="img-thumbnail" alt="...">
-                    {% endif %}
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}">
+                        {% if article.picture %}
+                            <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">
+                        {% else %}
+                            <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="img-thumbnail" alt="...">
+                        {% endif %}
+                        </a>
                     </td>
-                    <td>{{ article.title }}</td>
                     <td>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark">
+                        {{ article.title }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark">
                         {{ article_content|slice(0, 50) }}
                         {% if article_content|length > 100 %} ...{% endif %}
+                        </a>
                     </td>
-                    <td>{{ article.createdAt|date('d/m/Y') }}</td>
                     <td>
-                        <a href="{{ path('app_article_show', {'id': article.id}) }}">{{ include('icons/eye.html.twig') }}</a>
-                        <a href="{{ path('app_article_edit', {'id': article.id}) }}">{{ include('icons/update.html.twig') }}</a>
-                        <span data-bs-toggle="modal" data-bs-target="#deleteArticleVerif{{ article.id}}">{{ include('icons/delete.html.twig') }}</span>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark">
+                        {{ article.createdAt|date('d/m/Y') }}
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="{{ path('app_article_edit', {'id': article.id}) }}" title="Modifier" class="btn">
+                            {{ include('icons/update.html.twig') }}
+                        </a>
+                        {{ include('article/_delete_form.html.twig') }}
+                        {# <span data-bs-toggle="modal" data-bs-target="#deleteArticleVerif{{ article.id}}" title="Supprimer">
+                            {{ include('icons/delete.html.twig') }}
+                        </span> #}
                     </td>
                 </tr>
                 <!-- Modal -->

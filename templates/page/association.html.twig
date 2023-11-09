@@ -18,7 +18,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus nostrum eos maiores inventore, dignissimos facere aut soluta laborum debitis voluptate sapiente, error ipsa culpa hic voluptatibus! Sit fugit amet illum.</p>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <img src="public/img/avanton-creche-exterieur-2-1300x867.jpg" alt="" class="img-fluid" data-aos="fade-left" data-aos-duration="3000">
+                        <img src="{{ asset('img/avanton-creche-exterieur-2-1300x867.jpg') }}" alt="" class="img-fluid" data-aos="fade-left" data-aos-duration="3000">
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="row mb-5 team">
                     {% for teammate in teammates %}
-                    {% if teammate.hierarchy == 0 %}
+                    {% if teammate.hierarchy == 3 %}
                     <div class="col-md-4 mb-3">
                         <div class="card" data-aos="flip-down">
                             <ul class="list-group list-group-flush rounded-5">

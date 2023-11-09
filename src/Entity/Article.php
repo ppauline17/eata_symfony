@@ -23,6 +23,11 @@ class Article
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
+    private ?string $old_picture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +65,42 @@ class Article
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of old_picture
+     *
+     * @return ?string
+     */
+    public function getOldPicture(): ?string
+    {
+        return $this->old_picture;
+    }
+
+    /**
+     * Set the value of old_picture
+     *
+     * @param ?string $old_picture
+     *
+     * @return self
+     */
+    public function setOldPicture(?string $old_picture): self
+    {
+        $this->old_picture = $old_picture;
 
         return $this;
     }

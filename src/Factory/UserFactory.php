@@ -49,7 +49,7 @@ final class UserFactory extends ModelFactory
         return [
             'login' => 'pauline.pasquier',
             'password' => password_hash("admin", PASSWORD_BCRYPT),
-            'roles' => [],
+            'roles' => ['ROLE_SUPER_ADMIN'],
         ];
     }
 

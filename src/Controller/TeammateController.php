@@ -28,7 +28,6 @@ class TeammateController extends AbstractController
     public function new(
         Request $request, 
         EntityManagerInterface $entityManager, 
-        TeammateRepository $teammateRepository, 
         $category
     ): Response 
     {
@@ -41,11 +40,7 @@ class TeammateController extends AbstractController
             $entityManager->persist($teammate);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_teammate_index', [
-                'teammates' => $teammateRepository->findBy(['category' => $category]),
-                'crud_teammates' => true,
-                'category' => $category
-            ], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_teammate_index', ['category' => $category], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('teammate/new.html.twig', [
@@ -91,10 +86,11 @@ class TeammateController extends AbstractController
     public function delete(Request $request, Teammate $teammate, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$teammate->getId(), $request->request->get('_token'))) {
+            $category = $teammate->getCategory();
             $entityManager->remove($teammate);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_teammate_index', ['crud_teammates' => true], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_teammate_index', ['category' => $category], Response::HTTP_SEE_OTHER);
     }
 }

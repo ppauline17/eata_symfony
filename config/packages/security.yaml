@@ -37,6 +37,7 @@ security:
     access_control:
         - { path: ^/article, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
         - { path: ^/equipe, roles: [IS_AUTHENTICATED_FULLY, ROLE_USER] }
+        - { path: ^/user, roles: [ROLE_ADMIN] }
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

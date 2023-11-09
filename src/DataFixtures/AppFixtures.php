@@ -13,12 +13,26 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         ArticleFactory::createMany(10);
-        UserFactory::createOne();
+        $this->loadUsers();
         $this->loadTeammatesPeriscolaire();
         $this->loadTeammatesLoisirs();
         $this->loadTeammatesAssociation();
 
         $manager->flush();
+    }
+
+    public function loadUsers()
+    {
+        UserFactory::createOne([
+            'login' => 'pauline.pasquier',
+            'password' => password_hash("admin", PASSWORD_BCRYPT),
+            'roles' => ['ROLE_SUPER_ADMIN'],
+        ]);
+        UserFactory::createOne([
+            'login' => 'test.test',
+            'password' => password_hash("test", PASSWORD_BCRYPT),
+            'roles' => ['ROLE_USER'],
+        ]);
     }
 
     public function loadTeammatesPeriscolaire()
