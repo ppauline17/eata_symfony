@@ -78,4 +78,10 @@ class PageController extends AbstractController
     {
         return $this->render('page/informations.html.twig');
     }
+
+    #[Route('/administration', name: 'app_page_administration')]
+    public function administration(): Response
+    {
+        return $this->render('admin/index.html.twig');
+    }
 }
