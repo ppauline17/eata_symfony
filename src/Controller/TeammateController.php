@@ -36,6 +36,9 @@ class TeammateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if($form['hierarchy']->getData() === null){
+                $teammate->setHierarchy(3);
+            }
             $teammate
                     ->setLastname(mb_strtoupper($form['lastname']->getData()))
                     ->setFirstname(ucfirst(strtolower($form['firstname']->getData())))

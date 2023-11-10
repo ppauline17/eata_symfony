@@ -1,4 +1,26 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-3">
+        <label for="lastname">Nom</label>
+        {{ form_widget(form.lastname) }}
+    </div>
+    <div class="mb-3">
+        <label for="firstname">Prénom</label>
+        {{ form_widget(form.firstname) }}
+    </div>
+    <div class="mb-3">
+        <label for="job">Poste</label>
+        {{ form_widget(form.job) }}
+    </div>
+    <div class="mb-3">
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <input type="checkbox" name="" id="">
+        </button>
+        Cette personne est-elle directeur(trice) / président(e) ?
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                {{ form_widget(form.hierarchy) }}
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-outline-dark">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}

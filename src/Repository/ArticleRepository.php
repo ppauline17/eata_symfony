@@ -26,14 +26,14 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findAllPaginated(int $page): PaginationInterface
+    public function findAllPaginated(int $page, int $itemsByPage): PaginationInterface
    {
          $data =  $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'ASC')
+            ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
-        $articles = $this->paginator->paginate($data, $page, 5);
+        $articles = $this->paginator->paginate($data, $page, $itemsByPage);
 
         return $articles;
    }

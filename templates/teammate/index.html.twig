@@ -4,8 +4,8 @@
 
 {% block content %}
     <h3>{{ category|capitalize }}</h3>
-    <a href="{{ path('app_teammate_new', {'category': category}) }}" class="btn btn-outline-primary">
-            {{ include('icons/plus.html.twig') }}
+    <a href="{{ path('app_teammate_new', {'category': category}) }}" class="btn text-primary">
+            {{ include('icons/plus.html.twig') }} Créer
         </a>
     <table class="table">
         <thead>
@@ -22,11 +22,15 @@
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.lastname }}</a></td>
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.firstname }}</a></td>
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.job }}</a></td>
-                <td>
-                    <a href="{{ path('app_teammate_edit', {'id': teammate.id}) }}" title="Modifier" class="btn">
-                        {{ include('icons/update.html.twig') }}
-                    </a>
-                    {{ include('teammate/_delete_form.html.twig') }}
+                <td class="col-1">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ include('teammate/_update_btn.html.twig') }}
+                        </div>
+                        <div class="col-6">
+                            {{ include('teammate/_delete_btn.html.twig') }}
+                        </div>
+                    </div>
                 </td>
             </tr>
         {% else %}

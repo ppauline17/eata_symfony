@@ -8,11 +8,33 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.login) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="mb-3">
+                    <label for="lastname">Nom</label>
+                    {{ form_widget(registrationForm.lastname) }}
+                </div>
+                <div class="mb-3">
+                    <label for="firstname">Prénom</label>
+                    {{ form_widget(registrationForm.firstname) }}
+                </div>
+                <div class="mb-3">
+                    <label for="login">Identifiant</label>
+                    {{ form_widget(registrationForm.login) }}
+                </div>
+                <div class="mb-3">
+                    <label for="password">Mot de passe</label>
+                    {{ form_widget(registrationForm.plainPassword) }}
+                </div>
+                <div class="mb-3">
+                    <label for="roles">Droits d'accès</label>
+                    {{ form_widget(registrationForm.roles) }}
+                </div>
 
-        <button type="submit" class="btn">Register</button>
+                <button type="submit" class="btn">Créer</button>
+            </div>
+        </div>
+    </div>
+        
     {{ form_end(registrationForm) }}
 {% endblock %}

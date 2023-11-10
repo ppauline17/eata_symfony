@@ -3,24 +3,32 @@
 {% block title %}Teammate{% endblock %}
 
 {% block content %}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Nom</th>
-                <td>{{ teammate.lastname }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ teammate.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Poste</th>
-                <td>{{ teammate.job }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_teammate_edit', {'id': teammate.id}) }}">edit</a>
-
-    {{ include('teammate/_delete_form.html.twig') }}
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Nom</th>
+                    <td class='col-6'>{{ teammate.lastname }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ teammate.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Poste</th>
+                    <td>{{ teammate.job }}</td>
+                </tr>
+                <tr>
+                    <th>Modifier</th>
+                    <td>{{ include('teammate/_update_btn.html.twig') }}</td>
+                </tr>
+                <tr>
+                    <th>Supprimer</th>
+                    <td>{{ include('teammate/_delete_btn.html.twig') }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

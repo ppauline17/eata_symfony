@@ -5,28 +5,32 @@
 {% block content %}
     <h3>Article</h3>
 
+    {% if article.picture %}
+        <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">
+    {% endif %}
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ article.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
-                <td>{{ article.content }}</td>
+                <th>Contenu</th>
+                <td>{{ article.content|raw }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créé le</th>
                 <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modifier</th>
+                <td>{{ include('article/_update_btn.html.twig') }}</td>
+            </tr>
+            <tr>
+                <th>Supprimer</th>
+                <td>{{ include('article/_delete_btn.html.twig') }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
 {% endblock %}

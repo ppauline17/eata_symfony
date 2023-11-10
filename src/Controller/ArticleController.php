@@ -17,10 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findBy([], ['createdAt' => 'DESC']),
+            'articles' => $articleRepository->findAllPaginated($request->query->getInt('page', 1), 10),
             'crud_article' => true
         ]);
     }

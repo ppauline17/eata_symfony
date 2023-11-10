@@ -4,9 +4,13 @@
 
 {% block content %}
     <h3 class="mt-4">Liste des actualités</h3>
-        <a href="{{ path('app_article_new') }}" class="btn btn-outline-primary">
-            {{ include('icons/plus.html.twig') }}
-        </a>
+        
+        <div class="d-flex justify-content-between">
+        <a href="{{ path('app_article_new') }}" class="btn text-primary">
+            {{ include('icons/plus.html.twig') }} Créer
+</a>
+            {{ knp_pagination_render(articles) }}
+        </div>
         <table class="table table-responsive">
             <thead>
                 <tr>
@@ -26,8 +30,6 @@
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">
                         {% if article.picture %}
                             <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">
-                        {% else %}
-                            <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="img-thumbnail" alt="...">
                         {% endif %}
                         </a>
                     </td>
@@ -48,11 +50,15 @@
                         </a>
                     </td>
                     
-                    <td>
-                        <a href="{{ path('app_article_edit', {'id': article.id}) }}" title="Modifier" class="btn">
-                            {{ include('icons/update.html.twig') }}
-                        </a>
-                        {{ include('article/_delete_form.html.twig') }}
+                    <td class="col-1">
+                        <div class="row">
+                            <div class="col-6">
+                                {{ include('article/_update_btn.html.twig') }}
+                            </div>
+                            <div class="col-6">
+                                {{ include('article/_delete_btn.html.twig') }}
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <!-- Modal -->
@@ -79,4 +85,5 @@
                 {% endfor %}
             </tbody>
         </table>
+        
 {% endblock %}

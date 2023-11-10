@@ -3,9 +3,14 @@
 {% block title %}Edit Teammate{% endblock %}
 
 {% block content %}
-    <h1>Edit Teammate</h1>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h3>Modifier {{ teammate.firstname ~ ' ' ~ teammate.lastname }}</h3>
+        {{ include('teammate/_form.html.twig', {'button_label': 'Valider'}) }}
+        {{ include('teammate/_delete_btn.html.twig') }}
 
-    {{ include('teammate/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+</div>
 
-    {{ include('teammate/_delete_form.html.twig') }}
+    
 {% endblock %}

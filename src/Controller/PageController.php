@@ -33,7 +33,7 @@ class PageController extends AbstractController
     public function articles(ArticleRepository $articleRepository, Request $request): Response
     {
         return $this->render('page/articles.html.twig', [
-            'articles' => $articleRepository->findAllPaginated($request->query->getInt('page', 1))
+            'articles' => $articleRepository->findAllPaginated($request->query->getInt('page', 1), 5)
         ]);
     }
 
