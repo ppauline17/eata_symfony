@@ -5,8 +5,8 @@
 {% block content %}
     <h3>{{ category|capitalize }}</h3>
     <a href="{{ path('app_teammate_new', {'category': category}) }}" class="btn text-primary">
-            {{ include('icons/plus.html.twig') }} Créer
-        </a>
+        {{ include('icons/plus.html.twig') }} Créer
+    </a>
     <table class="table">
         <thead>
             <tr>

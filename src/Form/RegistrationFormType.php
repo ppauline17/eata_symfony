@@ -38,10 +38,13 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
-                    'Editeur' => 'ROLE_USER',
-                    'Enfant' => 'ROLE_CHILD',
+                    'Tout' => 'ROLE_ADMIN',
+                    'Articles' => 'ROLE_EDITOR',
+                    'Equipes' => 'ROLE_TEAM',
+                    'Le coin des enfants' => 'ROLE_CHILD',
                 ],
-                'multiple' => true
+                'multiple' => true,
+                'expanded' => true
             ])
         ;
     }

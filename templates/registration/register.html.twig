@@ -3,13 +3,13 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <h1>Register</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
+            <h3>Créer un utilisateur</h3>
             <div class="mb-3">
                     <label for="lastname">Nom</label>
                     {{ form_widget(registrationForm.lastname) }}
@@ -31,7 +31,7 @@
                     {{ form_widget(registrationForm.roles) }}
                 </div>
 
-                <button type="submit" class="btn">Créer</button>
+                <button type="submit" class="btn btn-outline-dark">Créer</button>
             </div>
         </div>
     </div>
