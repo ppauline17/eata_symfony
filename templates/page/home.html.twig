@@ -24,17 +24,21 @@
                                 <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
                                 {% endif %}
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ article.title|upper }}</h5>
-                                    <div class="card-text article-content">
-                                        {{ description|slice(0, 100) }}
-                                        {% if description|length > 100 %} ...{% endif %}
-                                    </div>
+                                    <h5 class="card-title text-center">{{ article.title }}</h5>
                                     <p class="card-text">
                                         <small class="text-body-secondary">
                                         Publié le {{ article.createdAt|date('d/m/Y') }}
                                         </small>
                                     </p>
-                                    <a href="{{ path('app_page_article_show', {'id': article.id}) }}" class="btn btn-outline-warning">Lire</a>
+                                    <div class="card-text article-content">
+                                        {{ description|slice(0, 100)|raw }}
+                                        {% if description|length > 100 %} ...{% endif %}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 offset-4">
+                                            <a href="{{ path('app_page_article_show', {'id': article.id}) }}" class="btn btn-outline-warning w-100">Lire</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

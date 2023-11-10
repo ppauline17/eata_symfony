@@ -9,14 +9,19 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="card">
-                        {% if article.picture is defined %}
+                        {% if article.picture %}
                             <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top" alt="image de l'article {{ article.title }}">
                         {% else %}
                             <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
                         {% endif %}
                         
                         <div class="card-body">
-                            <h5 class="text-center">{{ article.title|upper }}</h5>
+                            <h5 class="text-center">{{ article.title }}</h5>
+                            <p class="card-text">
+                                <small class="text-body-secondary">
+                                Publié le {{ article.createdAt|date('d/m/Y') }}
+                                </small>
+                            </p>
                             <div class="card-text">{{ article.content|raw }}</dib>
                         </div>
                     </div>

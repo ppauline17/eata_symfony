@@ -36,7 +36,11 @@ class TeammateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $teammate->setCategory($category);
+            $teammate
+                    ->setLastname(mb_strtoupper($form['lastname']->getData()))
+                    ->setFirstname(ucfirst(strtolower($form['firstname']->getData())))
+                    ->setJob(mb_strtoupper($form['job']->getData()))
+                    ->setCategory($category);
             $entityManager->persist($teammate);
             $entityManager->flush();
 
@@ -66,6 +70,10 @@ class TeammateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $teammate
+                    ->setLastname(mb_strtoupper($form['lastname']->getData()))
+                    ->setFirstname(ucfirst(strtolower($form['firstname']->getData())))
+                    ->setJob(mb_strtoupper($form['job']->getData()));
             $entityManager->flush();
 
             return $this->redirectToRoute('app_teammate_index', [

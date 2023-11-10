@@ -33,6 +33,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setTitle(mb_strtoupper($form['title']->getData()));
             $article->setCreatedAt(new DateTimeImmutable());
             if ($photo = $form['picture']->getData()) {
                 $filename = bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
@@ -78,6 +79,7 @@ class ArticleController extends AbstractController
 
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setTitle(mb_strtoupper($form['title']->getData()));
             // si une nouvelle image est renseignée
             if ($picture = $form['picture']->getData()) {
                 // on remplace le nom de l'image dans la base de données
@@ -85,11 +87,13 @@ class ArticleController extends AbstractController
                 $picture->move($imgDir, $filename);
                 $article->setPicture($filename);
 
+                // si il y avait déjà une image
+                if ($old_picture = $form['old_picture']->getData()){
                 // on supprime l'ancienne image du dossier
-                $old_picture = $form['old_picture']->getData();
-                $old_picture_path = $this->getParameter("photo_dir").$old_picture;
-                if(file_exists($old_picture_path)){
-                    unlink($old_picture_path);
+                    $old_picture_path = $this->getParameter("photo_dir").$old_picture;
+                    if(file_exists($old_picture_path)){
+                        unlink($old_picture_path);
+                    }
                 }
             }
             $entityManager->flush();
@@ -108,9 +112,10 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            // si on a une image
             if($picture = $article->getPicture()){
                 $picture_path = $this->getParameter("photo_dir").$picture;
-
+                // on la supprime du dossier
                 if(file_exists($picture_path)){
                     unlink($picture_path);
                 }

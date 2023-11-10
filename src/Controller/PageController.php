@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Repository\TeammateRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends AbstractController
 {
@@ -28,10 +30,10 @@ class PageController extends AbstractController
     }
 
     #[Route('/page/articles', name: 'app_page_articles')]
-    public function articles(ArticleRepository $articleRepository): Response
+    public function articles(ArticleRepository $articleRepository, Request $request): Response
     {
         return $this->render('page/articles.html.twig', [
-            'articles' => $articleRepository->findBy([], ['createdAt' => 'DESC'])
+            'articles' => $articleRepository->findAllPaginated($request->query->getInt('page', 1))
         ]);
     }
 

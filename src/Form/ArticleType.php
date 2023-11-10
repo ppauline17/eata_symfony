@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -20,7 +21,7 @@ class ArticleType extends AbstractType
             ])
             ->add('old_picture', HiddenType::class)
             ->add('title')
-            ->add('content')
+            ->add('content', CKEditorType::class)
         ;
     }
 

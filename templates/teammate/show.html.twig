@@ -3,33 +3,19 @@
 {% block title %}Teammate{% endblock %}
 
 {% block content %}
-    <h1>Teammate</h1>
-
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ teammate.id }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ teammate.lastname }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ teammate.firstname }}</td>
             </tr>
             <tr>
-                <th>Category</th>
-                <td>{{ teammate.category }}</td>
-            </tr>
-            <tr>
-                <th>Job</th>
+                <th>Poste</th>
                 <td>{{ teammate.job }}</td>
-            </tr>
-            <tr>
-                <th>Hierarchy</th>
-                <td>{{ teammate.hierarchy }}</td>
             </tr>
         </tbody>
     </table>

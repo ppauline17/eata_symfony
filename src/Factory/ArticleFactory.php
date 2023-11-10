@@ -49,7 +49,7 @@ final class ArticleFactory extends ModelFactory
         return [
             'content' => self::faker()->text(),
             'createdAt' => \DateTimeImmutable::createFromMutable(self::faker()->dateTime()),
-            'title' => self::faker()->text(20),
+            'title' => mb_strtoupper(self::faker()->text(20)),
         ];
     }
 

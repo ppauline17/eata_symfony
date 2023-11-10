@@ -12,7 +12,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        ArticleFactory::createMany(10);
+        ArticleFactory::createMany(50);
         $this->loadUsers();
         $this->loadTeammatesPeriscolaire();
         $this->loadTeammatesLoisirs();
