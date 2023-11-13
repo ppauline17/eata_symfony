@@ -5,13 +5,23 @@
 
 {% block body %}
     <section>
+        <div class="section-title first-color mb-5">
+            <div class="container">
+                <p class="text-center">Les actualités</p>
+            </div>
+        </div>
         <div class="container">
-            <h3 class="mb-5">Les actualités</h3>
+            {% set aos = "fade-left" %}
             {% for article in articles %}
             {% set description = article.content|striptags %}
+            {% if aos == "fade-right" %}
+            {% set aos = "fade-left" %}
+            {% else %}
+            {% set aos = "fade-right" %}
+            {% endif %}
             <div class="row">
                 <div class="col-12 mb-5">
-                    <div class="card mb-3">
+                    <div class="card mb-3"  data-aos="{{ aos }}">
                         <div class="row g-0">
                             <div class="col-lg-4">
                                 {% if article.picture %}
