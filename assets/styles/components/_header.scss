@@ -11,6 +11,11 @@ header{
             .logo{
                 height: 100px;
             }
+            .burger-nav{
+                .dropdown-menu{
+                    width: 75vw;
+                }
+            }
             @media screen and (min-width: 900px) {
                 .burger-nav{
                     display: none;

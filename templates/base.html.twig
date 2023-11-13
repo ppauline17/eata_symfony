@@ -36,12 +36,16 @@
                                             </button>
                                             </h2>
                                             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                                <div class="accordion-body">
-                                                    <ul>
-                                                        <li><a href="{{ path('app_page_periscolaire') }}"><button class="dropdown-item" type="button">L'accueil périscolaire</button></a></li>
-                                                        <li><a href="{{ path('app_page_loisirs') }}"><button class="dropdown-item" type="button">L'accueil de loisirs</button></a></li>
-                                                        <li><a href="{{ path('app_page_association') }}"><button class="dropdown-item" type="button">L'association</button></a></li>
-                                                    </ul>
+                                                <div class="accordion-body py-0">
+                                                    <a href="{{ path('app_page_periscolaire') }}">
+                                                        <p class="m-0">L'accueil périscolaire (garderie)</p>
+                                                    </a>
+                                                    <a href="{{ path('app_page_loisirs') }}">
+                                                        <p class="m-0">L'accueil de loisirs</p>
+                                                    </a>
+                                                    <a href="{{ path('app_page_association') }}">
+                                                        <p class="m-0">L'association</p>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,8 +80,8 @@
                                 La vie des accueils
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire</a></li>
-                                <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire (garderie)</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs (mercredi / vacances)</a></li>
                                 <li><a class="dropdown-item" href="{{ path('app_page_association') }}">L'association</a></li>
                             </ul>
                         </div>
