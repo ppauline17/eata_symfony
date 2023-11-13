@@ -29,6 +29,7 @@
                     {% endfor %}
                     </td>
                 </tr>
+                {% if 'ROLE_ADMIN' not in user.roles %}
                 <tr>
                     <th>Modifier</th>
                     <td>{{ include('user/_update_btn.html.twig') }}</td>
@@ -37,6 +38,7 @@
                     <th>Supprimer</th>
                     <td>{{ include('user/_delete_btn.html.twig') }}</td>
                 </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>
