@@ -55,37 +55,28 @@
     }
 
     .home-life{
-        a{
-            position: relative;
+        .ellipse{
+            display: block;
+            height: 214px;
+            width: 170px;
+            margin: 0 auto;
+            background-color: $color-3;
+            border-radius: 100%;
+            transform: rotate(40deg);
             color: $light-text;
             font-weight: bold;
             .icon{
-                position: absolute;
-                top: 0;
-                left: 0;
-                z-index: 1;
-                width: 100%;
+                transform: rotate(-40deg);
                 height: 100%;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                transform: scale(1);
-                transition: transform 0.1s linear;
-                &:hover{
-                    transform: scale(1.1);
-                    transition: transform 0.1s linear;
-                }
                 .life-icon{
                     height: 40px;
                     fill: $light-text;
                     margin-bottom: 50%;
-                }
-            }
-            .ellipse-container{
-                .icon-ellipse{
-                    display: block;
-                    margin: 0 auto;
                 }
             }
         }

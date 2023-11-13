@@ -46,7 +46,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4 offset-sm-4">
-                        <a href="{{ path('app_page_articles') }}"><button class="btn btn-outline-warning w-100 text-dark">Voir toutes les actualités</button></a>
+                        <a href="{{ path('app_page_articles') }}"><button class="btn btn-outline-warning w-100 text-dark border-4 zoom-on-hover">Voir toutes les actualités</button></a>
                     </div>
                 </div>
             </div>
@@ -61,11 +61,8 @@
         <div class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <a class="ellipse position-relative" href="{{ path('app_page_periscolaire') }}">
-                            <div class="ellipse-container">
-                                {{ include('icons/ellipse.html.twig') }}
-                            </div>
+                    <div class="col-sm-6 col-md-4 mb-5 p-5">
+                        <a class="ellipse p-5" href="{{ path('app_page_periscolaire') }}">
                             <div class="icon">
                                 <span>{{ include('icons/house.html.twig') }}</span>
                                 <span>L'accueil</span>
@@ -73,11 +70,8 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <a class="ellipse position-relative" href="{{ path('app_page_loisirs') }}">
-                            <div class="ellipse-container">
-                                {{ include('icons/ellipse.html.twig') }}
-                            </div>
+                    <div class="col-sm-6 col-md-4 mb-5 p-5">
+                        <a class="ellipse p-5" href="{{ path('app_page_loisirs') }}">
                             <div class="icon">
                                 <span>{{ include('icons/balloon.html.twig') }}</span>
                                 <span>L'accueil</span>
@@ -85,11 +79,8 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-6 col-md-4 mb-5">
-                        <a class="ellipse position-relative" href="{{ path('app_page_association') }}">
-                            <div class="ellipse-container">
-                                {{ include('icons/ellipse.html.twig') }}
-                            </div>
+                    <div class="col-sm-6 col-md-4 mb-5 p-5">
+                        <a class="ellipse p-5" href="{{ path('app_page_association') }}">
                             <div class="icon">
                                 <span>{{ include('icons/person.html.twig') }}</span>
                                 <span>L'association</span>

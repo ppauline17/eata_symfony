@@ -25,7 +25,7 @@
         </div>
     </section>
     <section class="periscolaire-team">
-        <div class="section-title third-color mt-5 mb-5">
+        <div class="section-title second-color mt-5 mb-5">
             <div class="container">
                 <p class="text-center">L'équipe d'animations</p>
             </div>
@@ -41,6 +41,23 @@
                                 {{ include('icons/sun.html.twig') }}
                             </div>
                             <div class="name">
+                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row mb-5">
+                    {% for teammate in teammates %}
+                    {% if teammate.hierarchy == 2 %}
+                    <div class="col-md-6 offset-md-3">
+                        <div class="cloud position-relative" data-aos="zoom-in-up">
+                            <div class="cloud-container cloud-director">
+                                {{ include('icons/cloud.html.twig') }}
+                            </div>
+                            <div class="name mt-3">
                                 <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
                             </div>
                         </div>
@@ -66,6 +83,30 @@
                     {% endif %}
                     {% endfor %}
                 </div>
+            </div>
+        </div>
+    </section>
+    <section class="periscolaire-team">
+        <div class="section-title third-color mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Tarifs</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+            
+            </div>
+        </div>
+    </section>
+    <section class="periscolaire-team">
+        <div class="section-title fourth-color mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Horaires</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+            
             </div>
         </div>
     </section>

@@ -32,7 +32,7 @@
                                         <div class="accordion-item">
                                             <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                                La vie du centre
+                                                La vie des accueils
                                             </button>
                                             </h2>
                                             <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -66,12 +66,14 @@
                     <span class="title third-word">Ton </span>
                     <span class="title fourth-word">Aventure</span>
                 </h1>
-                <h2 class="text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear">Accueil périscolaire et de loisirs associatif d’Avanton</h2>
+                <h2 class="text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear">
+                    Accueil périscolaire et accueil de loisirs associatif d’Avanton
+                </h2>
                 <nav class="full-screen-nav">
                         <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_home' %}active{% endif %}" href="{{ path('app_page_home') }}">Accueil</a>
                         <div class="dropdown">
                             <a class="dropdown-toggle nav-dropdown nav-link {% if teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
-                                La vie du centre
+                                La vie des accueils
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire</a></li>
@@ -91,27 +93,41 @@
             {% block body %}{% endblock %}
         </main>
 
-        <footer>
+        <footer class="py-4">
             <div class="container">
-                <ul>
-                    <li>Adresse</li>
-                    <li>Téléphone</li>
-                    <li>Mail</li>
-                    <li>Mentions légales</li>
-                    <li>Contact</li>
-                    {% if app.user %}
-                    <li>
-                        <a href="{{ path('app_page_administration') }}">Administration</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('app_logout') }}">Deconnexion</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{{ path('app_login') }}">Connexion</a>
-                    </li>
-                    {% endif %}
-                </ul>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <ul>
+                            <li>Maison de l'enfance</li>
+                            <li>En Avant Ton Aventure</li>
+                            <li>3 rue de la poste</li>
+                            <li class="mb-4">86170 AVANTON</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <ul>
+                            <li class="mb-4">05 49 51 21 26</li>
+                            <li class="mb-4">clmavanton@wanadoo.fr</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4">
+                        <ul>
+                            <li class="mb-4">Mentions légales</li>
+                            {% if app.user %}
+                            <li>
+                                <a href="{{ path('app_page_administration') }}">Administration</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_logout') }}">Deconnexion</a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </footer>
         
