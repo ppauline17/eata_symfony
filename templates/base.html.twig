@@ -68,7 +68,7 @@
                 </h1>
                 <h2 class="text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear">Accueil périscolaire et de loisirs associatif d’Avanton</h2>
                 <nav class="full-screen-nav">
-                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_home' %} class="active"{% endif %}" href="{{ path('app_page_home') }}">Accueil</a>
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_home' %}active{% endif %}" href="{{ path('app_page_home') }}">Accueil</a>
                         <div class="dropdown">
                             <a class="dropdown-toggle nav-dropdown nav-link {% if teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
                                 La vie du centre
@@ -79,9 +79,9 @@
                                 <li><a class="dropdown-item" href="{{ path('app_page_association') }}">L'association</a></li>
                             </ul>
                         </div>
-                        <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_children') }}">Le coin des enfants</a>
-                        <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_parents') }}">Le coin des parents</a>
-                        <a class="nav-link {% if app.request.attributes.get('_route') == '' %} class="active"{% endif %}" href="{{ path('app_page_informations') }}">Infos pratiques</a>
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_children' %}active{% endif %}" href="{{ path('app_page_children') }}">Le coin des enfants</a>
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_parents' %}active{% endif %}" href="{{ path('app_page_parents') }}">Le coin des parents</a>
+                        <a class="nav-link {% if app.request.attributes.get('_route') == 'app_page_informations' %}active{% endif %}" href="{{ path('app_page_informations') }}">Infos pratiques</a>
                     </ul>
                 </nav>
             </div>
