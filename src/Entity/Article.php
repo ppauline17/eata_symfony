@@ -28,6 +28,10 @@ class Article
 
     private ?string $old_picture = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,6 +105,18 @@ class Article
     public function setOldPicture(?string $old_picture): self
     {
         $this->old_picture = $old_picture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

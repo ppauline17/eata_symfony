@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,15 +27,15 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%photo_dir%')] string $imgDir,): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%photo_dir%')] string $imgDir, Security $security): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setTitle(mb_strtoupper($form['title']->getData()));
-            $article->setCreatedAt(new DateTimeImmutable());
+            $article->setTitle(mb_strtoupper($form['title']->getData()))
+                    ->setCreatedAt(new DateTimeImmutable())
+                    ->setUser($security->getUser());
             if ($photo = $form['picture']->getData()) {
                 $filename = bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
                 $photo->move($imgDir, $filename);

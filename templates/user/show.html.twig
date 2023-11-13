@@ -24,9 +24,7 @@
                 <tr>
                     <th>Droits d'accès</th>
                     <td>
-                    {% for role in user.roles %}
-                        {{ role|json_encode }}
-                    {% endfor %}
+                        {{ include('user/_roles.html.twig') }}
                     </td>
                 </tr>
                 {% if 'ROLE_ADMIN' not in user.roles %}

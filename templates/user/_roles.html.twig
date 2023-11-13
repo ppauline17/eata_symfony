@@ -1,0 +1,11 @@
+{% for role in user.roles %}
+    {% if role == "ROLE_ADMIN" %}
+    <p>Tout</p>
+    {% elseif role == 'ROLE_EDITOR' %}
+    <p>Articles</p>
+    {% elseif role == 'ROLE_TEAM' %}
+    <p>Equipes</p>
+    {% elseif role == 'ROLE_CHILD' %}
+    <p>Le coin des enfants</p>
+    {% endif %}
+{% endfor %}

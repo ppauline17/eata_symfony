@@ -17,6 +17,7 @@
                     <th class="column-invisible d-none" scope="col">Image</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Contenu</th>
+                    <th scope="col">Créé par</th>
                     <th scope="col">Date création</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -42,6 +43,11 @@
                         <a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark">
                         {{ article_content|slice(0, 50) }}
                         {% if article_content|length > 100 %} ...{% endif %}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="text-dark">
+                        {{ article.user.firstname }}
                         </a>
                     </td>
                     <td>

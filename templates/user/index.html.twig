@@ -26,9 +26,7 @@
                 <td><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.login }}</a></td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">
-                    {% for role in user.roles %}
-                        {{ role|json_encode }}
-                    {% endfor %}
+                        {{ include('user/_roles.html.twig') }}
                     </a>
                 </td>
                 <td class="col-1">
