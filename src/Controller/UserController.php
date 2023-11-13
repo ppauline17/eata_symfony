@@ -48,6 +48,10 @@ class UserController extends AbstractController
                     )
                 );
             }
+            if($lastName = $form['lastname']->getData()){
+                $user->setLastname(mb_strtoupper($lastName));
+            }
+            $user->setFirstname(ucfirst(strtolower($form['firstname']->getData())));
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
