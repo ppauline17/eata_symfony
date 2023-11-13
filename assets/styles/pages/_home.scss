@@ -62,9 +62,14 @@
             margin: 0 auto;
             background-color: $color-3;
             border-radius: 100%;
-            transform: rotate(40deg);
+            transform: rotate(40deg) scale(1);
             color: $light-text;
             font-weight: bold;
+            transition: transform 0.1s linear;
+            &:hover{
+                transform: rotate(40deg) scale(1.1);
+                transition: transform 0.1s linear;
+            }
             .icon{
                 transform: rotate(-40deg);
                 height: 100%;
