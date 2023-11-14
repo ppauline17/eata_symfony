@@ -23,7 +23,7 @@ class InformationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_information_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_information_edit', ["label" => $information->getLabel()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('information/edit.html.twig', [
