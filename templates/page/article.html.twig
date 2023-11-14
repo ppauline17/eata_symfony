@@ -6,13 +6,13 @@
 {% block body %}
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-8 offset-md-2">
                     <div class="card">
                         {% if article.picture %}
-                            <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top" alt="image de l'article {{ article.title }}">
+                            <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top object-fit-contain" alt="image de l'article {{ article.title }}">
                         {% else %}
-                            <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top object-fit-contain" alt="...">
                         {% endif %}
                         
                         <div class="card-body">

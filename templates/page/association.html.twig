@@ -14,7 +14,7 @@
             <div class="container">
                 <div class="row mt-3">
                     <div class="col-md-6">
-                        {{ information_description.content|raw }}
+                        {{ description.content|raw }}
                     </div>
                     <div class="col-md-6 mb-3">
                         <img src="{{ asset('img/avanton-creche-exterieur-2-1300x867.jpg') }}" alt="" class="img-fluid" data-aos="fade-left" data-aos-duration="3000">
@@ -62,7 +62,7 @@
             </div>
         </div>
     </section>
-    <section class="association-infos">
+    <section class="association-infos mb-5">
         <div class="section-title third-color mt-5 mb-5">
             <div class="container">
                 <p class="text-center">Informations</p>
@@ -70,7 +70,7 @@
         </div>
         <div class="content">
             <div class="container">
-                
+                {{ informations.content|raw }}
             </div>
         </div>
     </section>

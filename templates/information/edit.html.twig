@@ -2,8 +2,13 @@
 
 {% block title %}Modifier information{% endblock %}
 
+{# {% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_information_edit', {'label': information.label}) }}" class="text-dark">{{ information.category }}</a></li>
+{% endblock %} #}
+
 {% block content %}
-    <h3>Description</h3>
+    <h3>{{ information.title }}</h3>
 
     {{ include('information/_form.html.twig') }}
 

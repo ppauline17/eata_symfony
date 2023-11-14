@@ -62,7 +62,8 @@ class PageController extends AbstractController
     {
         return $this->render('page/association.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'association']),
-            'information_description' => $informationRepository->findOneBy(['label' => 'app_page_association_description']),
+            'description' => $informationRepository->findOneBy(['label' => 'app_page_association_description']),
+            "informations" => $informationRepository->findOneBy(['label' => 'app_page_association_informations']),
         ]);
     }
 
