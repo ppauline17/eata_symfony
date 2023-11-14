@@ -19,10 +19,8 @@ class TeammateType extends AbstractType
             ->add('job')
             ->add('hierarchy', ChoiceType::class, [
                 'choices' => [
-                    'Directeur(trice)' => 1,
-                    'Directeur(trice) Adjoint(e)' => 2,
-                    'Président(e)' => 1,
-                    'Président(e) Adjoint(e)' => 2,
+                    'Directeur(trice) / Président(e)' => 1,
+                    'Directeur(trice) Adjoint(e) / Président(e) Adjoint(e)' => 2,
                     'Autre' => 3
                 ],
                 'placeholder' => false,

@@ -6,48 +6,48 @@
 {# Navigation #}
     <section class="mb-5">
         <div class="container">
-        <h2 class="mb-5">Administration</h2>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link {% if app.request.pathInfo starts with '/administration' %}active{% endif %}" href="{{ path('app_page_administration') }}">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if app.request.pathInfo starts with '/article' %}active{% endif %}" href="{{ path('app_article_index') }}">Articles</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-dropdown nav-link {% if crud_teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
-                        Equipes
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'periscolaire'}) }}">Accueil périscolaire</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'loisirs'}) }}">Accueil de loisirs</a></li>
-                        <li><a class="dropdown-item" href="{{ path('app_teammate_index', {'category': 'association'}) }}">Association</a></li>
-                    </ul>
-                </li>
-                {# <li class="nav-item">
-                    <a class="nav-link disabled text-secondary {% if users %}active{% endif %}" href="#">Coin enfants</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled text-secondary {% if users %}active{% endif %}" href="#">Coin parents</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled text-secondary {% if users %}active{% endif %}" href="#">Infos pratiques</a>
-                </li>
-                {# <li class="nav-item">
-                    <a class="nav-link" href="page/compte">Mon compte</a>
-                </li> #}
-                {% if 'ROLE_ADMIN' in app.user.roles or 'ROLE_SUPER_ADMIN' in app.user.roles %}
-                <li class="nav-item">
-                    <a class="nav-link {% if crud_user is defined %}active{% endif %}" href="{{ path('app_user_index') }}">Utilisateurs</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </section>
-{# contenu #}
-    <section class="list">
-        <div class="container">
-            {% block content %}{% endblock %}
+            <div class="row">
+                <div class="col-xl-2">
+                    <div class="row bg-4 rounded p-3">
+                        <div class="col-12 mb-3">
+                            <a class="nav-link zoom-on-hover text-light" href="{{ path('app_admin_index') }}"><h4>Administration</h4></a>
+                        </div>
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover" href="{{ path('app_admin_home') }}">Page Accueil</a>
+                        </div>
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover" href="{{ path('app_admin_periscolaire') }}">Accueil périscolaire</a>
+                        </div>
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover" href="{{ path('app_admin_loisirs') }}">Accueil de loisirs</a>
+                        </div>
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover" href="{{ path('app_admin_association') }}">Association</a>
+                        </div>
+                        {# <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover disabled" href="{{ path('app_admin_children') }}">Le coin des enfants</a>
+                        </div>
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover disabled" href="{{ path('app_admin_parents') }}">Le coin des parents</a>
+                        </div> #}
+                        {# <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover disabled" href="{{ path('app_admin_informations') }}">Infos pratiques</a>
+                        </div> #}
+                        <div class="col-6 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover" href="{{ path('app_user_index') }}">Utilisateurs du site</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-10 list">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ path('app_admin_index') }}" class="text-dark">Administration</a></li>
+                            {% block breadcrumb %}{% endblock %}
+                        </ol>
+                    </nav>
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
         </div>
     </section>
 

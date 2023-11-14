@@ -1,0 +1,29 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="#" class="text-dark">Page Accueil</a></li>
+{% endblock %}
+
+{% block content %}
+    <h3>Page Accueil</h3>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_article_index') }}">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Articles
+                    </div>
+                </div>
+            </a>
+        </div>
+        {# <div class="col-md-3 mb-3">
+            <div class="card bg-2 border-0 p-3 zoom-on-hover">
+                <div class="card-body text-center">
+                    Infos pratiques
+                </div>
+            </div>
+        </div> #}
+    </div>
+{% endblock %}

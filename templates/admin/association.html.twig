@@ -1,0 +1,18 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block content %}
+    <h3>Association</h3>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_teammate_index', {'category': 'association'}) }}">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Equipe association
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}

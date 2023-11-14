@@ -93,7 +93,7 @@
             </div>
         </header>
 
-        <main class="mb-5 mt-5">
+        <main>
             {% block body %}{% endblock %}
         </main>
 
@@ -119,7 +119,7 @@
                             <li class="mb-4">Mentions légales</li>
                             {% if app.user %}
                             <li>
-                                <a href="{{ path('app_page_administration') }}">Administration</a>
+                                <a href="{{ path('app_admin_index') }}">Administration</a>
                             </li>
                             <li>
                                 <a href="{{ path('app_logout') }}">Deconnexion</a>

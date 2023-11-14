@@ -2,19 +2,24 @@
 
 {% block title %}Article index{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="#" class="text-dark">Page Accueil</a></li>
+    <li class="breadcrumb-item"><a href="#" class="text-dark">Articles</a></li>
+{% endblock %}
+
 {% block content %}
-    <h3 class="mt-4">Liste des actualités</h3>
+        <h3 class="mt-4">Liste des actualités</h3>
         
         <div class="d-flex justify-content-between">
         <a href="{{ path('app_article_new') }}" class="btn text-primary">
             {{ include('icons/plus.html.twig') }} Créer
-</a>
+        </a>
             {{ knp_pagination_render(articles) }}
         </div>
         <table class="table table-responsive">
             <thead>
                 <tr>
-                    <th class="column-invisible d-none" scope="col">Image</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Titre</th>
                     <th scope="col">Contenu</th>
                     <th scope="col">Créé par</th>
@@ -27,7 +32,7 @@
                     {% set article_content = article.content|striptags %}
                 <tr>
                     
-                    <td class="column-invisible d-none">
+                    <td class="col-2">
                         <a href="{{ path('app_article_show', {'id': article.id}) }}">
                         {% if article.picture %}
                             <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="img-thumbnail" alt="">

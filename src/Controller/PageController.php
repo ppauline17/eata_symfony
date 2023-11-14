@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\InformationRepository;
 use App\Repository\TeammateRepository;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,26 +38,31 @@ class PageController extends AbstractController
     }
 
     #[Route('/accueil-periscolaire', name: 'app_page_periscolaire')]
-    public function periscolaire(TeammateRepository $teammateRepository): Response
+    public function periscolaire(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
     {
         return $this->render('page/accueil_periscolaire.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'periscolaire'])
+            'teammates' => $teammateRepository->findBy(['category' => 'periscolaire']),
+            'information_description' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_description']),
+            'information_time' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_time']),
         ]);
     }
 
     #[Route('/accueil-loisirs', name: 'app_page_loisirs')]
-    public function loisirs(TeammateRepository $teammateRepository): Response
+    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
     {
         return $this->render('page/accueil_loisirs.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'loisirs'])
+            'teammates' => $teammateRepository->findBy(['category' => 'loisirs']),
+            'information_description' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_description']),
+            'information_time' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_time']),
         ]);
     }
 
     #[Route('/association', name: 'app_page_association')]
-    public function association(TeammateRepository $teammateRepository): Response
+    public function association(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
     {
         return $this->render('page/association.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'association'])
+            'teammates' => $teammateRepository->findBy(['category' => 'association']),
+            'information_description' => $informationRepository->findOneBy(['label' => 'app_page_association_description']),
         ]);
     }
 
@@ -77,11 +82,5 @@ class PageController extends AbstractController
     public function informations(): Response
     {
         return $this->render('page/informations.html.twig');
-    }
-
-    #[Route('/administration', name: 'app_page_administration')]
-    public function administration(): Response
-    {
-        return $this->render('admin/index.html.twig');
     }
 }
