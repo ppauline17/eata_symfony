@@ -1,0 +1,45 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Document index{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_document_index') }}" class="text-dark">Documents</a></li>
+{% endblock %}
+
+{% block content %}
+    <h3>Documents à télécharger</h3>
+    <a href="{{ path('app_document_new') }}" class="btn text-primary">
+        {{ include('icons/plus.html.twig') }} Créer
+    </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du document</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for document in documents %}
+            <tr>
+                <td>
+                    <a href="{{ path('app_document_show', {'id': document.id}) }}" class="text-dark">
+                        {{ document.label }}
+                    </a>
+                </td>
+                {# <td class="col-1">
+                    <div class="row">
+                        <div class="col-6">
+                            {{ include('document/_delete_btn.html.twig') }}
+                        </div>
+                    </div>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucune donnée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    <div class="mb-3">
+        <label for="lastname">Nom du document</label>
+        {{ form_widget(form.label) }}
+    </div>
+    <div class="mb-3">
+        <label for="firstname">Document (PDF)</label>
+        {{ form_widget(form.documentSource) }}
+        {{ form_errors(form.documentSource) }}
+    </div>
+    <button class="btn btn-primary">{{ button_label|default('Créer') }}</button>
+{{ form_end(form) }}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\DocumentRepository;
 use App\Repository\InformationRepository;
 use App\Repository\PriceRepository;
 use App\Repository\TeammateRepository;
@@ -94,10 +95,11 @@ class PageController extends AbstractController
     }
 
     #[Route('/informations', name: 'app_page_informations')]
-    public function informations(InformationRepository $informationRepository): Response
+    public function informations(InformationRepository $informationRepository, DocumentRepository $documentRepository): Response
     {
         return $this->render('page/informations.html.twig', [
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_infospratiques_informations']),
+            'documents' => $documentRepository->findAll()
         ]);
     }
 }

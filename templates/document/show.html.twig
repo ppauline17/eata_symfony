@@ -1,0 +1,26 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Document{% endblock %}
+
+{% block content %}
+    <h3>Document</h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom du document</th>
+                <td>{{ document.label }}</td>
+            </tr>
+            <tr class="col-8">
+                <th>Document</th>
+                <td><iframe src="{{ asset('uploads/doc/' ~ document.documentSource) }}" class="w-100"></iframe></td>
+            </tr>
+            <tr>
+                <th>Supprimer</th>
+                <td>{{ include('document/_delete_btn.html.twig') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+{% endblock %}
