@@ -32,7 +32,8 @@ class DocumentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($documentSource = $form['documentSource']->getData()) {
-                $filename = bin2hex(random_bytes(6)).'.'.$documentSource->guessExtension();
+                $filename = filter_var($form['label']->getData(), FILTER_SANITIZE_EMAIL);
+                $filename .= '.'.$documentSource->guessExtension();
                 $documentSource->move($docDir, $filename);
                 $document->setDocumentSource($filename);
             }
