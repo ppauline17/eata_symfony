@@ -10,8 +10,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
+                <th class="d-none d-md-table-cell">Nom</th>
+                <th class="d-none d-md-table-cell">Prénom</th>
                 <th>Login</th>
                 <th>Droits d'accès</th>
                 <th>Actions</th>
@@ -21,8 +21,8 @@
         {% for user in users %}
             {% if 'ROLE_SUPER_ADMIN' not in user.roles %}
             <tr>
-                <td><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.lastname }}</a></td>
-                <td><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.firstname }}</a></td>
+                <td class="d-none d-md-table-cell"><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.lastname }}</a></td>
+                <td class="d-none d-md-table-cell"><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.firstname }}</a></td>
                 <td><a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">{{ user.login }}</a></td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-dark">

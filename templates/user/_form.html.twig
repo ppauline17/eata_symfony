@@ -15,6 +15,7 @@
         <label for="newPassword">Mot de passe</label>
         <div class="input-group mb-3">
             {{ form_widget(form.newPassword, {'attr': {'class': 'form-control', 'type': 'password', 'aria-label': 'Password', 'aria-describedby': 'basic-addon1'}}) }}
+            {{ form_errors(form.newPassword) }}
             <span class="input-group-text" id="basic-addon1">
                 <span id="eye">{{ include('icons/eye.html.twig') }}</span>
                 <span class="d-none" id="eyeSlash">{{ include('icons/eye-slash.html.twig') }}</span>

@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserType extends AbstractType
 {
@@ -20,7 +22,30 @@ class UserType extends AbstractType
             ->add('login')
             ->add('password', HiddenType::class)
             ->add('newPassword', PasswordType::class, [
-                'required' => false
+                'required' => false,
+                'constraints' => [
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
+                        'max' => 4096,
+                    ]),
+                    new Regex([
+                        'pattern' => '/[A-Z]/',
+                        'message' => 'Votre mot de passe doit contenir au moins une majuscule',
+                    ]),
+                    new Regex([
+                        'pattern' => '/[a-z]/',
+                        'message' => 'Votre mot de passe doit contenir au moins une minuscule',
+                    ]),
+                    new Regex([
+                        'pattern' => '/[0-9]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un chiffre',
+                    ]),
+                    new Regex([
+                        'pattern' => '/[!@#$%^&*(),.?":{}|<>]/',
+                        'message' => 'Votre mot de passe doit contenir au moins un caractère spécial',
+                    ]),
+                ],
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [

@@ -25,6 +25,7 @@
                 <div class="mb-3">
                     <label for="password">Mot de passe</label>
                     {{ form_widget(registrationForm.plainPassword) }}
+                    {{ form_errors(registrationForm.plainPassword) }}
                 </div>
                 <div class="mb-3">
                     <label for="roles">Droits d'accès</label>

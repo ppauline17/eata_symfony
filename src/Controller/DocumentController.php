@@ -56,28 +56,15 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_document_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Document $document, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(DocumentType::class, $document);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('document/edit.html.twig', [
-            'document' => $document,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_document_delete', methods: ['POST'])]
     public function delete(Request $request, Document $document, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$document->getId(), $request->request->get('_token'))) {
+            $docPath = $this->getParameter("document_dir").$document->getDocumentSource();
+            // on supprime du dossier
+            if(file_exists($docPath)){
+                unlink($docPath);
+            }
             $entityManager->remove($document);
             $entityManager->flush();
         }

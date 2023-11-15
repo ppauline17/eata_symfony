@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
-    <li class="breadcrumb-item"><a href="{{ path('app_document_index') }}" class="text-dark">Documents</a></li>
+    <li class="breadcrumb-item">Documents</li>
 {% endblock %}
 
 {% block content %}
@@ -27,13 +27,13 @@
                         {{ document.label }}
                     </a>
                 </td>
-                {# <td class="col-1">
+                <td class="col-1">
                     <div class="row">
                         <div class="col-6">
                             {{ include('document/_delete_btn.html.twig') }}
                         </div>
                     </div>
-                </td> #}
+                </td>
             </tr>
         {% else %}
             <tr>
