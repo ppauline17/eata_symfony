@@ -1,0 +1,66 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_peris') }}" class="text-dark">Accueil du mercredi</a></li>
+    <li class="breadcrumb-item">Tarifs</li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h3>Les tarifs du centre de loisirs (vacances)</h3>
+        <table class="table mb-5">
+            <thead>
+                <tr>
+                    <th>Quotient familial</th>
+                    <th>Prix</th>
+                    <th>Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for price in prices %}
+                <tr>
+                    <td>{{ price.familyQuotient }}</td>
+                    <td class="col-2">{{ price.fullDay|number_format(2, '.', ',') ~ ' €' }}</td>
+                    <td class="col-1">
+                        <a href="{{ path('app_price_edit', {'id': price.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h3>Les remises du mercredi</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ville</th>
+                    <th>Réduction</th>
+                    <th>Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for city in cities %}
+                <tr>
+                    <td>{{ city.name }}</td>
+                    <td class="col-2">{{ city.loisirsReduce|number_format(2, '.', ',') ~ ' €' }}</td>
+                    <td class="col-1">
+                        <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

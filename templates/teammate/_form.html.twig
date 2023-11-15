@@ -22,5 +22,5 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-outline-dark">{{ button_label|default('Valider') }}</button>
+    {% include('components/_buttonSave.html.twig') %}
 {{ form_end(form) }}

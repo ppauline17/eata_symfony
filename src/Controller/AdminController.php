@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\CityRepository;
+use App\Repository\PriceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +32,15 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/periscolaire/liste', name: 'app_admin_periscolaire_list')]
+    public function periscolaireList(PriceRepository $priceRepository, CityRepository $cityRepository): Response
+    {
+        return $this->render('admin/periscolaireList.html.twig', [
+            'prices' => $priceRepository->findAll(),
+            'cities' => $cityRepository->findAll(),
+        ]);
+    }
+
     #[Route('/mercredi', name: 'app_admin_mercredi')]
     public function mercredi(): Response
     {
@@ -37,10 +48,28 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/mercredi/liste', name: 'app_admin_mercredi_list')]
+    public function mercrediList(PriceRepository $priceRepository, CityRepository $cityRepository): Response
+    {
+        return $this->render('admin/mercrediList.html.twig', [
+            'prices' => $priceRepository->findAll(),
+            'cities' => $cityRepository->findAll(),
+        ]);
+    }
+
     #[Route('/loisirs', name: 'app_admin_loisirs')]
     public function loisirs(): Response
     {
         return $this->render('admin/loisirs.html.twig', [
+        ]);
+    }
+
+    #[Route('/loisirs/liste', name: 'app_admin_loisirs_list')]
+    public function loisirsList(PriceRepository $priceRepository, CityRepository $cityRepository): Response
+    {
+        return $this->render('admin/loisirsList.html.twig', [
+            'prices' => $priceRepository->findAll(),
+            'cities' => $cityRepository->findAll(),
         ]);
     }
     

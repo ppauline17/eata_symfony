@@ -22,34 +22,6 @@ class PriceController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_price_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $price = new Price();
-        $form = $this->createForm(PriceType::class, $price);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($price);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_price_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('price/new.html.twig', [
-            'price' => $price,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_price_show', methods: ['GET'])]
-    public function show(Price $price): Response
-    {
-        return $this->render('price/show.html.twig', [
-            'price' => $price,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_price_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Price $price, EntityManagerInterface $entityManager): Response
     {
@@ -66,16 +38,5 @@ class PriceController extends AbstractController
             'price' => $price,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_price_delete', methods: ['POST'])]
-    public function delete(Request $request, Price $price, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$price->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($price);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_price_index', [], Response::HTTP_SEE_OTHER);
     }
 }

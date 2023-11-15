@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CityRepository;
 use App\Repository\DocumentRepository;
 use App\Repository\InformationRepository;
 use App\Repository\PriceRepository;
@@ -51,24 +52,26 @@ class PageController extends AbstractController
     }
 
     #[Route('/accueil-mercredi', name: 'app_page_mercredi')]
-    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
+    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository, CityRepository $cityRepository): Response
     {
         return $this->render('page/accueil_mercredi.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'mercredi']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_time']),
-            'prices' => $priceRepository->findAll()
+            'prices' => $priceRepository->findAll(),
+            'cities' => $cityRepository->findAll(),
         ]);
     }
 
     #[Route('/accueil-loisirs', name: 'app_page_loisirs')]
-    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
+    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository, CityRepository $cityRepository): Response
     {
         return $this->render('page/accueil_loisirs.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'loisirs']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_time']),
-            'prices' => $priceRepository->findAll()
+            'prices' => $priceRepository->findAll(),
+            'cities' => $cityRepository->findAll(),
         ]);
     }
 

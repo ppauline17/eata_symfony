@@ -2,5 +2,5 @@
     <div class="mb-3">
         {{ form_widget(form.content) }}
     </div>
-    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    {% include('components/_buttonSave.html.twig') %}
 {{ form_end(form) }}

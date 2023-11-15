@@ -103,25 +103,21 @@
         </div>
         <div class="content">
             <div class="container">
-                {# <div class="row mb-4">
+                <div class="row mb-4">
                     <div class="col-lg-4 offset-lg-4">
-                        <select id="communeSelect" class="form-select form-select-lg" aria-label="Large select example">
-                            <option selected>Choisissez votre commune</option>
-                            <option value="1" data-reduce="2.70">AVANTON</option>
-                            <option value="2" data-reduce="2.60">CHABOURNAY</option>
-                            <option value="3" data-reduce="2.90">CISSE</option>
-                            <option value="4" data-reduce="3.40">NEUVILLE</option>
-                            <option value="5" data-reduce="3.00">ST MARTIN LA PALLUE</option>
-                            <option value="6" data-reduce="4.00">VILLIERS</option>
-                            <option value="7" data-reduce="0.00">Communauté de communes</option>
-                            <option value="8" data-reduce="0.00">Hors communauté de commune</option>
+                        <select class="form-select form-select-lg" aria-label="Large select example" onchange="changePrice()">
+                            <option selected data-reduce="0.00">Choisissez votre commune</option>
+                            {% set index = 1 %}
+                            {% for city in cities %}
+                            <option value="{{ index }}" data-reduce="{{ city.loisirsReduce }}">{{ city.name }}</option>
+                            {% set index = (index + 1) %}
+                            {% endfor %}
                         </select>
                     </div>
-                </div> #}
+                </div>
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
                         <h3 class="text-center">Accueil de Loisirs (vacances)</h3>
-                        {% set reduceHolidays = 3.00 %}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -133,7 +129,11 @@
                                 {% for price in prices %}
                                 <tr>
                                     <td class="text-center">{{ price.familyQuotient }}</td>
-                                    <td class="text-center">{{ price.fullDay|number_format(2, '.') ~ ' ' ~ '€' }}</td>
+                                    <td class="text-center">
+                                        <span class="price">{{ (price.fullDay)|number_format(2, '.') }}</span>
+                                        <span class="d-none"></span>
+                                        <span> €</span>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -157,17 +157,6 @@
     </section>
 {% endblock %}
 
-{% block script %}
-<script>
-    document.getElementById('communeSelect').addEventListener('change', function() {
-        var communeSelect = document.getElementById('communeSelect');
-        var selectedOption = communeSelect.options[communeSelect.selectedIndex];
-        
-        // Obtenez la valeur de la remise à partir de l'attribut data-remise
-        var reduceHolidays = parseFloat(selectedOption.getAttribute('data-remise')) || 0;
-
-        // Mettez à jour le texte du montant de la remise
-        document.getElementById('montantRemise').innerText = '{{ ('11.90' - reduceHolidays)|number_format(2, '.') ~ ' ' ~ '€' }}';
-    });
-</script>
+{% block scripts %}
+<script src="{{ asset('scripts/changePrice.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}City index{% endblock %}
+
+{% block content %}
+    <h3>Réductions par ville</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ville</th>
+                <th>Réduction vacances</th>
+                <th>Réduction mercredi</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.name }}</td>
+                <td>{{ city.loisirsReduce|number_format(2, '.', ',') ~ ' €' }}</td>
+                <td>{{ city.wednesdayReduce|number_format(2, '.', ',') ~ ' €' }}</td>
+                <td>
+                    <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

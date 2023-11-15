@@ -1,0 +1,25 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Edit City{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+    <h3 class="mb-5">Modifier les remises pour {{ city.name }}</h3>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            <label for="loisirsReduce">Reduction par journée de centre de loisirs (vacances)</label>
+        {{ form_widget(form.loisirsReduce) }}
+        {{ form_errors(form.loisirsReduce) }}
+        </div>
+        <div class="mb-3">
+            <label for="loisirsReduce">Reduction par demi-journée de centre de loisirs (mercredi)</label>
+            {{ form_widget(form.wednesdayReduce) }}
+            {{ form_errors(form.wednesdayReduce) }}
+        </div>
+        {% include('components/_buttonSave.html.twig') %}
+    {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

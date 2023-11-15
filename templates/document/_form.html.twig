@@ -8,5 +8,5 @@
         {{ form_widget(form.documentSource) }}
         {{ form_errors(form.documentSource) }}
     </div>
-    <button class="btn btn-primary">{{ button_label|default('Créer') }}</button>
+    {% include('components/_buttonSave.html.twig') %}
 {{ form_end(form) }}

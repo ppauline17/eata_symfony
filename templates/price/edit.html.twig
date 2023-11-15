@@ -1,13 +1,37 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard.html.twig' %}
 
 {% block title %}Edit Price{% endblock %}
 
-{% block body %}
-    <h1>Edit Price</h1>
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h3>Modifier les tarifs pour le quotient familial {{ price.familyQuotient }}</h3>
 
-    {{ include('price/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ form_start(form) }}
+            <div class="mb-3">
+                <label for="halfDay">Demi-journée (mercredi)</label>
+                {{ form_widget(form.halfDay) }}
+            </div>
+            <div class="mb-3">
+                <label for="fullDay">Journée (vacances)</label>
+                {{ form_widget(form.fullDay) }}
+            </div>
+            <div class="mb-3">
+                <label for="morning">Matin (garderie)</label>
+                {{ form_widget(form.morning) }}
+            </div>
+            <div class="mb-3">
+                <label for="eveningFirstHour">Soir (16h-17h)</label>
+                {{ form_widget(form.eveningFirstHour) }}
+            </div>
+            <div class="mb-3">
+                <label for="eveningHalfHour">Soir (demi-heure)</label>
+                {{ form_widget(form.eveningHalfHour) }}
+            </div>
+            {% include('components/_buttonSave.html.twig') %}
+        {{ form_end(form) }}
+    </div>
+</div>
 
-    <a href="{{ path('app_price_index') }}">back to list</a>
 
-    {{ include('price/_delete_form.html.twig') }}
 {% endblock %}

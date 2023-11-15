@@ -3,7 +3,7 @@
 {% block title %}Administration{% endblock %}
 
 {% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+    <li class="breadcrumb-item">Accueil périscolaire</li>
 {% endblock %}
 
 {% block content %}
@@ -36,14 +36,14 @@
                 </div>
             </a>
         </div>
-        {# <div class="col-md-3 mb-3">
-            <a href="#">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_admin_periscolaire_list') }}">
                 <div class="card bg-3 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Tarifs
                     </div>
                 </div>
             </a>
-        </div> #}
+        </div>
     </div>
 {% endblock %}
