@@ -4,4 +4,24 @@
 
 {% block content %}
     <h3>Infos pratiques</h3>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_information_edit', {'label': 'app_page_infospratiques_informations'}) }}">
+                <div class="card bg-4 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Informations
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_teammate_index', {'category': 'loisirs'}) }}">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Documents à télécharger
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 {% endblock %}

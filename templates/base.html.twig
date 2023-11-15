@@ -40,6 +40,9 @@
                                                     <a href="{{ path('app_page_periscolaire') }}">
                                                         <p class="m-0">L'accueil périscolaire (garderie)</p>
                                                     </a>
+                                                    <a href="{{ path('app_page_mercredi') }}">
+                                                        <p class="m-0">L'accueil périscolaire (mercredi)</p>
+                                                    </a>
                                                     <a href="{{ path('app_page_loisirs') }}">
                                                         <p class="m-0">L'accueil de loisirs</p>
                                                     </a>
@@ -81,7 +84,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire (garderie)</a></li>
-                                <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs (mercredi / vacances)</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_page_mercredi') }}">L'accueil périscolaire (mercredi)</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs (vacances)</a></li>
                                 <li><a class="dropdown-item" href="{{ path('app_page_association') }}">L'association</a></li>
                             </ul>
                         </div>
@@ -112,6 +116,7 @@
                         <ul>
                             <li class="mb-4">05 49 51 21 26</li>
                             <li class="mb-4">clmavanton@wanadoo.fr</li>
+                            <li class="mb-4 zoom-on-hover"><a href="#" title="Page facebook">{% include('icons/facebook.html.twig') %}</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4">

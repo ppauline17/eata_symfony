@@ -23,14 +23,14 @@
                 <div class="col-12 mb-5">
                     <div class="card mb-3"  data-aos="{{ aos }}">
                         <div class="row g-0">
-                            <div class="col-lg-4">
+                            <div class="col-md-4">
                                 {% if article.picture %}
                                 <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top" alt="...">
                                 {% else %}
                                 <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
                                 {% endif %}
                             </div>
-                            <div class="col-lg-8">
+                            <div class="col-md-8">
                                 <div class="card-body h-100 d-flex flex-column justify-content-between">
                                     <div>
                                         <h5 class="card-title">{{ article.title }}</h5>

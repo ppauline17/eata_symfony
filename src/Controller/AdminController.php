@@ -22,11 +22,18 @@ class AdminController extends AbstractController
         return $this->render('admin/home.html.twig', [
         ]);
     }
-
+    
     #[Route('/périscolaire', name: 'app_admin_periscolaire')]
     public function periscolaire(): Response
     {
         return $this->render('admin/periscolaire.html.twig', [
+        ]);
+    }
+
+    #[Route('/mercredi', name: 'app_admin_mercredi')]
+    public function mercredi(): Response
+    {
+        return $this->render('admin/mercredi.html.twig', [
         ]);
     }
 

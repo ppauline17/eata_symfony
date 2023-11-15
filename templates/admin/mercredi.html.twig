@@ -2,11 +2,15 @@
 
 {% block title %}Administration{% endblock %}
 
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+{% endblock %}
+
 {% block content %}
-    <h3>L'accueil de loisirs</h3>
+    <h3>L'accueil périscolaire du mercredi</h3>
     <div class="row">
         <div class="col-md-3 mb-3">
-            <a href="{{ path('app_information_edit', {'label': 'app_page_loisirs_description'}) }}">
+            <a href="{{ path('app_information_edit', {'label': 'app_page_mercredi_description'}) }}">
                 <div class="card bg-4 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Description
@@ -15,28 +19,19 @@
             </a>
         </div>
         <div class="col-md-3 mb-3">
-            <a href="{{ path('app_teammate_index', {'category': 'loisirs'}) }}">
+            <a href="{{ path('app_teammate_index', {'category': 'mercredi'}) }}">
                 <div class="card bg-1 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
-                        Equipe loisirs
+                        Equipe mercredi
                     </div>
                 </div>
             </a>
         </div>
         <div class="col-md-3 mb-3">
-            <a href="{{ path('app_information_edit', {'label': 'app_page_loisirs_time'}) }}">
+            <a href="{{ path('app_information_edit', {'label': 'app_page_mercredi_time'}) }}">
                 <div class="card bg-2 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Horaires
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-3 mb-3">
-            <a href="#">
-                <div class="card bg-3 border-0 p-3 zoom-on-hover">
-                    <div class="card-body text-center">
-                        Tarifs
                     </div>
                 </div>
             </a>

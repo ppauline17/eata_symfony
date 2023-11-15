@@ -19,9 +19,9 @@
                         <div class="col-xl-4 mb-5">
                             <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                                 {% if article.picture %}
-                                <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="object-fit-contain h-auto rounded" alt="...">
                                 {% else %}
-                                <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="object-fit-contain h-auto rounded" alt="...">
                                 {% endif %}
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{ article.title }}</h5>
@@ -55,7 +55,7 @@
     <section class="home-life">
         <div class="section-title second-color">
             <div class="container">
-                <p class="text-center">La vie du centre</p>
+                <p class="text-center">Infos pratiques</p>
             </div>
         </div>
         <div class="content">
@@ -87,18 +87,15 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-sm-6 col-md-4 mb-5 p-5">
+                        <a class="ellipse p-5" href="{{ path('app_page_informations') }}">
+                            <div class="icon zoom-on-hover">
+                                <span>{{ include('icons/paperclip.html.twig') }}</span>
+                                <span>Documents</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="home-info">
-        <div class="section-title third-color">
-            <div class="container">
-                <p class="text-center">Infos pratiques</p>
-            </div>
-        </div>
-        <div class="content">
-            <div class="container">
             </div>
         </div>
     </section>

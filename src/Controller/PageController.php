@@ -47,6 +47,16 @@ class PageController extends AbstractController
         ]);
     }
 
+    #[Route('/accueil-mercredi', name: 'app_page_mercredi')]
+    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
+    {
+        return $this->render('page/accueil_mercredi.html.twig', [
+            'teammates' => $teammateRepository->findBy(['category' => 'mercredi']),
+            'information_description' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_description']),
+            'information_time' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_time']),
+        ]);
+    }
+
     #[Route('/accueil-loisirs', name: 'app_page_loisirs')]
     public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
     {
@@ -80,8 +90,10 @@ class PageController extends AbstractController
     }
 
     #[Route('/informations', name: 'app_page_informations')]
-    public function informations(): Response
+    public function informations(InformationRepository $informationRepository): Response
     {
-        return $this->render('page/informations.html.twig');
+        return $this->render('page/informations.html.twig', [
+            "informations" => $informationRepository->findOneBy(['label' => 'app_page_infospratiques_informations']),
+        ]);
     }
 }
