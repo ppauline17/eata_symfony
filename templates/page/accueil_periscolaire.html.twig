@@ -103,7 +103,31 @@
         </div>
         <div class="content">
             <div class="container">
-            
+                <div class="row">
+                    <div class="col-xxl-10 offset-xxl-1">
+                        <h3 class="text-center">Accueil périscolaire du matin et soir</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center">Tranche quotient familial</th>
+                                    <th scope="col" class="text-center">Matin (7h30-8h35) indivisible</th>
+                                    <th scope="col" class="text-center">Soir (16h-17h) avec goûter indivisible</th>
+                                    <th scope="col" class="text-center">Soir (demi-heure)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for price in prices %}
+                                <tr>
+                                    <td class="text-center">{{ price.familyQuotient }}</td>
+                                    <td class="text-center">{{ price.morning|number_format(2, '.') ~ ' ' ~ '€' }}</td>
+                                    <td class="text-center">{{ price.eveningFirstHour|number_format(2, '.') ~ ' ' ~ '€' }}</td>
+                                    <td class="text-center">{{ price.eveningHalfHour|number_format(2, '.') ~ ' ' ~ '€' }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

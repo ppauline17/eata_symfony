@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Repository\InformationRepository;
+use App\Repository\PriceRepository;
 use App\Repository\TeammateRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,32 +39,35 @@ class PageController extends AbstractController
     }
 
     #[Route('/accueil-periscolaire', name: 'app_page_periscolaire')]
-    public function periscolaire(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
+    public function periscolaire(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
     {
         return $this->render('page/accueil_periscolaire.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'periscolaire']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_time']),
+            'prices' => $priceRepository->findAll()
         ]);
     }
 
     #[Route('/accueil-mercredi', name: 'app_page_mercredi')]
-    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
+    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
     {
         return $this->render('page/accueil_mercredi.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'mercredi']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_time']),
+            'prices' => $priceRepository->findAll()
         ]);
     }
 
     #[Route('/accueil-loisirs', name: 'app_page_loisirs')]
-    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
+    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
     {
         return $this->render('page/accueil_loisirs.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'loisirs']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_time']),
+            'prices' => $priceRepository->findAll()
         ]);
     }
 

@@ -130,30 +130,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for price in prices %}
                                 <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ ('11.90' - reduceHolidays)|number_format(2, '.') ~ ' ' ~ '€' }}</td>
+                                    <td class="text-center">{{ price.familyQuotient }}</td>
+                                    <td class="text-center">{{ price.fullDay|number_format(2, '.') ~ ' ' ~ '€' }}</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ ('13.50' - reduceHolidays)|number_format(2, '.') ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ '15.10' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ '16.70' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ '18.20' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ '19.80' ~ ' ' ~ '€' }}</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

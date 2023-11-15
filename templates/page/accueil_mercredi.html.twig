@@ -129,30 +129,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for price in prices %}
                                 <tr>
-                                    <td class="text-center">0 à 700</td>
-                                    <td class="text-center">{{ '3.90' ~ ' ' ~ '€' }}</td>
+                                    <td class="text-center">{{ price.familyQuotient }}</td>
+                                    <td class="text-center">{{ price.halfDay|number_format(2, '.') ~ ' ' ~ '€' }}</td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">701 à 900</td>
-                                    <td class="text-center">{{ '4.80' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">901 à 1100</td>
-                                    <td class="text-center">{{ '5.60' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">1101 à 1300</td>
-                                    <td class="text-center">{{ '6.50' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">1301 à 1500</td>
-                                    <td class="text-center">{{ '7.40' ~ ' ' ~ '€' }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">Plus de 1500</td>
-                                    <td class="text-center">{{ '8.20' ~ ' ' ~ '€' }}</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
