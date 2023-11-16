@@ -106,7 +106,7 @@
                 <div class="row mb-4">
                     <div class="col-lg-4 offset-lg-4">
                         <select class="form-select form-select-lg" aria-label="Large select example" onchange="changePrice()">
-                            <option selected data-reduce="0.00">Choisissez votre commune</option>
+                            <option selected data-reduce="0.00">Choisissez votre commune <sup>*</sup></option>
                             {% set index = 1 %}
                             {% for city in cities %}
                             <option value="{{ index }}" data-reduce="{{ city.loisirsReduce }}">{{ city.name }}</option>
@@ -138,6 +138,7 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                        <p><sup>*</sup> selon votre commune, une aide peut vous être accordée par jour par enfant.</p>
                     </div>
                 </div>
             </div>
