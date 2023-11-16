@@ -11,22 +11,27 @@
             <div class="mb-3">
                 <label for="halfDay">Demi-journée (mercredi)</label>
                 {{ form_widget(form.halfDay) }}
+                {{ form_errors(form.halfDay) }}
             </div>
             <div class="mb-3">
                 <label for="fullDay">Journée (vacances)</label>
                 {{ form_widget(form.fullDay) }}
+                {{ form_errors(form.fullDay) }}
             </div>
             <div class="mb-3">
                 <label for="morning">Matin (garderie)</label>
                 {{ form_widget(form.morning) }}
+                {{ form_errors(form.morning) }}
             </div>
             <div class="mb-3">
                 <label for="eveningFirstHour">Soir (16h-17h)</label>
                 {{ form_widget(form.eveningFirstHour) }}
+                {{ form_errors(form.eveningFirstHour) }}
             </div>
             <div class="mb-3">
                 <label for="eveningHalfHour">Soir (demi-heure)</label>
                 {{ form_widget(form.eveningHalfHour) }}
+                {{ form_errors(form.eveningHalfHour) }}
             </div>
             {% include('components/_buttonSave.html.twig') %}
         {{ form_end(form) }}
