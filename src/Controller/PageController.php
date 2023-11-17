@@ -60,6 +60,7 @@ class PageController extends AbstractController
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_time']),
             'prices' => $priceRepository->findAll(),
             'cities' => $cityRepository->findAll(),
+            'meal' => $cityRepository->findOneBy(['name' => 'ST MARTIN LA PALLU']),
         ]);
     }
 

@@ -22,6 +22,9 @@ class City
     #[ORM\Column]
     private ?float $wednesdayReduce = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $mealPrice = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class City
     public function setWednesdayReduce(float $wednesdayReduce): static
     {
         $this->wednesdayReduce = $wednesdayReduce;
+
+        return $this;
+    }
+
+    public function getMealPrice(): ?float
+    {
+        return $this->mealPrice;
+    }
+
+    public function setMealPrice(?float $mealPrice): static
+    {
+        $this->mealPrice = $mealPrice;
 
         return $this;
     }

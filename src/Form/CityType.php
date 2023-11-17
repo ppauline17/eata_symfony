@@ -15,6 +15,7 @@ class CityType extends AbstractType
     {
         $builder
             ->add('loisirsReduce', MoneyType::class, [
+                'required' => false,
                 'invalid_message' => 'Veuillez saisir un nombre',
                 'constraints' => [
                     new GreaterThanOrEqual([
@@ -24,6 +25,17 @@ class CityType extends AbstractType
                 ],
             ])
             ->add('wednesdayReduce', MoneyType::class, [
+                'required' => false,
+                'invalid_message' => 'Veuillez saisir un nombre',
+                'constraints' => [
+                    new GreaterThanOrEqual([
+                        'value' => 0,
+                        'message' => 'La valeur doit être égale ou supérieure à zéro.',
+                    ]),
+                ],
+            ])
+            ->add('mealPrice', MoneyType::class, [
+                'required' => false,
                 'invalid_message' => 'Veuillez saisir un nombre',
                 'constraints' => [
                     new GreaterThanOrEqual([

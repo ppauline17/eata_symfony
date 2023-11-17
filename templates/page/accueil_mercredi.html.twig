@@ -141,6 +141,15 @@
                         <p><sup>*</sup> selon votre commune, une aide peut vous être accordée par jour par enfant.</p>
                     </div>
                 </div>
+                {% if meal.mealPrice %}
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="alert alert-secondary" role="alert">
+                            Le prix du repas pour les enfants de {{ meal.name }} est de {{ meal.mealPrice }} €.
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -153,6 +162,18 @@
         <div class="content">
             <div class="container">
                 {{ information_time.content|raw }}
+            </div>
+        </div>
+    </section>
+    <section class="periscolaire-team mb-5">
+        <div class="section-title first-color mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Documents à fournir</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                {# {{ information_time.content|raw }} #}
             </div>
         </div>
     </section>

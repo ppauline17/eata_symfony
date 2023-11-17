@@ -18,6 +18,11 @@
             {{ form_widget(form.wednesdayReduce) }}
             {{ form_errors(form.wednesdayReduce) }}
         </div>
+        <div class="mb-3 {% if city.name != "ST MARTIN LA PALLU" %}d-none{% endif %}">
+            <label for="mealPrice">Prix du repas</label>
+            {{ form_widget(form.mealPrice) }}
+            {{ form_errors(form.mealPrice) }}
+        </div>
         {% include('components/_buttonSave.html.twig') %}
     {{ form_end(form) }}
     </div>

@@ -52,6 +52,29 @@
             {% endfor %}
             </tbody>
         </table>
+        <h3>Prix du repas</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ville</th>
+                    <th>Prix</th>
+                    <th>Modifier</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for city in cities %}
+                {% if city.name == "ST MARTIN LA PALLU" %}
+                <tr>
+                    <td>{{ city.name }}</td>
+                    <td class="col-2">{{ city.mealPrice|number_format(2, '.', ',') ~ ' €' }}</td>
+                    <td class="col-1">
+                        <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
