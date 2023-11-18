@@ -5,9 +5,10 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\FileUploaderService;
+use App\Service\ImageManipulationService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +28,12 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/new', name: 'app_article_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%photo_dir%')] string $imgDir, Security $security): Response
+    public function new(
+        Request $request, 
+        EntityManagerInterface $entityManager,
+        Security $security,
+        FileUploaderService $fileUploaderService
+    ): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -36,11 +42,13 @@ class ArticleController extends AbstractController
             $article->setTitle(mb_strtoupper($form['title']->getData()))
                     ->setCreatedAt(new DateTimeImmutable())
                     ->setUser($security->getUser());
-            if ($photo = $form['picture']->getData()) {
-                $filename = bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
-                $photo->move($imgDir, $filename);
+
+            // upload du media
+            if ($picture = $form['picture']->getData()) {
+                $filename = $fileUploaderService->uploadPicture($picture);
                 $article->setPicture($filename);
             }
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -67,36 +75,35 @@ class ArticleController extends AbstractController
     public function edit(
         Request $request, Article $article, 
         EntityManagerInterface $entityManager, 
-        #[Autowire('%photo_dir%')] string $imgDir,
-    ): Response
+        FileUploaderService $fileUploaderService,
+        ): Response
     {
         if($article->getPicture()){
             // on défini la valeur de l'ancienne image
             $article->setOldPicture($article->getPicture());
         }
-
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setTitle(mb_strtoupper($form['title']->getData()));
+
             // si une nouvelle image est renseignée
             if ($picture = $form['picture']->getData()) {
                 // on remplace le nom de l'image dans la base de données
-                $filename = bin2hex(random_bytes(6)).'.'.$picture->guessExtension();
-                $picture->move($imgDir, $filename);
+                $filename = $fileUploaderService->uploadPicture($picture);
                 $article->setPicture($filename);
-
-                // si il y avait déjà une image
-                if ($old_picture = $form['old_picture']->getData()){
+            }
+            // si il y avait déjà une image ou un document
+            if ($old_picture = $form['old_picture']->getData()){
                 // on supprime l'ancienne image du dossier
-                    $old_picture_path = $this->getParameter("photo_dir").$old_picture;
-                    if(file_exists($old_picture_path)){
-                        unlink($old_picture_path);
-                    }
+                $old_picture_path = $this->getParameter("photo_dir").$old_picture;
+                if(file_exists($old_picture_path)){
+                    unlink($old_picture_path);
                 }
             }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);

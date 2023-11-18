@@ -1,6 +1,6 @@
 {% extends 'admin/dashboard.html.twig' %}
 
-{% block title %}Edit Article{% endblock %}
+{% block title %}Modifier Article{% endblock %}
 
 {% block content %}
     <h3>Modifier un article</h3>
@@ -10,9 +10,3 @@
     {{ include('article/_delete_btn.html.twig') }}
 {% endblock %}
 
-{% block scripts %}
-<script>
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-</script>
-{% endblock %}

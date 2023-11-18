@@ -20,6 +20,7 @@
                             <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                                 {% if article.picture %}
                                 <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="object-fit-contain h-auto rounded" alt="...">
+                                 
                                 {% else %}
                                 <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="object-fit-contain h-auto rounded" alt="...">
                                 {% endif %}
@@ -30,10 +31,12 @@
                                         Publié le {{ article.createdAt|date('d/m/Y') }}
                                         </small>
                                     </p>
+                                    {% if article.content %}
                                     <div class="card-text article-content">
                                         {{ description|slice(0, 100)|raw }}
                                         {% if description|length > 100 %} ...{% endif %}
                                     </div>
+                                    {% endif %}
                                     <div class="row">
                                         <div class="col-4 offset-4">
                                             <a href="{{ path('app_page_article_show', {'id': article.id}) }}" class="btn btn-outline-warning w-100">Lire</a>

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-lg-6 offset-lg-3">
+    <div class="col-lg-6 offset-lg-3 h-auto">
     <h3>Article</h3>
 
     {% if article.picture %}
@@ -16,10 +16,12 @@
                 <th>Titre</th>
                 <td>{{ article.title }}</td>
             </tr>
+            {% if article.content %}
             <tr>
                 <th>Contenu</th>
                 <td>{{ article.content|raw }}</td>
             </tr>
+            {% endif %}
             <tr>
                 <th>Créé le</th>
                 <td>{{ article.createdAt|date('d/m/Y') }}</td>
