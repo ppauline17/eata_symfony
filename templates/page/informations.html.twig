@@ -28,8 +28,20 @@
         <div class="container">
             <div class="row">
             {% for document in documents %}
-                <div class="col-3">
-                    <a href="{{ asset('uploads/doc/' ~ document.documentSource ) }}" download class="btn btn-outline-success w-100 rounded-pill">{{ document.label }}</a>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-4 green-text p-4">
+                                {% include('icons/paperclip.html.twig') %}
+                            </div>
+                            <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ document.label }}</h5>
+                                <a href="{{ asset('uploads/doc/' ~ document.documentSource ) }}" download class="btn btn-success">Télécharger</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
             </div>

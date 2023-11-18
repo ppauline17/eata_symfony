@@ -18,11 +18,27 @@ $text-font: 'Nunito', sans-serif;
 $section-title-font: 'Londrina Solid';
 
 // colors
-$light-text: white;
-$dark-text: black;
-
 $color-1: #FF595E;
 $color-2: #FFCA3A;
 $color-3: #8AC926;
 $color-4: #1982C4;
 $color-5: #6A4C93;
+
+$light-text: white;
+$dark-text: black;
+
+.red-text{
+    color: $color-1
+}
+.yellow-text{
+    color: $color-2
+}
+.green-text{
+    color: $color-3
+}
+.blue-text{
+    color: $color-4
+}
+.purple-text{
+    color: $color-5
+}
