@@ -94,15 +94,16 @@ class ArticleController extends AbstractController
                 // on remplace le nom de l'image dans la base de données
                 $filename = $fileUploaderService->uploadPicture($picture);
                 $article->setPicture($filename);
-            }
-            // si il y avait déjà une image ou un document
-            if ($old_picture = $form['old_picture']->getData()){
-                // on supprime l'ancienne image du dossier
-                $old_picture_path = $this->getParameter("photo_dir").$old_picture;
-                if(file_exists($old_picture_path)){
-                    unlink($old_picture_path);
+                // si il y avait déjà une image ou un document
+                if ($old_picture = $form['old_picture']->getData()){
+                    // on supprime l'ancienne image du dossier
+                    $old_picture_path = $this->getParameter("photo_dir").$old_picture;
+                    if(file_exists($old_picture_path)){
+                        unlink($old_picture_path);
+                    }
                 }
             }
+            
 
             $entityManager->flush();
 

@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
+use App\Service\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ class DocumentController extends AbstractController
     }
 
     #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%document_dir%')] string $docDir): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
     {
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document);
@@ -32,9 +32,8 @@ class DocumentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($documentSource = $form['documentSource']->getData()) {
-                $filename = filter_var($form['label']->getData(), FILTER_SANITIZE_EMAIL);
-                $filename .= '.'.$documentSource->guessExtension();
-                $documentSource->move($docDir, $filename);
+                $label = $form['label']->getData();
+                $filename = $fileUploaderService->uploadDocument($documentSource, $label);
                 $document->setDocumentSource($filename);
             }
             $entityManager->persist($document);

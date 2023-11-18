@@ -34,10 +34,11 @@ class FileUploaderService
         return $filename;
     }
 
-    public function uploadDocument(File $file)
+    public function uploadDocument(File $file, $label)
     {
-        $filename = bin2hex(random_bytes(6)).'.'.$file->guessExtension();
-        $directory = $file->guessExtension() == "pdf" ? $this->getDocumentsDirectory() : $directory = $this->getImagesDirectory();
+        $filename = filter_var($label, FILTER_SANITIZE_EMAIL);
+        $filename .= '.'.$file->guessExtension();
+        $directory = $this->getDocumentsDirectory();
         $file->move($directory, $filename);
 
         return $filename;
