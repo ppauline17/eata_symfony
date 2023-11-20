@@ -133,9 +133,16 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_delete', methods: ['POST'])]
-    public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
+    public function delete(
+        Request $request, 
+        Article $article, 
+        EntityManagerInterface $entityManager,
+        CategoryRepository $categoryRepository
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            $category = $categoryRepository->findOneBy(['id' => $article->getCategory()]);
+            $category_label = $category->getLabel();
             // si on a une image
             if($picture = $article->getPicture()){
                 $picture_path = $this->getParameter("photo_dir").$picture;
@@ -149,6 +156,6 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_article_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
     }
 }
