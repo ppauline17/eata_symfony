@@ -8,10 +8,9 @@
 {% endblock %}
 
 {% block content %}
-        <h3 class="mt-4">Liste des actualités</h3>
-        
+        <h3 class="mt-4">Liste des {{ category_label }}</h3>
         <div class="d-flex justify-content-between">
-        <a href="{{ path('app_article_new') }}" class="btn text-primary">
+        <a href="{{ path('app_article_new', {'category_label': category_label}) }}" class="btn text-primary">
             {{ include('icons/plus.html.twig') }} Créer
         </a>
             {{ knp_pagination_render(articles) }}
@@ -29,6 +28,7 @@
             </thead>
             <tbody>
                 {% for article in articles %}
+
                     {% set article_content = article.content|striptags %}
                 <tr>
                     

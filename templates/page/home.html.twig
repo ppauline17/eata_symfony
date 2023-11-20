@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-sm-4 offset-sm-4">
                         {% if articles %}
-                        <a href="{{ path('app_page_articles') }}"><button class="btn btn-outline-warning w-100 text-dark border-4 zoom-on-hover">Voir toutes les actualités</button></a>
+                        <a href="{{ path('app_page_articles', {'category_label': 'actualités'}) }}"><button class="btn btn-outline-warning w-100 text-dark border-4 zoom-on-hover">Voir toutes les actualités</button></a>
                         {% else %}
                         <p class="text-center">Aucun article pour le moment</p>
                         {% endif %}

@@ -15,32 +15,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <div class="card bg-4 border-0 p-4 zoom-on-hover">
-                        <div class="card-body text-center">
-                            <h5>Bons plans</h5>
+                    <a href="{{ path('app_page_articles', {'category_label': 'bons plans'}) }}">
+                        <div class="card bg-4 border-0 p-4 zoom-on-hover">
+                            <div class="card-body text-center">
+                                <h5>Bons plans</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <div class="card bg-3 border-0 p-4 zoom-on-hover">
-                        <div class="card-body text-center">
-                            <h5>Conseils</h5>
+                    <a href="{{ path('app_page_articles', {'category_label': 'conseils'}) }}">
+                        <div class="card bg-3 border-0 p-4 zoom-on-hover">
+                            <div class="card-body text-center">
+                                <h5>Conseils</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <div class="card bg-1 border-0 p-4 zoom-on-hover">
-                        <div class="card-body text-center">
-                            <h5>Evènements</h5>
+                    <a href="{{ path('app_page_articles', {'category_label': 'évènements'}) }}">
+                        <div class="card bg-1 border-0 p-4 zoom-on-hover">
+                            <div class="card-body text-center">
+                                <h5>Evènements</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <div class="card bg-2 border-0 p-4 zoom-on-hover">
-                        <div class="card-body text-center">
-                            <h5>Album photos</h5>
+                    <a href="{{ path('app_page_articles', {'category_label': 'album photos'}) }}">
+                        <div class="card bg-2 border-0 p-4 zoom-on-hover">
+                            <div class="card-body text-center">
+                                <h5>Album photos</h5>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

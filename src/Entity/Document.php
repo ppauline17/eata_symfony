@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DocumentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DocumentRepository::class)]
@@ -18,6 +20,14 @@ class Document
 
     #[ORM\Column(length: 255)]
     private ?string $documentSource = null;
+
+    #[ORM\ManyToMany(targetEntity: Category::class)]
+    private Collection $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,30 @@ class Document
     public function setDocumentSource(string $documentSource): static
     {
         $this->documentSource = $documentSource;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

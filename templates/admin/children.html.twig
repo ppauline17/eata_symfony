@@ -4,4 +4,42 @@
 
 {% block content %}
     <h3>Le coin des enfants</h3>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_article_index', {'category_label': 'activités'}) }}">
+                <div class="card bg-4 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Activités
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_article_index', {'category_label': 'recettes'}) }}">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Recettes
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_article_index', {'category_label': 'dessins'}) }}">
+                <div class="card bg-2 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Dessins
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_article_index', {'category_label': 'projets'}) }}">
+                <div class="card bg-3 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Projets
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 {% endblock %}

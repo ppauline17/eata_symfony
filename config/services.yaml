@@ -30,3 +30,6 @@ services:
         arguments:
             $imagesDirectory: '%photo_dir%'
             $documentsDirectory: '%document_dir%'
+
+    App\Entity\Category:
+        autowire: true

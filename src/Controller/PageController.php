@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
 use App\Repository\DocumentRepository;
 use App\Repository\InformationRepository;
@@ -17,10 +18,13 @@ use Symfony\Component\HttpFoundation\Request;
 class PageController extends AbstractController
 {
     #[Route('/', name: 'app_page_home')]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
     {
+        $category = $categoryRepository->findOneBy(['label' => 'actualités']);
+        $categoryId = $category->getId();
+
         return $this->render('page/home.html.twig', [
-            'articles' => $articleRepository->findBy([], ['createdAt' => 'DESC'], 3)
+            'articles' => $articleRepository->findBy(['category' => $categoryId], ['createdAt' => 'DESC'], 3)
         ]);
     }
 
@@ -32,11 +36,12 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/page/articles', name: 'app_page_articles')]
-    public function articles(ArticleRepository $articleRepository, Request $request): Response
+    #[Route('/page/articles/{category_label}', name: 'app_page_articles')]
+    public function articles(ArticleRepository $articleRepository, Request $request, $category_label): Response
     {
         return $this->render('page/articles.html.twig', [
-            'articles' => $articleRepository->findAllPaginated($request->query->getInt('page', 1), 5)
+            'articles' => $articleRepository->findAllPaginatedBy($request->query->getInt('page', 1), 5, $category_label),
+            'category_label' => $category_label
         ]);
     }
 

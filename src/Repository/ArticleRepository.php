@@ -26,9 +26,12 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function findAllPaginated(int $page, int $itemsByPage): PaginationInterface
+    public function findAllPaginatedBy(int $page, int $itemsByPage, string $category): PaginationInterface
    {
          $data =  $this->createQueryBuilder('a')
+            ->innerJoin('a.category', 'c')
+            ->andWhere('c.label = :category')
+            ->setParameter('category', $category)
             ->orderBy('a.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
