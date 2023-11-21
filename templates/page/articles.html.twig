@@ -25,7 +25,9 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 {% if article.picture %}
-                                <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top object-fit-contain" alt="...">
+                                <a data-fancybox="gallery" href="{{ asset('uploads/img/' ~ article.picture) }}" class="w-100">
+                                    <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="card-img-top object-fit-contain" alt="...">
+                                </a>
                                 {% else %}
                                 <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="card-img-top object-fit-contain" alt="...">
                                 {% endif %}
