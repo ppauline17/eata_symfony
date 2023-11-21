@@ -31,15 +31,16 @@
                             srcset="
                             {{ asset('img/mercredi-320.jpg') }} 320w,
                             {{ asset('img/mercredi-500.jpg') }} 500w,
-                            {{ asset('img/mercredi-800.jpg') }} 800w,
-                            {{ asset('img/mercredi-1200.jpg') }} 1200w
+                            {{ asset('img/mercredi-800.jpg') }} 800w
                             "
                             sizes="
-                            (max-width: 500px) 500px,
-                            (max-width: 800px) 800px,
-                            1200px,
+                            (max-width: 320px) 320px,
+                            (max-width: 768px) 500px,
+                            (max-width: 992px) 320px,
+                            (max-width: 1400px) 500px,
+                            800px,
                             "
-                            src="{{ asset('img/mercredi-1200.jpg') }}" 
+                            src="{{ asset('img/mercredi-800.jpg') }}" 
                             alt="photo de l'accueil de loisirs d'avanton" 
                             class="img-fluid h-auto image-description" 
                             data-aos="fade-left" 
