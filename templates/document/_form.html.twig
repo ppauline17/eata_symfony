@@ -3,10 +3,20 @@
         <label for="lastname">Nom du document</label>
         {{ form_widget(form.label) }}
     </div>
+    {% if document.oldDocument != null %}
+    <div class="mb-3">
+        <iframe src="{{ asset('uploads/doc/' ~ document.oldDocument) }}" class="w-100"></iframe>
+    </div>
+    {% endif %}
     <div class="mb-3">
         <label for="firstname">Document (PDF)</label>
         {{ form_widget(form.documentSource) }}
         {{ form_errors(form.documentSource) }}
+    </div>
+    <div class="mb-3">
+        <label for="category">Pour quel accueil ?</label>
+        {{ form_widget(form.category) }}
+        {{ form_errors(form.category) }}
     </div>
     {% include('components/_buttonSave.html.twig') %}
 {{ form_end(form) }}

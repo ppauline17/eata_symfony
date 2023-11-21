@@ -37,6 +37,7 @@ class FileUploaderService
     public function uploadDocument(File $file, $label)
     {
         $filename = filter_var($label, FILTER_SANITIZE_EMAIL);
+        $filename .= '_'.time();
         $filename .= '.'.$file->guessExtension();
         $directory = $this->getDocumentsDirectory();
         $file->move($directory, $filename);

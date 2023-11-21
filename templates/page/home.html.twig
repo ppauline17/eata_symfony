@@ -20,9 +20,11 @@
                             <div class="card" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
                                 <h5 class="card-title text-center mb-3">{{ article.title }}</h5>
                                 {% if article.picture %}
-                                <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="object-fit-contain rounded" alt="...">
+                                <a data-fancybox="gallery" href="{{ asset('uploads/img/' ~ article.picture) }}" class="w-100">
+                                    <img src="{{ asset('uploads/img/' ~ article.picture) }}" class="w-100 object-fit-contain rounded" alt="...">
+                                </a>
                                 {% else %}
-                                <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="object-fit-contain rounded" alt="...">
+                                    <img src="{{ asset('img/avanton-creche-facade-1300x867.jpg') }}" class="object-fit-contain rounded" alt="...">
                                 {% endif %}
                                 <div class="card-body">
                                     <p class="card-text">

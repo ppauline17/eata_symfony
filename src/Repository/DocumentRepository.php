@@ -21,6 +21,16 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
+    public function findByCategoryLabel($label)
+    {
+        return $this->createQueryBuilder('d')
+            ->join('d.category', 'c')
+            ->andWhere('c.label = :label')
+            ->setParameter('label', $label)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Document[] Returns an array of Document objects
 //     */

@@ -46,18 +46,31 @@ class PageController extends AbstractController
     }
 
     #[Route('/accueil-periscolaire', name: 'app_page_periscolaire')]
-    public function periscolaire(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository): Response
+    public function periscolaire(
+        TeammateRepository $teammateRepository, 
+        InformationRepository $informationRepository, 
+        PriceRepository $priceRepository,
+        DocumentRepository $documentRepository
+    ): Response
     {
         return $this->render('page/accueil_periscolaire.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'periscolaire']),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_time']),
-            'prices' => $priceRepository->findAll()
+            'prices' => $priceRepository->findAll(),
+            'documents_list' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_documents']),
+            'documents' => $documentRepository->findByCategoryLabel('périscolaire')
         ]);
     }
 
     #[Route('/accueil-mercredi', name: 'app_page_mercredi')]
-    public function mercredi(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository, CityRepository $cityRepository): Response
+    public function mercredi(
+        TeammateRepository $teammateRepository, 
+        InformationRepository $informationRepository, 
+        PriceRepository $priceRepository, 
+        CityRepository $cityRepository,
+        DocumentRepository $documentRepository
+    ): Response
     {
         return $this->render('page/accueil_mercredi.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'mercredi']),
@@ -66,11 +79,19 @@ class PageController extends AbstractController
             'prices' => $priceRepository->findAll(),
             'cities' => $cityRepository->findAll(),
             'meal' => $cityRepository->findOneBy(['name' => 'ST MARTIN LA PALLU']),
+            'documents_list' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_documents']),
+            'documents' => $documentRepository->findByCategoryLabel('mercredi')
         ]);
     }
 
     #[Route('/accueil-loisirs', name: 'app_page_loisirs')]
-    public function loisirs(TeammateRepository $teammateRepository, InformationRepository $informationRepository, PriceRepository $priceRepository, CityRepository $cityRepository): Response
+    public function loisirs(
+        TeammateRepository $teammateRepository, 
+        InformationRepository $informationRepository, 
+        PriceRepository $priceRepository, 
+        CityRepository $cityRepository,
+        DocumentRepository $documentRepository
+    ): Response
     {
         return $this->render('page/accueil_loisirs.html.twig', [
             'teammates' => $teammateRepository->findBy(['category' => 'loisirs']),
@@ -78,6 +99,8 @@ class PageController extends AbstractController
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_time']),
             'prices' => $priceRepository->findAll(),
             'cities' => $cityRepository->findAll(),
+            'documents_list' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_documents']),
+            'documents' => $documentRepository->findByCategoryLabel('loisirs')
         ]);
     }
 

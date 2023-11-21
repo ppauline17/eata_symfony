@@ -2,16 +2,10 @@
 
 {% block title %}New Document{% endblock %}
 
-{% block breadcrumb %}
-    <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
-    <li class="breadcrumb-item"><a href="{{ path('app_document_index') }}" class="text-dark">Documents</a></li>
-    <li class="breadcrumb-item">Créer</li>
-{% endblock %}
-
 {% block content %}
 <div class="row">
     <div class="col-lg-6 offset-lg-3">
-    <h3>Créer un nouveau document</h3>
+    <h3>Modifier un document</h3>
 
     {{ form_start(form) }}
         <div class="mb-3">

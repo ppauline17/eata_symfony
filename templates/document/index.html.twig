@@ -16,6 +16,7 @@
         <thead>
             <tr>
                 <th>Nom du document</th>
+                <th>Categorie</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,8 +28,22 @@
                         {{ document.label }}
                     </a>
                 </td>
+                <td>
+                    <a href="{{ path('app_document_show', {'id': document.id}) }}" class="text-dark">
+                        <ul>
+                        {% for category in document.category %}
+                            <li>{{ category.label }}</li>
+                        {% endfor %}
+                        </ul>
+                    </a>
+                </td>
                 <td class="col-1">
                     <div class="row">
+                        <div class="col-6">
+                            <a href="{{ path('app_document_edit', {'id': document.id}) }}" title="Modifier" class="btn">
+                                {{ include('icons/update.html.twig') }}
+                            </a>
+                        </div>
                         <div class="col-6">
                             {{ include('document/_delete_btn.html.twig') }}
                         </div>

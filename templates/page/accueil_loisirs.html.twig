@@ -156,6 +156,39 @@
             </div>
         </div>
     </section>
+    <section class="periscolaire-team mb-5">
+        <div class="section-title second-color mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Documents à fournir</p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ documents_list.content|raw }}
+                    </div>
+                    <div class="col-md-4">
+                        {% for document in documents %}
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-4 green-text p-4">
+                                        {% include('icons/paperclip.html.twig') %}
+                                    </div>
+                                    <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ document.label }}</h5>
+                                        <a href="{{ asset('uploads/doc/' ~ document.documentSource ) }}" download class="btn btn-success">Télécharger</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
 
 {% block scripts %}

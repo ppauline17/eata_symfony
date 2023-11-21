@@ -27,7 +27,7 @@ class DocumentController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
     {
         $document = new Document();
-        $form = $this->createForm(DocumentType::class, $document);
+        $form = $this->createForm(DocumentType::class, $document, ['is_creation' => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,6 +53,46 @@ class DocumentController extends AbstractController
     {
         return $this->render('document/show.html.twig', [
             'document' => $document,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'app_document_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Document $document, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
+    {
+        if (!$document->getOldDocument() && $document->getDocumentSource()) {
+            $document->setOldDocument($document->getDocumentSource());
+        }
+
+        $form = $this->createForm(DocumentType::class, $document);
+        $form->handleRequest($request);
+
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            // dd($form['documentSource']->getData());
+            // si un nouveau document est chargé
+            if ($documentSource = $form['documentSource']->getData()) {
+                $label = $form['label']->getData();
+                $filename = $fileUploaderService->uploadDocument($documentSource, $label);
+                $document->setDocumentSource($filename);
+                if ($old_document = $form['old_document']->getData()){
+                    $docPath = $this->getParameter("document_dir").$old_document;
+                    // on supprime du dossier
+                    if(file_exists($docPath)){
+                        unlink($docPath);
+                    }
+                }
+            }else{
+                $document->setDocumentSource($document->getOldDocument());
+            }
+            
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('document/edit.html.twig', [
+            'document' => $document,
+            'form' => $form,
         ]);
     }
 

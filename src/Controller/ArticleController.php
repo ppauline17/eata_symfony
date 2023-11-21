@@ -19,7 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/{category_label}', name: 'app_article_index', methods: ['GET'])]
+    #[Route('/liste/{category_label}', name: 'app_article_index', methods: ['GET'])]
     public function index(
         ArticleRepository $articleRepository, 
         Request $request, 
@@ -78,7 +78,6 @@ class ArticleController extends AbstractController
     {
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'crud_article' => true
         ]);
     }
 

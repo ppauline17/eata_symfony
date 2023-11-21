@@ -21,6 +21,8 @@ class Document
     #[ORM\Column(length: 255)]
     private ?string $documentSource = null;
 
+    private ?string $old_document = null;
+
     #[ORM\ManyToMany(targetEntity: Category::class)]
     private Collection $category;
 
@@ -78,6 +80,30 @@ class Document
     public function removeCategory(Category $category): static
     {
         $this->category->removeElement($category);
+
+        return $this;
+    }
+
+    /**
+     * Get the value of old_document
+     *
+     * @return ?string
+     */
+    public function getOldDocument(): ?string
+    {
+        return $this->old_document;
+    }
+
+    /**
+     * Set the value of old_document
+     *
+     * @param ?string $old_document
+     *
+     * @return self
+     */
+    public function setOldDocument(?string $old_document): self
+    {
+        $this->old_document = $old_document;
 
         return $this;
     }
