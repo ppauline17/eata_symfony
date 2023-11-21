@@ -3,8 +3,14 @@
 {% block title %}Article index{% endblock %}
 
 {% block breadcrumb %}
+    {% if category_label == 'actualités' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_home') }}" class="text-dark">Page Accueil</a></li>
-    <li class="breadcrumb-item">Articles</li>
+    {% elseif category_label in ['activités', 'recettes', 'dessins', 'projets'] %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_children') }}" class="text-dark">Le coin des enfants</a></li>
+    {% elseif category_label in ['bons plans', 'conseils', 'évènements', 'album photos'] %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_parents') }}" class="text-dark">Le coin des parents</a></li>
+    {% endif %}
+    <li class="breadcrumb-item">{{ category_label|capitalize }}</li>
 {% endblock %}
 
 {% block content %}

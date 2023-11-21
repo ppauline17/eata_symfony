@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Information;
 use App\Form\InformationType;
+use App\Repository\CategoryRepository;
 use App\Repository\InformationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class InformationController extends AbstractController
 {
     #[Route('/{label}/edit', name: 'app_information_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Information $information, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Information $information, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
     {
         $form = $this->createForm(InformationType::class, $information);
         $form->handleRequest($request);
@@ -29,6 +30,7 @@ class InformationController extends AbstractController
         return $this->render('information/edit.html.twig', [
             'information' => $information,
             'form' => $form,
+            'category' => $categoryRepository->findOneBy(['id' => $information->getCategory()])
         ]);
     }
 }
