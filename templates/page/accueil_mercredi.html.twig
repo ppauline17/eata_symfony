@@ -49,8 +49,9 @@
                             <div class="sun-container">
                                 {{ include('icons/sun.html.twig') }}
                             </div>
-                            <div class="name">
-                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
+                            <div class="name flex-column">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
                             </div>
                         </div>
                         <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
@@ -66,8 +67,9 @@
                             <div class="cloud-container cloud-director">
                                 {{ include('icons/cloud.html.twig') }}
                             </div>
-                            <div class="name mt-3">
-                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
+                            <div class="name flex-column mt-2">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
                             </div>
                         </div>
                         <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
@@ -83,8 +85,9 @@
                             <div class="cloud-container">
                                 {{ include('icons/cloud.html.twig') }}
                             </div>
-                            <div class="name mt-3">
-                                <span>{{ teammate.firstname }} {{ teammate.lastname }}</span>
+                            <div class="name flex-column mt-2">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
                             </div>
                         </div>
                         <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
