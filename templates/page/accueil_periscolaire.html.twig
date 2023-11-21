@@ -24,7 +24,22 @@
             <div class="container">
                 <div class="row mt-3">
                     <div class="col-md-6 mb-3 description">
-                        <img src="{{ asset('img/avanton-creche-exterieur-2-1300x867.jpg') }}" alt="" class="img-fluid h-auto image-description" data-aos="fade-right" data-aos-duration="3000">
+                        <img
+                            srcset="
+                            {{ asset('img/periscolaire-500.jpg') }} 500w,
+                            {{ asset('img/periscolaire-800.jpg') }} 800w,
+                            {{ asset('img/periscolaire-1200.jpg') }} 1200w
+                            "
+                            sizes="
+                            (max-width: 500px) 500px,
+                            (max-width: 800px) 800px,
+                            1200px,
+                            "
+                            src="{{ asset('img/periscolaire-1200.jpg') }}" 
+                            alt="photo de l'accueil périscolaire d'avanton" 
+                            class="img-fluid h-auto image-description" 
+                            data-aos="fade-right" 
+                            data-aos-duration="3000">
                     </div>
                     <div class="col-md-6">
                         {{ information_description.content|raw }}

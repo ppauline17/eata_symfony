@@ -27,7 +27,22 @@
                         {{ information_description.content|raw }}
                     </div>
                     <div class="col-md-6 mb-3">
-                        <img src="{{ asset('img/avanton-creche-exterieur-2-1300x867.jpg') }}" alt="" class="img-fluid h-auto image-description" data-aos="fade-left" data-aos-duration="3000">
+                        <img
+                            srcset="
+                            {{ asset('img/loisirs-500.jpg') }} 500w,
+                            {{ asset('img/loisirs-800.jpg') }} 800w,
+                            {{ asset('img/loisirs-1200.jpg') }} 1200w
+                            "
+                            sizes="
+                            (max-width: 500px) 500px,
+                            (max-width: 800px) 800px,
+                            1200px,
+                            "
+                            src="{{ asset('img/loisirs-1200.jpg') }}" 
+                            alt="photo de l'accueil de loisirs d'avanton" 
+                            class="img-fluid h-auto image-description" 
+                            data-aos="fade-left" 
+                            data-aos-duration="3000">
                     </div>
                 </div>
             </div>
