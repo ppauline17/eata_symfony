@@ -23,7 +23,7 @@
             </div>
         </div>
     </section>
-    <section class="association-team">
+    <section class="periscolaire-team">
         <div class="section-title bg-3 mt-5 mb-5">
             <div class="container">
                 <p class="text-center">Les membres du bureau</p>
@@ -33,14 +33,32 @@
             <div class="container">
                 <div class="row mb-5 director">
                     {% for teammate in teammates %}
-                    {% if teammate.hierarchy == 1 or teammate.hierarchy == 2 %}
-                    <div class="col-md-4 offset-md-4 mb-3">
-                        <div class="card " data-aos="flip-down">
-                            <ul class="list-group list-group-flush rounded-5">
-                                <li class="list-group-item text-center">{{ teammate.firstname }} {{ teammate.lastname }}</li>
-                                <li class="list-group-item text-center">{{ teammate.job }}</li>
-                            </ul>
+                    {% if teammate.hierarchy == 1 %}
+                    <div class="col-md-4 offset-md-2 mb-3">
+                        <div class="star position-relative" data-aos="flip-down">
+                            <div class="star-container star-director">
+                                {{ include('icons/star.html.twig') }}
+                            </div>
+                            <div class="name flex-column mt-3">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
+                            </div>
                         </div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
+                    </div>
+                    {% endif %}
+                    {% if teammate.hierarchy == 2 %}
+                    <div class="col-md-4 mb-3">
+                        <div class="star position-relative" data-aos="flip-down">
+                            <div class="star-container star-director-adjoint">
+                                {{ include('icons/star.html.twig') }}
+                            </div>
+                            <div class="name flex-column mt-3">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
+                            </div>
+                        </div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -49,12 +67,16 @@
                     {% for teammate in teammates %}
                     {% if teammate.hierarchy == 3 %}
                     <div class="col-md-4 mb-3">
-                        <div class="card" data-aos="flip-down">
-                            <ul class="list-group list-group-flush rounded-5">
-                                <li class="list-group-item text-center">{{ teammate.firstname }} {{ teammate.lastname }}</li>
-                                <li class="list-group-item text-center">{{ teammate.job }}</li>
-                            </ul>
+                        <div class="star flex-column position-relative" data-aos="flip-down">
+                            <div class="star-container star-team">
+                                {{ include('icons/star.html.twig') }}
+                            </div>
+                            <div class="name flex-column mt-3">
+                                <div>{{ teammate.firstname }}</div>
+                                <div>{{ teammate.lastname }}</div>
+                            </div>
                         </div>
+                        <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
                     </div>
                     {% endif %}
                     {% endfor %}

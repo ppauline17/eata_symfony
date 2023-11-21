@@ -6,7 +6,7 @@
         border-radius: 20px 0 20px 0;
     }
     .periscolaire-team{
-        .sun, .cloud{
+        .sun, .cloud, .star{
             position: relative;
             color: $light-text;
             font-weight: bold;
@@ -21,8 +21,8 @@
                 justify-content: center;
                 align-items: center;
             }
-            .sun-container, .cloud-container{
-                .icon-sun, .icon-cloud{
+            .sun-container, .cloud-container, .star-container{
+                .icon-sun, .icon-cloud, .icon-star{
                     display: block;
                     margin: 0 auto;
                 }
@@ -36,24 +36,46 @@
                 }
             }
         }
+
+        .star-director{
+            svg{
+                path{
+                    fill: $color-1;
+                }
+            }
+        }
+        .star-director-adjoint{
+            svg{
+                path{
+                    fill: $color-2;
+                }
+            }
+        }
+        .star-team{
+            svg{
+                path{
+                    fill: $color-4;
+                }
+            }
+        }
     }
-    .association-team{
-        .card{
-            border: none;
-            li{
-                color: $light-text;
-                border: 2px solid $light-text;
-            }
-        }
-        .director{
-            li{
-                background-color: $color-1;
-            }
-        }
-        .team{
-            li{
-                background-color: $color-5;
-            }
-        }
-    }
+    // .association-team{
+    //     .card{
+    //         border: none;
+    //         li{
+    //             color: $light-text;
+    //             border: 2px solid $light-text;
+    //         }
+    //     }
+    //     .director{
+    //         li{
+    //             background-color: $color-1;
+    //         }
+    //     }
+    //     .team{
+    //         li{
+    //             background-color: $color-5;
+    //         }
+    //     }
+    // }
 }
