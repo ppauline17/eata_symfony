@@ -14,7 +14,22 @@
             <div class="container">
                 <div class="row description mt-3">
                     <div class="col-md-6 mb-3">
-                        <img src="{{ asset('img/avanton-creche-exterieur-2-1300x867.jpg') }}" alt="" class="img-fluid h-auto image-description" data-aos="fade-right" data-aos-duration="3000">
+                        <img
+                            srcset="
+                            {{ asset('img/home/home-320.jpg') }} 320w,
+                            {{ asset('img/home/home-500.jpg') }} 500w,
+                            {{ asset('img/home/home-800.jpg') }} 800w
+                            "
+                            sizes="
+                            (max-width: 320px) 320px,
+                            (max-width: 500px) 500px,
+                            800px
+                            "
+                            src="{{ asset('img/home/home-800.jpg') }}" 
+                            alt="photo de l'accueil de loisirs d'avanton" 
+                            class="img-fluid h-auto image-description" 
+                            data-aos="fade-right" 
+                            data-aos-duration="3000">
                     </div>
                     <div class="col-md-6">
                         {{ description.content|raw }}

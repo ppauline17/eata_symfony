@@ -9,13 +9,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-3 col-xl-2 center-x-y">
-                        <img class="img-fluid object-fit-contain h-auto" src="{{ asset('img/logo-avanton.jpg') }}" alt="logo mairie d'avanton">
+                        <img class="img-fluid object-fit-contain h-auto" src="{{ asset('img/logos/logo-avanton.jpg') }}" alt="logo mairie d'avanton">
                     </div>
                     <div class="col-7 col-xl-9 center-x-y">
                         <p class="text-center">Accueil périscolaire (garderie)</p>
                     </div>
                     <div class="col-2 col-xl-1 center-x-y">
-                        <img class="img-fluid object-fit-contain" src="{{ asset('img/logo-caf-vienne.png') }}" alt="logo de la caf de la vienne">
+                        <img class="img-fluid object-fit-contain" src="{{ asset('img/logos/logo-caf-vienne.png') }}" alt="logo de la caf de la vienne">
                     </div>
                 </div>
             </div>
@@ -26,17 +26,16 @@
                     <div class="col-md-6 mb-3 description">
                         <img
                             srcset="
-                            {{ asset('img/periscolaire-320.jpg') }} 320w,
-                            {{ asset('img/periscolaire-500.jpg') }} 500w,
-                            {{ asset('img/periscolaire-800.jpg') }} 800w,
-                            {{ asset('img/periscolaire-1200.jpg') }} 1200w
+                            {{ asset('img/periscolaire/periscolaire-320.jpg') }} 320w,
+                            {{ asset('img/periscolaire/periscolaire-500.jpg') }} 500w,
+                            {{ asset('img/periscolaire/periscolaire-800.jpg') }} 800w
                             "
                             sizes="
+                            (max-width: 320px) 320px,
                             (max-width: 500px) 500px,
-                            (max-width: 800px) 800px,
-                            1200px,
+                            800px,
                             "
-                            src="{{ asset('img/periscolaire-1200.jpg') }}" 
+                            src="{{ asset('img/periscolaire/periscolaire-800.jpg') }}" 
                             alt="photo de l'accueil périscolaire d'avanton" 
                             class="img-fluid h-auto image-description" 
                             data-aos="fade-right" 
