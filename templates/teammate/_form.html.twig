@@ -11,6 +11,17 @@
         <label for="job">Poste</label>
         {{ form_widget(form.job) }}
     </div>
+    {% if form.picture is defined %}
+    <div class="mb-3">
+        <label for="job">Photo</label>
+        {{ form_widget(form.picture) }}
+        {{ form_errors(form.picture) }}
+    </div>
+    <div class="mb-3">
+        <label for="job">Description</label>
+        {{ form_widget(form.description) }}
+    </div>
+    {% endif %}
     <div class="mb-3">
         <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             <input type="checkbox" name="" id="">

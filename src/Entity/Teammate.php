@@ -30,6 +30,14 @@ class Teammate
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
+    private ?string $old_picture = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,4 +103,52 @@ class Teammate
         return $this;
     }
 
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of old_picture
+     *
+     * @return ?string
+     */
+    public function getOldPicture(): ?string
+    {
+        return $this->old_picture;
+    }
+
+    /**
+     * Set the value of old_picture
+     *
+     * @param ?string $old_picture
+     *
+     * @return self
+     */
+    public function setOldPicture(?string $old_picture): self
+    {
+        $this->old_picture = $old_picture;
+
+        return $this;
+    }
 }

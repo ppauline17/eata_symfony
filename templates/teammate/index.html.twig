@@ -23,6 +23,9 @@
     <table class="table">
         <thead>
             <tr>
+                {% if category_label == 'association'%}
+                <th>Photo</th>
+                {% endif %}
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Poste</th>
@@ -32,6 +35,17 @@
         <tbody>
         {% for teammate in teammates %}
             <tr>
+                {% if category_label == 'association'%}
+                <td class="col-1">
+                    <a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">
+                        {% if teammate.picture %}
+                        <img src="{{ asset('uploads/img/' ~ teammate.picture) }}" class="img-thumbnail object-fit-contain" alt="">
+                        {% else %}
+                        <img src="{{ asset("img/icons/person.svg") }}" alt="">
+                        {% endif %}
+                    </a>
+                </td>
+                {% endif %}
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.lastname }}</a></td>
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.firstname }}</a></td>
                 <td><a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">{{ teammate.job }}</a></td>

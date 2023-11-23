@@ -10,6 +10,8 @@
     <li class="breadcrumb-item"><a href="{{ path('app_admin_mercredi') }}" class="text-dark">Accueil mercredi</a></li>
     {% elseif category.label == 'loisirs' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_loisirs') }}" class="text-dark">Accueil de loisirs</a></li>
+    {% elseif category.label == 'association' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
     {% elseif category.label == 'infos' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
     {% endif %}

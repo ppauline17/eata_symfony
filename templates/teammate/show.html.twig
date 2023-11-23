@@ -3,6 +3,7 @@
 {% block title %}Teammate{% endblock %}
 
 {% block content %}
+{{ category_label }}
 <div class="row">
     <div class="col-lg-6 offset-lg-3">
         <table class="table">
@@ -19,6 +20,18 @@
                     <th>Poste</th>
                     <td>{{ teammate.job }}</td>
                 </tr>
+                {% if category_label == "association" %}
+                <tr>
+                    <th>Photo</th>
+                    <td>
+                        <img src="{{ asset('uploads/img/' ~ teammate.picture) }}" alt="">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ teammate.description }}</td>
+                </tr>
+                {% endif %}
                 <tr>
                     <th>Modifier</th>
                     <td>{{ include('teammate/_update_btn.html.twig') }}</td>
