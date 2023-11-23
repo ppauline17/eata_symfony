@@ -3,21 +3,21 @@
 {% block title %}Teammate index{% endblock %}
 
 {% block breadcrumb %}
-    {% if category == 'periscolaire'%}
+    {% if category_label == 'periscolaire'%}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
-    {% elseif  category == 'loisirs' %}
+    {% elseif  category_label == 'loisirs' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_loisirs') }}" class="text-dark">Accueil de loisirs</a></li>
-    {% elseif  category == 'mercredi' %}
+    {% elseif  category_label == 'mercredi' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_mercredi') }}" class="text-dark">Accueil du mercredi</a></li>
-    {% elseif  category == 'association' %}
+    {% elseif  category_label == 'association' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
     {% endif %}
     <li class="breadcrumb-item">Equipe d'animation</li>
 {% endblock %}
 
 {% block content %}
-    <h3>{{ category|capitalize }}</h3>
-    <a href="{{ path('app_teammate_new', {'category': category}) }}" class="btn text-primary">
+    <h3>{{ category_label|capitalize }}</h3>
+    <a href="{{ path('app_teammate_new', {'category_label': category_label}) }}" class="btn text-primary">
         {{ include('icons/plus.html.twig') }} Créer
     </a>
     <table class="table">

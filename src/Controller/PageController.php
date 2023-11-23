@@ -54,7 +54,7 @@ class PageController extends AbstractController
     ): Response
     {
         return $this->render('page/accueil_periscolaire.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'periscolaire']),
+            'teammates' => $teammateRepository->findByCategory('periscolaire'),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_periscolaire_time']),
             'prices' => $priceRepository->findAll(),
@@ -73,7 +73,7 @@ class PageController extends AbstractController
     ): Response
     {
         return $this->render('page/accueil_mercredi.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'mercredi']),
+            'teammates' => $teammateRepository->findByCategory('mercredi'),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_mercredi_time']),
             'prices' => $priceRepository->findAll(),
@@ -94,7 +94,7 @@ class PageController extends AbstractController
     ): Response
     {
         return $this->render('page/accueil_loisirs.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'loisirs']),
+            'teammates' => $teammateRepository->findByCategory('loisirs'),
             'information_description' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_description']),
             'information_time' => $informationRepository->findOneBy(['label' => 'app_page_loisirs_time']),
             'prices' => $priceRepository->findAll(),
@@ -108,7 +108,7 @@ class PageController extends AbstractController
     public function association(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
     {
         return $this->render('page/association.html.twig', [
-            'teammates' => $teammateRepository->findBy(['category' => 'association']),
+            'teammates' => $teammateRepository->findByCategory('association'),
             'description' => $informationRepository->findOneBy(['label' => 'app_page_association_description']),
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_association_informations']),
         ]);

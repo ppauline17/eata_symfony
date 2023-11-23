@@ -20,14 +20,15 @@ class Teammate
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $category = null;
-
     #[ORM\Column(length: 100)]
     private ?string $job = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $hierarchy = null;
+
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -58,18 +59,6 @@ class Teammate
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getJob(): ?string
     {
         return $this->job;
@@ -90,6 +79,18 @@ class Teammate
     public function setHierarchy(int $hierarchy): static
     {
         $this->hierarchy = $hierarchy;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
