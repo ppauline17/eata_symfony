@@ -15,11 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/document')]
 class DocumentController extends AbstractController
 {
-    #[Route('/liste/{category_label}', name: 'app_document_index', methods: ['GET'])]
-    public function index(DocumentRepository $documentRepository, $category_label): Response
+    #[Route('/liste', name: 'app_document_index', methods: ['GET'])]
+    public function index(DocumentRepository $documentRepository): Response
     {
         return $this->render('document/index.html.twig', [
-            'documents' => $documentRepository->findBy(['category' => $category_label]),
+            'documents' => $documentRepository->findAll(),
         ]);
     }
 
