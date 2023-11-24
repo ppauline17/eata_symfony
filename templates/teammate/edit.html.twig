@@ -1,5 +1,23 @@
 {% extends 'admin/dashboard.html.twig' %}
 
+{% block breadcrumb %}
+    {% if category_label == 'périscolaire'%}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'périscolaire'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'loisirs' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_loisirs') }}" class="text-dark">Accueil de loisirs</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'loisirs'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'mercredi' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_mercredi') }}" class="text-dark">Accueil du mercredi</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'mercredi'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'association' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'association'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% endif %}
+    <li class="breadcrumb-item">Modifier {{ teammate.firstname }} {{ teammate.lastname }}</li>
+{% endblock %}
+
+
 {% block title %}Edit Teammate{% endblock %}
 
 {% block content %}

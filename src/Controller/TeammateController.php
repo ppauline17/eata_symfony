@@ -144,7 +144,8 @@ class TeammateController extends AbstractController
 
         return $this->render('teammate/edit.html.twig', [
             'teammate' => $teammate,
-            'form' => $form
+            'form' => $form,
+            'category_label' => $category_label,
         ]);
     }
 

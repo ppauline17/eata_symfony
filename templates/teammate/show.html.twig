@@ -2,8 +2,25 @@
 
 {% block title %}Teammate{% endblock %}
 
+{% block breadcrumb %}
+    {% if category_label == 'périscolaire'%}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'périscolaire'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'loisirs' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_loisirs') }}" class="text-dark">Accueil de loisirs</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'loisirs'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'mercredi' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_mercredi') }}" class="text-dark">Accueil du mercredi</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'mercredi'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% elseif  category_label == 'association' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_teammate_index', {'category_label': 'association'}) }}" class="text-dark">Equipe d'animation</a></li>
+    {% endif %}
+    <li class="breadcrumb-item">{{ teammate.firstname }} {{ teammate.lastname }}</li>
+{% endblock %}
+
 {% block content %}
-{{ category_label }}
+{# {{ category_label }} #}
 <div class="row">
     <div class="col-lg-6 offset-lg-3">
         <table class="table">
@@ -21,6 +38,7 @@
                     <td>{{ teammate.job }}</td>
                 </tr>
                 {% if category_label == "association" %}
+                {% if teammate.picture %}
                 <tr>
                     <th>
                         <div>Photo</div>
@@ -30,6 +48,7 @@
                         <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" alt="" class="h-auto">
                     </td>
                 </tr>
+                {% endif %}
                 <tr>
                     <th>Description</th>
                     <td>{{ teammate.description }}</td>

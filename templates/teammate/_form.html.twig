@@ -12,6 +12,11 @@
         {{ form_widget(form.job) }}
     </div>
     {% if form.picture is defined %}
+    {% if form.old_picture %}
+    <div class="mb-3 d-flex justify-content-center">
+        <img src="{{ asset('uploads/cropped-img/' ~ form.old_picture.vars.value) }}" alt="" class="h-100 rounded">
+    </div>
+    {% endif %}
     <div class="mb-3">
         <label for="job">Photo</label>
         {{ form_widget(form.picture) }}
