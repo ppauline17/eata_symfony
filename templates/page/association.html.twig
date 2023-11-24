@@ -52,17 +52,17 @@
                             {% set col = 'col-md-4 offset-md-2' %}
                             {% set hierarchy = 'star-director' %}
                             {% set border = 'border-1' %}
-                            {% set background = 'bg-1' %}
+                            {% set color = 'red-text' %}
                         {% elseif teammate.hierarchy == 2 %}
                             {% set col = 'col-md-4' %}
                             {% set hierarchy = 'star-director-adjoint' %}
                             {% set border = 'border-2' %}
-                            {% set background = 'bg-2' %}
+                            {% set color = 'yellow-text' %}
                         {% elseif teammate.hierarchy == 3 %}
                             {% set col = 'col-md-4' %}
                             {% set hierarchy = 'star-team' %}
                             {% set border = 'border-3' %}
-                            {% set background = 'bg-4' %}
+                            {% set color = 'blue-text' %}
                         {% endif %}
                     <div class="{{ col }} mb-5">
                         <div class="star position-relative" data-aos="flip-down">
@@ -77,9 +77,9 @@
                             {% if teammate.picture %}
                                 <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" alt="" class="rounded {{ border }}">
                             {% else %}
-                            {% set initials = teammate.lastname|slice(0, 1) ~ teammate.firstname|slice(0, 1) %}
-                                <div class="{{ background }} rounded d-flex justify-content-center align-items-center" style="height: 170px; width: 170px">
-                                    <div class="fs-1 fw-bold">{{ initials|upper }}</div>
+                            {% set initials = teammate.firstname|slice(0, 1) ~ teammate.lastname|slice(0, 1) %}
+                                <div class="{{ border }} rounded d-flex justify-content-center align-items-center" style="height: 170px; width: 170px">
+                                    <div class="fs-1 fw-bold {{ color }}">{{ initials|upper }}</div>
                                 </div>
                             {% endif %}
                             </div>

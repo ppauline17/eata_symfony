@@ -43,6 +43,7 @@
                     <th>
                         <div>Photo</div>
                         <a href="{{ path('app_cropperjs', {'filename': teammate.picture} ) }}">Recadrer</a>
+                        {# <a href="{{ path('app_teammate_delete_picture', {'filename': teammate.picture} ) }}">Supprimer la photo</a> #}
                     </th>
                     <td>
                         <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" alt="" class="h-auto">

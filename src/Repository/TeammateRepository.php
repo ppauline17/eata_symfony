@@ -30,7 +30,8 @@ class TeammateRepository extends ServiceEntityRepository
             ->innerJoin('t.category', 'c')
             ->andWhere('c.label = :category')
             ->setParameter('category', $category)
-            ->orderBy('t.id', 'ASC')
+            ->orderBy('t.hierarchy', 'ASC')
+            ->addOrderBy('t.job', 'ASC')
             ->getQuery()
             ->getResult()
        ;

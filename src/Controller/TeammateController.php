@@ -12,16 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Cache\CacheInterface;
 
 #[Route('/equipe')]
 class TeammateController extends AbstractController
 {
 
     #[Route('/{category_label}', name: 'app_teammate_index', methods: ['GET'])]
-    public function index(TeammateRepository $teammateRepository, $category_label): Response
+    public function index(TeammateRepository $teammateRepository, $category_label, CacheInterface $cache): Response
     {
+        // $teammates = $teammateRepository->findByCategory($category_label);
+        $teammates = $cache->get('teammates', function() use($teammateRepository, $category_label){
+            return $teammateRepository->findByCategory($category_label);
+        });
+
         return $this->render('teammate/index.html.twig', [
-            'teammates' => $teammateRepository->findByCategory($category_label),
+            'teammates' => $teammates,
             'crud_teammates' => true,
             'category_label' => $category_label
         ]);
@@ -178,4 +184,5 @@ class TeammateController extends AbstractController
 
         return $this->redirectToRoute('app_teammate_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
     }
+
 }

@@ -41,9 +41,9 @@
                         {% if teammate.picture %}
                         <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" class="rounded" style="height: 170px; width: 170px" alt="photo de profil de {{ teammate.firstname ~ ' ' ~ teammate.lastname }}">
                         {% else %}
-                        {% set initials = teammate.lastname|slice(0, 1) ~ teammate.firstname|slice(0, 1) %}
-                        <div class="bg-2 rounded d-flex justify-content-center align-items-center" style="height: 170px; width: 170px">
-                            <div class="fs-1 fw-bold">{{ initials|upper }}</div>
+                        {% set initials = teammate.firstname|slice(0, 1) ~ teammate.lastname|slice(0, 1) %}
+                        <div class="border-3 rounded d-flex justify-content-center align-items-center" style="height: 170px; width: 170px">
+                            <div class="fs-1 fw-bold yellow-text">{{ initials|upper }}</div>
                         </div>
                         {% endif %}
                     </a>
