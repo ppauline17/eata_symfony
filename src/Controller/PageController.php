@@ -105,12 +105,17 @@ class PageController extends AbstractController
     }
 
     #[Route('/association', name: 'app_page_association')]
-    public function association(TeammateRepository $teammateRepository, InformationRepository $informationRepository): Response
+    public function association(
+        TeammateRepository $teammateRepository, 
+        InformationRepository $informationRepository,
+        DocumentRepository $documentRepository
+        ): Response
     {
         return $this->render('page/association.html.twig', [
             'teammates' => $teammateRepository->findByCategory('association'),
             'description' => $informationRepository->findOneBy(['label' => 'app_page_association_description']),
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_association_informations']),
+            'documents' => $documentRepository->findByCategoryLabel('association')
         ]);
     }
 

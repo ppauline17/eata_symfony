@@ -1,0 +1,14 @@
+{% extends 'admin/dashboard.html.twig' %}
+
+{% block title %}Recadrer l'image{% endblock %}
+
+{% block content %}
+<div class="container">
+    {{ form_start(form) }}
+        {{ form_row(form.crop) }}
+        {% include('components/_buttonSave.html.twig') %}
+    {{ form_end(form) }}
+
+
+</div>
+{% endblock %}

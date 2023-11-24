@@ -36,12 +36,15 @@
         {% for teammate in teammates %}
             <tr>
                 {% if category_label == 'association'%}
-                <td class="col-1">
+                <td class="col-2">
                     <a href="{{ path('app_teammate_show', {'id': teammate.id}) }}" class="text-dark">
                         {% if teammate.picture %}
-                        <img src="{{ asset('uploads/img/' ~ teammate.picture) }}" class="img-thumbnail object-fit-contain" alt="">
+                        <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" class="rounded" style="height: 170px; width: 170px" alt="photo de profil de {{ teammate.firstname ~ ' ' ~ teammate.lastname }}">
                         {% else %}
-                        <img src="{{ asset("img/icons/person.svg") }}" alt="">
+                        {% set initials = teammate.lastname|slice(0, 1) ~ teammate.firstname|slice(0, 1) %}
+                        <div class="bg-2 rounded d-flex justify-content-center align-items-center" style="height: 170px; width: 170px">
+                            <div class="fs-1 fw-bold">{{ initials|upper }}</div>
+                        </div>
                         {% endif %}
                     </a>
                 </td>

@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/equipe')]
 class TeammateController extends AbstractController
 {
+
     #[Route('/{category_label}', name: 'app_teammate_index', methods: ['GET'])]
     public function index(TeammateRepository $teammateRepository, $category_label): Response
     {
@@ -53,12 +54,17 @@ class TeammateController extends AbstractController
             if ($picture = $form['picture']->getData()) {
                 $filename = $fileUploaderService->uploadPicture($picture);
                 $teammate->setPicture($filename);
+
+                $entityManager->persist($teammate);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_cropperjs', ['filename' => $filename], Response::HTTP_SEE_OTHER);
+            }else{
+                $entityManager->persist($teammate);
+                $entityManager->flush();
+    
+                return $this->redirectToRoute('app_teammate_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
             }
-
-            $entityManager->persist($teammate);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_teammate_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('teammate/new.html.twig', [
@@ -106,24 +112,34 @@ class TeammateController extends AbstractController
 
             // si une nouvelle image est renseignée
             if ($picture = $form['picture']->getData()) {
-                // on remplace le nom de l'image dans la base de données
                 $filename = $fileUploaderService->uploadPicture($picture);
                 $teammate->setPicture($filename);
+
                 // si il y avait déjà une image ou un document
                 if ($old_picture = $form['old_picture']->getData()){
                     // on supprime l'ancienne image du dossier
                     $old_picture_path = $this->getParameter("photo_dir").$old_picture;
+                    $old_cropped_picture_path = $this->getParameter("cropped_photo_dir").$old_picture;
                     if(file_exists($old_picture_path)){
                         unlink($old_picture_path);
                     }
+                    if(file_exists($old_cropped_picture_path)){
+                        unlink($old_cropped_picture_path);
+                    }
                 }
+
+                $entityManager->persist($teammate);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_cropperjs', ['filename' => $filename], Response::HTTP_SEE_OTHER);
             }else{
                 $teammate->setPicture($teammate->getOldPicture());
+
+                $entityManager->persist($teammate);
+                $entityManager->flush();
+    
+                return $this->redirectToRoute('app_teammate_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
             }
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_teammate_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('teammate/edit.html.twig', [
@@ -145,9 +161,13 @@ class TeammateController extends AbstractController
 
             if($picture = $teammate->getPicture()){
                 $picture_path = $this->getParameter("photo_dir").$picture;
+                $cropped_picture_path = $this->getParameter("cropped_photo_dir").$picture;
                 // on la supprime du dossier
                 if(file_exists($picture_path)){
                     unlink($picture_path);
+                }
+                if(file_exists($cropped_picture_path)){
+                    unlink($cropped_picture_path);
                 }
             }
 

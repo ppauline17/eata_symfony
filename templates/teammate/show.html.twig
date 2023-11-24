@@ -22,9 +22,12 @@
                 </tr>
                 {% if category_label == "association" %}
                 <tr>
-                    <th>Photo</th>
+                    <th>
+                        <div>Photo</div>
+                        <a href="{{ path('app_cropperjs', {'filename': teammate.picture} ) }}">Recadrer</a>
+                    </th>
                     <td>
-                        <img src="{{ asset('uploads/img/' ~ teammate.picture) }}" alt="">
+                        <img src="{{ asset('uploads/cropped-img/' ~ teammate.picture) }}" alt="" class="h-auto">
                     </td>
                 </tr>
                 <tr>

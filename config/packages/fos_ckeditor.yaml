@@ -10,3 +10,4 @@ fos_ck_editor:
             toolbar:
                 - { name: "styles", items: ['Bold', 'Italic', 'Underline', 'Strike', 'Blockquote', '-', 'Link', '-', 'RemoveFormat', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'FontSize', '-', 'TextColor', 'BGColor'] }
             language: fr
+            height: 500
