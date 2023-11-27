@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,17 +26,25 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user, $id): Response
     {
+        $onlineUser = $this->getUser();
+        if ($onlineUser->getId() != $id && !($this->isGranted('ROLE_ADMIN'))) {
+            throw $this->createAccessDeniedException('Accès non autorisé.');
+        }
         return $this->render('user/show.html.twig', [
             'user' => $user,
-            'crud_user' => true
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher, $id): Response
     {
+        $onlineUser = $this->getUser();
+        if ($onlineUser->getId() != $id && !($this->isGranted('ROLE_ADMIN'))) {
+            throw $this->createAccessDeniedException('Accès non autorisé.');
+        }
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -54,24 +63,39 @@ class UserController extends AbstractController
             $user->setFirstname(ucfirst(strtolower($form['firstname']->getData())));
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
-            'crud_user' => true
         ]);
     }
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager, $id, ArticleRepository $articleRepository): Response
     {
+        $onlineUser = $this->getUser();
+        if ($onlineUser->getId() == $id){$logout = true;}
+        if ($onlineUser->getId() != $id && !($this->isGranted('ROLE_ADMIN'))) {
+            throw $this->createAccessDeniedException('Accès non autorisé.');
+        }
+
+        $articles = $articleRepository->findBy(['user' => $id]);
+        foreach ($articles as $article) {
+            $article->setUser(null);
+            $entityManager->flush();
+        }
+
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        if($logout){
+            return $this->redirectToRoute('app_page_home', [], Response::HTTP_SEE_OTHER);
+        }else{
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        }
     }
 }

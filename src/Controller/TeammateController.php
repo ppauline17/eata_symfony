@@ -27,7 +27,7 @@ class TeammateController extends AbstractController
         ]);
     }
 
-    #[Route('/new/{category_label}', name: 'app_teammate_new', methods: ['GET', 'POST'])]
+    #[Route('/{category_label}/new', name: 'app_teammate_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request, 
         EntityManagerInterface $entityManager, 

@@ -13,7 +13,7 @@ use Symfony\UX\Cropperjs\Form\CropperType;
 class CropperjsController extends AbstractController
 {
 
-    #[Route('/cropperjs/{filename}', name: 'app_cropperjs')]
+    #[Route('/recadrer/{filename}', name: 'app_cropperjs')]
     public function index(
         CropperInterface $cropper, 
         Request $request, 

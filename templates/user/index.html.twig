@@ -12,7 +12,7 @@
             <tr>
                 <th class="d-none d-md-table-cell">Nom</th>
                 <th class="d-none d-md-table-cell">Prénom</th>
-                <th>Login</th>
+                <th>Identifiant</th>
                 <th>Droits d'accès</th>
                 <th>Actions</th>
             </tr>
@@ -31,14 +31,14 @@
                 </td>
                 <td class="col-1">
                     <div class="row">
-                        {% if 'ROLE_ADMIN' not in user.roles %}
+                        {# {% if 'ROLE_ADMIN' not in user.roles %} #}
                         <div class="col-6">
                             {{ include('user/_update_btn.html.twig') }}
                         </div>
                         <div class="col-6">
                             {{ include('user/_delete_btn.html.twig') }}
                         </div>
-                        {% endif %}
+                        {# {% endif %} #}
                     </div>
                 </td>
             </tr>

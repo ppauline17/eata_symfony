@@ -50,12 +50,14 @@ class UserType extends AbstractType
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'Tout' => 'ROLE_ADMIN',
-                    'Articles' => 'ROLE_EDITOR',
-                    'Equipes' => 'ROLE_TEAM',
-                    'Le coin des enfants' => 'ROLE_CHILD',
+                    'Actualités et infos pratiques' => 'ROLE_INFOS',
+                    'Les accueils' => 'ROLE_ACCUEILS',
+                    'L\'association' => 'ROLE_ASSO',
+                    'Le coin des enfants' => 'ROLE_ENFANT',
+                    'Le coin des parents' => 'ROLE_PARENT',
                 ],
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
     }

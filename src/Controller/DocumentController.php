@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/document')]
 class DocumentController extends AbstractController
 {
-    #[Route('/liste/{category_label}', name: 'app_document_index', methods: ['GET'])]
+    #[Route('/{category_label}/liste', name: 'app_document_index', methods: ['GET'])]
     public function index(DocumentRepository $documentRepository, $category_label): Response
     {
         if($category_label == "infos"){
@@ -32,7 +32,7 @@ class DocumentController extends AbstractController
         }
     }
 
-    #[Route('/new/{category_label}', name: 'app_document_new', methods: ['GET', 'POST'])]
+    #[Route('/{category_label}/new', name: 'app_document_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request, 
         EntityManagerInterface $entityManager, 
@@ -72,7 +72,7 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit/{category_label}', name: 'app_document_edit', methods: ['GET', 'POST'])]
+    #[Route('/{category_label}/edit/{id}', name: 'app_document_edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request, 
         Document $document, 
@@ -122,7 +122,7 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete/{category_label}', name: 'app_document_delete', methods: ['POST'])]
+    #[Route('/{category_label}/delete/{id}', name: 'app_document_delete', methods: ['POST'])]
     public function delete(
         Request $request, 
         Document $document, 

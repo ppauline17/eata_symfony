@@ -2,6 +2,8 @@
 
 {% block class %}dashboard{% endblock %}
 
+{% set roles = app.user.roles %}
+
 {% block body %}
 {# Navigation #}
     <section class="mb-5">
@@ -12,9 +14,12 @@
                         <div class="col-12 mb-3">
                             <a class="nav-link zoom-on-hover text-light" href="{{ path('app_admin_index') }}"><h4>Administration</h4></a>
                         </div>
+                    {% if 'ROLE_INFOS' in roles or 'ROLE_ADMIN' in roles %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_home') }}">Page Accueil</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_ACCUEILS' in roles or 'ROLE_ADMIN' in roles %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_periscolaire') }}">Accueil périscolaire</a>
                         </div>
@@ -24,20 +29,34 @@
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_loisirs') }}">Accueil de loisirs</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_ASSO' in roles or 'ROLE_ADMIN' in roles  %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_association') }}">Association</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_ENFANT' in roles or 'ROLE_ADMIN' in roles  %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_children') }}">Le coin des enfants</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_PARENT' in roles or 'ROLE_ADMIN' in roles  %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_parents') }}">Le coin des parents</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_INFOS' in roles or 'ROLE_ADMIN' in roles %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_admin_informations') }}">Infos pratiques</a>
                         </div>
+                    {% endif %}
+                    {% if 'ROLE_ADMIN' in roles %}
                         <div class="col-6 col-md-4 col-xl-12 mb-3">
                             <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_user_index') }}">Utilisateurs du site</a>
+                        </div>
+                    {% endif %}
+                        <div class="col-6 col-md-4 col-xl-12 mb-3">
+                            <a class="btn btn-outline-light zoom-on-hover w-100" href="{{ path('app_user_show', {'id': app.user.id}) }}">Mon compte</a>
                         </div>
                     </div>
                 </div>

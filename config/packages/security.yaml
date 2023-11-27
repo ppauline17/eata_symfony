@@ -27,7 +27,7 @@ security:
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER,  ROLE_EDITOR, ROLE_TEAM, ROLE_CHILD]
+        ROLE_ADMIN:       [ROLE_INFOS, ROLE_ACCUEILS, ROLE_ASSO,  ROLE_ENFANT, ROLE_PARENT]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
             # https://symfony.com/doc/current/security/impersonating_user.html
@@ -36,11 +36,47 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/article, roles: [ROLE_EDITOR] }
-        - { path: ^/equipe, roles: [ROLE_TEAM] }
-        - { path: ^/user, roles: [ROLE_ADMIN] }
+          # role infos
+        - { path: ^/administration/accueil, roles: [ROLE_INFOS] }
+        - { path: ^/administration/informations, roles: [ROLE_INFOS] }
+        - { path: ^/article/actualités, roles: [ROLE_INFOS] }
+          # role accueils
+        - { path: ^/administration/périscolaire, roles: [ROLE_ACCUEILS] }
+        - { path: ^/administration/mercredi, roles: [ROLE_ACCUEILS] }
+        - { path: ^/administration/loisirs, roles: [ROLE_ACCUEILS] }
+        - { path: ^/information/app_page_periscolaire, roles: [ROLE_ACCUEILS] }
+        - { path: ^/information/app_page_mercredi, roles: [ROLE_ACCUEILS] }
+        - { path: ^/information/app_page_loisirs, roles: [ROLE_ACCUEILS] }
+        - { path: ^/equipe/périscolaire, roles: [ROLE_ACCUEILS] }
+        - { path: ^/equipe/mercredi, roles: [ROLE_ACCUEILS] }
+        - { path: ^/equipe/loisirs, roles: [ROLE_ACCUEILS] }
+        - { path: ^/document/périscolaire, roles: [ROLE_ACCUEILS] }
+        - { path: ^/document/mercredi, roles: [ROLE_ACCUEILS] }
+        - { path: ^/document/loisirs, roles: [ROLE_ACCUEILS] }
+        # role asso
+        - { path: ^/administration/association, roles: [ROLE_ASSO] }
+        - { path: ^/information/app_page_association, roles: [ROLE_ASSO] }
+        - { path: ^/equipe/association, roles: [ROLE_ASSO] }
+        - { path: ^/document/association, roles: [ROLE_ASSO] }
+        - { path: ^/recadrer, roles: [ROLE_ASSO] }
+        # role enfant
+        - { path: ^/administration/enfants, roles: [ROLE_ENFANT] }
+        - { path: ^/article/activités, roles: [ROLE_ENFANT] }
+        - { path: ^/article/recettes, roles: [ROLE_ENFANT] }
+        - { path: ^/article/dessins, roles: [ROLE_ENFANT] }
+        - { path: ^/article/projets, roles: [ROLE_ENFANT] }
+        # role parent
+        - { path: ^/administration/parents, roles: [ROLE_PARENT] }
+        - { path: ^/article/bons, roles: [ROLE_PARENT] }
+        - { path: ^/article/conseils, roles: [ROLE_PARENT] }
+        - { path: ^/article/évènements, roles: [ROLE_PARENT] }
+        - { path: ^/article/album, roles: [ROLE_PARENT] }
+
+        - { path: ^/article, roles: [ROLE_INFOS, ROLE_ENFANT, ROLE_PARENT] }
+        - { path: ^/equipe, roles: [ROLE_ACCUEILS, ROLE_ASSO] }
+        - { path: ^/information, roles: [ROLE_ACCUEILS, ROLE_ASSO, ROLE_INFOS] }
+        - { path: ^/utilisateur/liste, roles: [ROLE_ADMIN] }
         - { path: ^/register, roles: [ROLE_ADMIN] }
-        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
