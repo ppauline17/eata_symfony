@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block content %}
-    <h3>L'accueil périscolaire du mercredi</h3>
+    <h3>L'accueil de loisirs du mercredi</h3>
     <div class="row">
         <div class="col-md-3 mb-3">
             <a href="{{ path('app_information_edit', {'label': 'app_page_mercredi_description'}) }}">
-                <div class="card bg-4 border-0 p-3 zoom-on-hover">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Description
                     </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <a href="{{ path('app_teammate_index', {'category_label': 'mercredi'}) }}">
-                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                <div class="card bg-2 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Equipe mercredi
                     </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <a href="{{ path('app_information_edit', {'label': 'app_page_mercredi_time'}) }}">
-                <div class="card bg-2 border-0 p-3 zoom-on-hover">
+                <div class="card bg-3 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Horaires
                     </div>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-md-3 mb-3">
             <a href="{{ path('app_admin_mercredi_list', {'label': 'app_page_mercredi_time'}) }}">
-                <div class="card bg-3 border-0 p-3 zoom-on-hover">
+                <div class="card bg-4 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Tarifs
                     </div>
@@ -50,6 +50,15 @@
                 <div class="card bg-5 border-0 p-3 zoom-on-hover">
                     <div class="card-body text-center">
                         Liste des documents
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-3">
+            <a href="{{ path('app_document_index', {'category_label': 'mercredi'}) }}">
+                <div class="card bg-1 border-0 p-3 zoom-on-hover">
+                    <div class="card-body text-center">
+                        Documents
                     </div>
                 </div>
             </a>

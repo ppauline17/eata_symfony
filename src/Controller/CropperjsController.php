@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\UX\Cropperjs\Factory\CropperInterface;
 use Symfony\UX\Cropperjs\Form\CropperType;
 
@@ -20,7 +19,6 @@ class CropperjsController extends AbstractController
         Request $request, 
         FileUploaderService $fileUploaderService,
         $filename,
-        CacheInterface $cache
     ): Response
     {
         $crop = $cropper->createCrop('uploads/img/'.$filename);
@@ -44,15 +42,8 @@ class CropperjsController extends AbstractController
             // Get the cropped image data (as a string)
             $croppedImageData = $crop->getCroppedImage();
 
-            // Create a thumbnail of the cropped image (as a string)
-            $croppedThumbnailData = $crop->getCroppedThumbnail(170, 170);
-            // Generate a unique filename for the cropped image
-
             // Upload the cropped image
             $fileUploaderService->uploadCroppedImage($croppedImageData, $filename);
-
-            // vider le cache
-            $cache->delete('teammates');
 
             return $this->redirectToRoute('app_teammate_index', ['category_label' => 'association'], Response::HTTP_SEE_OTHER);
         }

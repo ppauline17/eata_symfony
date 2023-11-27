@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Document;
 use App\Form\DocumentType;
+use App\Repository\CategoryRepository;
 use App\Repository\DocumentRepository;
 use App\Service\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,19 +16,33 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/document')]
 class DocumentController extends AbstractController
 {
-    #[Route('/liste', name: 'app_document_index', methods: ['GET'])]
-    public function index(DocumentRepository $documentRepository): Response
+    #[Route('/liste/{category_label}', name: 'app_document_index', methods: ['GET'])]
+    public function index(DocumentRepository $documentRepository, $category_label): Response
     {
-        return $this->render('document/index.html.twig', [
-            'documents' => $documentRepository->findAll(),
-        ]);
+        if($category_label == "infos"){
+            return $this->render('document/index.html.twig', [
+                'documents' => $documentRepository->findAllWithoutAssociation(),
+                'category_label' => $category_label,
+            ]);
+        }else{
+            return $this->render('document/index.html.twig', [
+                'documents' => $documentRepository->findByCategoryLabel($category_label),
+                'category_label' => $category_label,
+            ]);
+        }
     }
 
-    #[Route('/new', name: 'app_document_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
+    #[Route('/new/{category_label}', name: 'app_document_new', methods: ['GET', 'POST'])]
+    public function new(
+        Request $request, 
+        EntityManagerInterface $entityManager, 
+        FileUploaderService $fileUploaderService,
+        $category_label,
+    ): Response
     {
+        $chooseCategory = $category_label == "association" ? false : true;
         $document = new Document();
-        $form = $this->createForm(DocumentType::class, $document, ['is_creation' => true]);
+        $form = $this->createForm(DocumentType::class, $document, ['is_creation' => true, 'chooseCategory' => $chooseCategory]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,12 +54,13 @@ class DocumentController extends AbstractController
             $entityManager->persist($document);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_document_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('document/new.html.twig', [
             'document' => $document,
             'form' => $form,
+            'category_label' => $category_label
         ]);
     }
 
@@ -56,19 +72,28 @@ class DocumentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_document_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Document $document, EntityManagerInterface $entityManager, FileUploaderService $fileUploaderService): Response
+    #[Route('/{id}/edit/{category_label}', name: 'app_document_edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Request $request, 
+        Document $document, 
+        EntityManagerInterface $entityManager, 
+        FileUploaderService $fileUploaderService,
+        $category_label
+    ): Response
     {
         if (!$document->getOldDocument() && $document->getDocumentSource()) {
             $document->setOldDocument($document->getDocumentSource());
         }
 
-        $form = $this->createForm(DocumentType::class, $document);
+        $chooseCategory = $category_label == "association" ? false : true;
+
+        $form = $this->createForm(DocumentType::class, $document, ['chooseCategory' => $chooseCategory]);
         $form->handleRequest($request);
+
 
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($form['documentSource']->getData());
+
             // si un nouveau document est chargé
             if ($documentSource = $form['documentSource']->getData()) {
                 $label = $form['label']->getData();
@@ -87,17 +112,23 @@ class DocumentController extends AbstractController
             
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_document_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('document/edit.html.twig', [
             'document' => $document,
             'form' => $form,
+            'category_label' => $category_label,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_document_delete', methods: ['POST'])]
-    public function delete(Request $request, Document $document, EntityManagerInterface $entityManager): Response
+    #[Route('/{id}/delete/{category_label}', name: 'app_document_delete', methods: ['POST'])]
+    public function delete(
+        Request $request, 
+        Document $document, 
+        EntityManagerInterface $entityManager,
+        $category_label
+    ): Response
     {
         if ($this->isCsrfTokenValid('delete'.$document->getId(), $request->request->get('_token'))) {
             $docPath = $this->getParameter("document_dir").$document->getDocumentSource();
@@ -109,6 +140,6 @@ class DocumentController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_document_index', ['category_label' => $category_label], Response::HTTP_SEE_OTHER);
     }
 }

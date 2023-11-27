@@ -107,4 +107,15 @@ class Document
 
         return $this;
     }
+
+    public function getCategoryLabels(): array
+    {
+        $categoryLabels = [];
+
+        foreach ($this->category as $category) {
+            $categoryLabels[] = $category->getLabel();
+        }
+
+        return $categoryLabels;
+    }
 }

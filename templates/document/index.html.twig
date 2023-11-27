@@ -3,13 +3,33 @@
 {% block title %}Document index{% endblock %}
 
 {% block breadcrumb %}
+    {% if category_label == 'périscolaire' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_periscolaire') }}" class="text-dark">Accueil périscolaire</a></li>
+    <li class="breadcrumb-item">Documents {{ category_label }}</li>
+    {% elseif category_label == 'mercredi' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_mercredi') }}" class="text-dark">Accueil de loisirs du mercredi</a></li>
+    <li class="breadcrumb-item">Documents {{ category_label }}</li>
+    {% elseif category_label == 'loisirs' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_loisirs') }}" class="text-dark">Accueil de loisirs</a></li>
+    <li class="breadcrumb-item">Documents {{ category_label }}</li>
+    {% elseif category_label == 'infos' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
-    <li class="breadcrumb-item">Documents</li>
+    <li class="breadcrumb-item">Tous les documents</li>
+    {% elseif category_label == 'association' %}
+    <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
+    <li class="breadcrumb-item">Documents de l'association</li>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h3>Documents à télécharger</h3>
-    <a href="{{ path('app_document_new') }}" class="btn text-primary">
+    {% if category_label == 'infos' %}
+    <h3>Tous les documents à télécharger</h3>
+    {% elseif category_label == 'association' %}
+    <h3>Documents de l'association</h3>
+    {% else %}
+    <h3>Documents pour l'accueil {{ category_label }}</h3>
+    {% endif %}
+    <a href="{{ path('app_document_new', {'category_label': category_label}) }}" class="btn text-primary">
         {{ include('icons/plus.html.twig') }} Créer
     </a>
     <table class="table">
@@ -40,7 +60,7 @@
                 <td class="col-1">
                     <div class="row">
                         <div class="col-6">
-                            <a href="{{ path('app_document_edit', {'id': document.id}) }}" title="Modifier" class="btn">
+                            <a href="{{ path('app_document_edit', {'id': document.id, 'category_label': category_label}) }}" title="Modifier" class="btn">
                                 {{ include('icons/update.html.twig') }}
                             </a>
                         </div>

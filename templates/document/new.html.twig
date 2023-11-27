@@ -4,7 +4,7 @@
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_informations') }}" class="text-dark">Infos pratiques</a></li>
-    <li class="breadcrumb-item"><a href="{{ path('app_document_index') }}" class="text-dark">Documents</a></li>
+    <li class="breadcrumb-item"><a href="{{ path('app_document_index', {'category_label': category_label}) }}" class="text-dark">Documents</a></li>
     <li class="breadcrumb-item">Créer</li>
 {% endblock %}
 
@@ -29,7 +29,9 @@
             {{ form_errors(form.documentSource) }}
         </div>
         <div class="mb-3">
+            {% if category_label != 'association' %}
             <label for="category">Pour quel accueil ?</label>
+            {% endif %}
             {{ form_widget(form.category) }}
             {{ form_errors(form.category) }}
         </div>

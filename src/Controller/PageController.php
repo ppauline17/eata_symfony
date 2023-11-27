@@ -136,7 +136,7 @@ class PageController extends AbstractController
     {
         return $this->render('page/informations.html.twig', [
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_infospratiques_informations']),
-            'documents' => $documentRepository->findAll()
+            'documents' => $documentRepository->findAllWithoutAssociation()
         ]);
     }
 }

@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_document_delete', {'id': document.id}) }}" onsubmit="return confirm('Etes vous certain(e) de vouloir supprimer ce document ?');">
+<form method="post" action="{{ path('app_document_delete', {'id': document.id, 'category_label': category_label}) }}" onsubmit="return confirm('Etes vous certain(e) de vouloir supprimer ce document ?');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ document.id) }}">
     <button class="btn" title="Supprimer">{{ include('icons/delete.html.twig') }}</button>
 </form>

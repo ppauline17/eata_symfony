@@ -31,6 +31,16 @@ class DocumentRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllWithoutAssociation()
+    {
+        return $this->createQueryBuilder('d')
+            ->leftJoin('d.category', 'c')
+            ->andWhere('c.label != :label OR c.label IS NULL')
+            ->setParameter('label', 'association')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Document[] Returns an array of Document objects
 //     */

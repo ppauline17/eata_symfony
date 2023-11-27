@@ -116,13 +116,13 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card border-0 shadow mb-3">
                             <div class="row g-0">
-                                <div class="col-4 green-text p-4">
+                                <div class="col-4 red-text p-4">
                                     {% include('icons/paperclip.html.twig') %}
                                 </div>
                                 <div class="col-8">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ document.label }}</h5>
-                                    <a href="{{ asset('uploads/doc/' ~ document.documentSource ) }}" download class="btn btn-danger">Télécharger</a>
+                                    <a href="{{ asset('uploads/doc/' ~ document.documentSource ) }}" class="btn btn-danger" target="_blank">Ouvrir</a>
                                 </div>
                                 </div>
                             </div>
