@@ -6,6 +6,7 @@ use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\CategoryRepository;
 use App\Repository\DocumentRepository;
+use App\Service\CategoryService;
 use App\Service\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,8 +18,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class DocumentController extends AbstractController
 {
     #[Route('/{category_label}/liste', name: 'app_document_index', methods: ['GET'])]
-    public function index(DocumentRepository $documentRepository, $category_label): Response
+    public function index(
+        DocumentRepository $documentRepository, 
+        $category_label,
+        CategoryService $categoryService,
+    ): Response
     {
+        if (!$categoryService->categoryDocumentExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         if($category_label == "infos"){
             return $this->render('document/index.html.twig', [
                 'documents' => $documentRepository->findAllWithoutAssociation(),
@@ -38,8 +46,12 @@ class DocumentController extends AbstractController
         EntityManagerInterface $entityManager, 
         FileUploaderService $fileUploaderService,
         $category_label,
+        CategoryService $categoryService,
     ): Response
     {
+        if (!$categoryService->categoryDocumentExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         $chooseCategory = $category_label == "association" ? false : true;
         $document = new Document();
         $form = $this->createForm(DocumentType::class, $document, ['is_creation' => true, 'chooseCategory' => $chooseCategory]);
@@ -78,9 +90,13 @@ class DocumentController extends AbstractController
         Document $document, 
         EntityManagerInterface $entityManager, 
         FileUploaderService $fileUploaderService,
-        $category_label
+        $category_label,
+        CategoryService $categoryService,
     ): Response
     {
+        if (!$categoryService->categoryDocumentExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         if (!$document->getOldDocument() && $document->getDocumentSource()) {
             $document->setOldDocument($document->getDocumentSource());
         }
@@ -127,9 +143,13 @@ class DocumentController extends AbstractController
         Request $request, 
         Document $document, 
         EntityManagerInterface $entityManager,
-        $category_label
+        $category_label,
+        CategoryService $categoryService,
     ): Response
     {
+        if (!$categoryService->categoryDocumentExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         if ($this->isCsrfTokenValid('delete'.$document->getId(), $request->request->get('_token'))) {
             $docPath = $this->getParameter("document_dir").$document->getDocumentSource();
             // on supprime du dossier

@@ -6,6 +6,7 @@ use App\Entity\Teammate;
 use App\Form\TeammateType;
 use App\Repository\CategoryRepository;
 use App\Repository\TeammateRepository;
+use App\Service\CategoryService;
 use App\Service\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,8 +19,15 @@ class TeammateController extends AbstractController
 {
 
     #[Route('/{category_label}', name: 'app_teammate_index', methods: ['GET'])]
-    public function index(TeammateRepository $teammateRepository, $category_label): Response
+    public function index(
+        TeammateRepository $teammateRepository, 
+        $category_label, 
+        CategoryService $categoryService,
+    ): Response
     {   
+        if (!$categoryService->categoryTeammateExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         return $this->render('teammate/index.html.twig', [
             'teammates' => $teammateRepository->findByCategory($category_label),
             'crud_teammates' => true,
@@ -33,9 +41,13 @@ class TeammateController extends AbstractController
         EntityManagerInterface $entityManager, 
         FileUploaderService $fileUploaderService,
         CategoryRepository $categoryRepository,
-        $category_label
+        $category_label,
+        CategoryService $categoryService,
     ): Response 
     {
+        if (!$categoryService->categoryTeammateExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         $teammate = new Teammate();
         $form = $this->createForm(TeammateType::class, $teammate, ['category_label' => $category_label]);
         $form->handleRequest($request);

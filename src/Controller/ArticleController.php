@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use DateTimeImmutable;
 use App\Entity\Article;
-use App\Entity\Category;
 use App\Form\ArticleType;
 use App\Service\FileUploaderService;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Service\CategoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,9 +23,13 @@ class ArticleController extends AbstractController
     public function index(
         ArticleRepository $articleRepository, 
         Request $request, 
-        $category_label
+        $category_label,
+        CategoryService $categoryService,
     ): Response
     {
+        if (!$categoryService->categoryArticleExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAllPaginatedBy($request->query->getInt('page', 1), 10, $category_label),
             'crud_article' => true,
@@ -40,9 +44,13 @@ class ArticleController extends AbstractController
         Security $security,
         FileUploaderService $fileUploaderService,
         $category_label,
-        CategoryRepository $categoryRepository
-    ): Response
+        CategoryRepository $categoryRepository,
+        CategoryService $categoryService,
+        ): Response
     {
+        if (!$categoryService->categoryArticleExists($category_label)) {
+            throw $this->createNotFoundException('Page introuvable');
+        }
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);

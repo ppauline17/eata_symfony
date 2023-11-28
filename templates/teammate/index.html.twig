@@ -12,7 +12,7 @@
     {% elseif  category_label == 'association' %}
     <li class="breadcrumb-item"><a href="{{ path('app_admin_association') }}" class="text-dark">Association</a></li>
     {% endif %}
-    <li class="breadcrumb-item">Equipe d'animation</li>
+    <li class="breadcrumb-item">Equipe {{ category_label }}</li>
 {% endblock %}
 
 {% block content %}

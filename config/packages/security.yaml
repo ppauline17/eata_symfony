@@ -40,6 +40,8 @@ security:
         - { path: ^/administration/accueil, roles: [ROLE_INFOS] }
         - { path: ^/administration/informations, roles: [ROLE_INFOS] }
         - { path: ^/article/actualités, roles: [ROLE_INFOS] }
+        - { path: ^/information/app_page_infospratiques_informations, roles: [ROLE_INFOS] }
+        - { path: ^/document/infos, roles: [ROLE_INFOS] }
           # role accueils
         - { path: ^/administration/périscolaire, roles: [ROLE_ACCUEILS] }
         - { path: ^/administration/mercredi, roles: [ROLE_ACCUEILS] }
