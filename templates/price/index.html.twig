@@ -27,7 +27,7 @@
                 <td>{{ price.eveningFirstHour|number_format(2, '.', ',') ~ ' €' }}</td>
                 <td>{{ price.eveningHalfHour|number_format(2, '.', ',') ~ ' €' }}</td>
                 <td>
-                    <a href="{{ path('app_price_edit', {'id': price.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                    <a href="{{ path('app_price_edit', {'id': price.id}) }}">{{ source('@icons_path/update.svg') }}</a>
                 </td>
             </tr>
         {% endfor %}

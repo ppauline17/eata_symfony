@@ -29,7 +29,7 @@
                     <td class="col-2">{{ price.eveningFirstHour|number_format(2, '.', ',') ~ ' €' }}</td>
                     <td class="col-2">{{ price.eveningHalfHour|number_format(2, '.', ',') ~ ' €' }}</td>
                     <td class="col-1">
-                        <a href="{{ path('app_price_edit', {'id': price.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                        <a href="{{ path('app_price_edit', {'id': price.id}) }}">{{ source('@icons_path/update.svg') }}</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -50,7 +50,7 @@
                     <td>{{ city.name }}</td>
                     <td class="col-2">{{ city.wednesdayReduce|number_format(2, '.', ',') ~ ' €' }}</td>
                     <td class="col-1">
-                        <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                        <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ source('@icons_path/update.svg') }}</a>
                     </td>
                 </tr>
             {% endfor %}

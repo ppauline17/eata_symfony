@@ -21,7 +21,7 @@
                 <td>{{ city.loisirsReduce|number_format(2, '.', ',') ~ ' €' }}</td>
                 <td>{{ city.wednesdayReduce|number_format(2, '.', ',') ~ ' €' }}</td>
                 <td>
-                    <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ include('icons/update.html.twig') }}</a>
+                    <a href="{{ path('app_city_edit', {'id': city.id}) }}">{{ source('@icons_path/update.svg') }}</a>
                 </td>
             </tr>
         {% else %}

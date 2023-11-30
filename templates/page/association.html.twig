@@ -67,7 +67,7 @@
                     <div class="{{ col }} mb-5">
                         <div class="star position-relative" data-aos="flip-down">
                             <div class="star-container {{ hierarchy }}">
-                                {{ include('icons/star.html.twig') }}
+                                {{ source('@icons_path/star.svg') }}
                                 <div class="name flex-column">
                                     <div>{{ teammate.firstname }}</div>
                                     <div>{{ teammate.lastname }}</div>
@@ -117,7 +117,7 @@
                         <div class="card border-0 shadow mb-3">
                             <div class="row g-0">
                                 <div class="col-4 red-text p-4">
-                                    {% include('icons/paperclip.html.twig') %}
+                                    {{ source('@icons_path/paperclip.svg') }}
                                 </div>
                                 <div class="col-8">
                                 <div class="card-body">

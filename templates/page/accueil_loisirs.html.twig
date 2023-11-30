@@ -62,7 +62,7 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="sun position-relative" data-aos="zoom-in">
                             <div class="sun-container">
-                                {{ include('icons/sun.html.twig') }}
+                                {{ source('@icons_path/sun.svg') }}
                             </div>
                             <div class="name flex-column">
                                 <div>{{ teammate.firstname }}</div>
@@ -80,7 +80,7 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="cloud position-relative" data-aos="zoom-in-up">
                             <div class="cloud-container cloud-director">
-                                {{ include('icons/cloud.html.twig') }}
+                                {{ source('@icons_path/cloud.svg') }}
                             </div>
                             <div class="name flex-column mt-2">
                                 <div>{{ teammate.firstname }}</div>
@@ -98,7 +98,7 @@
                     <div class="col-sm-6 col-md-4 mb-3">
                         <div class="cloud position-relative" data-aos="zoom-in-up">
                             <div class="cloud-container">
-                                {{ include('icons/cloud.html.twig') }}
+                                {{ source('@icons_path/cloud.svg') }}
                             </div>
                             <div class="name flex-column mt-2">
                                 <div>{{ teammate.firstname }}</div>
@@ -191,7 +191,7 @@
                             <div class="card border-0 shadow mb-3">
                                 <div class="row g-0">
                                     <div class="col-4 green-text p-4">
-                                        {% include('icons/paperclip.html.twig') %}
+                                        {{ source('@icons_path/paperclip.svg') }}
                                     </div>
                                     <div class="col-8">
                                     <div class="card-body">

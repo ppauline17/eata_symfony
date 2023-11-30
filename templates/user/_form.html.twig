@@ -17,8 +17,8 @@
             {{ form_widget(form.newPassword, {'attr': {'class': 'form-control', 'type': 'password', 'aria-label': 'Password', 'aria-describedby': 'basic-addon1'}}) }}
             {{ form_errors(form.newPassword) }}
             <span class="input-group-text" id="basic-addon1">
-                <span id="eye">{{ include('icons/eye.html.twig') }}</span>
-                <span class="d-none" id="eyeSlash">{{ include('icons/eye-slash.html.twig') }}</span>
+                <span id="eye">{{ source('@icons_path/eye.svg') }}</span>
+                <span class="d-none" id="eyeSlash">{{ source('@icons_path/eye-slash.svg') }}</span>
             </span>
         </div>
     </div>
