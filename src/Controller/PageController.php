@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\CityRepository;
@@ -134,9 +135,26 @@ class PageController extends AbstractController
     #[Route('/informations', name: 'app_page_informations')]
     public function informations(InformationRepository $informationRepository, DocumentRepository $documentRepository): Response
     {
+        $formEata = $this->createForm(ContactType::class);
+        $formAsso = $this->createForm(ContactType::class);
+
+        if ($formEata->isSubmitted() && $formEata->isValid()) {
+
+
+            return $this->redirectToRoute('app_page_informations', [], Response::HTTP_SEE_OTHER);
+        }
+        
         return $this->render('page/informations.html.twig', [
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_infospratiques_informations']),
-            'documents' => $documentRepository->findAllWithoutAssociation()
+            'documents' => $documentRepository->findAllWithoutAssociation(),
+            'formEata' => $formEata,
+            'formAsso' => $formAsso,
         ]);
+    }
+
+    #[Route('/mentions', name: 'app_page_mentions')]
+    public function mentions(): Response
+    {
+        return $this->render('page/mentions.html.twig');
     }
 }

@@ -84,7 +84,28 @@
                             {% endif %}
                             </div>
                         </div>
-                        <div class="text-center mb-3 mt-3">{{ teammate.job }}</div>
+                        {% if teammate.description %}
+                        <div class="accordion border-0 rounded shadow mb-3 mt-3" id="accordion{{ teammate.id }}">
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ teammate.id }}" aria-expanded="false" aria-controls="collapse{{ teammate.id }}">
+                                        <div class="fs-6 fw-bold">{{ teammate.job }}</div>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ teammate.id }}" class="accordion-collapse collapse" data-bs-parent="#accordion{{ teammate.id }}">
+                                    <div class="accordion-body">
+                                        {{ teammate.description }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card border-0 shadow mb-3 mt-3">
+                            <div class="card-body">
+                                <h5 class="card-title mb-0 fs-6 fw-bold">{{ teammate.job }}</h5>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>

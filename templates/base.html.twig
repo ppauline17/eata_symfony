@@ -29,7 +29,7 @@
                                 <button class="btn btn-light" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                                     <span class="navbar-toggler-icon">
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu border-0 shadow">
                                     <li>
                                         <a class="dropdown-item" href="{{ path('app_page_home') }}">Accueil</a>
                                     </li>
@@ -54,6 +54,7 @@
                                                     <a href="{{ path('app_page_association') }}">
                                                         <p class="m-0">L'association</p>
                                                     </a>
+                                                    <hr>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +88,7 @@
                             <a class="dropdown-toggle nav-dropdown nav-link {% if teammates is defined %}active{% endif %}" data-bs-toggle="dropdown" aria-expanded="false">
                                 La vie des accueils
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu border-0">
                                 <li><a class="dropdown-item" href="{{ path('app_page_periscolaire') }}">L'accueil périscolaire (garderie)</a></li>
                                 <li><a class="dropdown-item" href="{{ path('app_page_mercredi') }}">L'accueil de loisirs (mercredi)</a></li>
                                 <li><a class="dropdown-item" href="{{ path('app_page_loisirs') }}">L'accueil de loisirs (vacances)</a></li>
@@ -111,8 +112,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <ul>
-                            <li>Maison de l'enfance</li>
                             <li>En Avant Ton Aventure</li>
+                            <li>Maison de l'enfance</li>
                             <li>3 rue de la poste</li>
                             <li class="mb-4">86170 AVANTON</li>
                         </ul>
@@ -126,7 +127,7 @@
                     </div>
                     <div class="col-lg-4">
                         <ul>
-                            <li class="mb-4">Mentions légales</li>
+                            <li class="mb-4"><a href="{{ path('app_page_mentions') }}">Mentions légales</a></li>
                             {% if app.user %}
                             <li>
                                 <a href="{{ path('app_admin_index') }}">Administration</a>

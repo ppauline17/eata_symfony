@@ -9,7 +9,7 @@
         {{ asset('img/home/home-320.jpg') }} 320w,
         {{ asset('img/home/home-800.jpg') }} 800w,
         {{ asset('img/home/home-500.jpg') }} 500w,
-        {{ asset('img/home/home-100.jpg') }} 1000w,
+        {{ asset('img/home/home-1000.jpg') }} 1000w,
         {{ asset('img/home/home-1400.jpg') }} 1400w,
         {{ asset('img/home/home-2000.jpg') }} 2000w,
         "
@@ -126,7 +126,7 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-5 p-5">
-                        <a class="ellipse p-5" href="{{ path('app_page_informations') }}">
+                        <a class="ellipse p-5" href="{{ path('app_page_informations') }}/#documents">
                             <div class="icon zoom-on-hover">
                                 <span>{{ source('@icons_path/paperclip.svg') }}</span>
                                 <span>Documents</span>
@@ -134,9 +134,9 @@
                         </a>
                     </div>
                     <div class="col-sm-6 col-md-4 mb-5 p-5">
-                        <a class="ellipse p-5" href="#">
+                        <a class="ellipse p-5" href="{{ path('app_page_informations') }}/#contact">
                             <div class="icon zoom-on-hover">
-                                <span>{{ source('@icons_path/paperclip.svg') }}</span>
+                                <span>{{ source('@icons_path/envelope.svg') }}</span>
                                 <span>Contact</span>
                             </div>
                         </a>

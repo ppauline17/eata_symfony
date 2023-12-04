@@ -4,8 +4,9 @@
 {% block class %}informations{% endblock %}
 
 {% block body %}
+{# infos pratiques #}
     <section class="title">
-        <div class="section-title bg-4 mt-5 mb-5">
+        <div class="section-title bg-2 mt-5 mb-5">
             <div class="container">
                 <p class="text-center">Infos pratiques</p>
             </div>
@@ -16,7 +17,8 @@
             {{ informations.content|raw }}
         </div>
     </section>
-    <section class="title">
+{# documents à télécharger #}
+    <section class="title" id="documents">
         <div class="section-title bg-3 mt-5 mb-5">
             <div class="container">
                 <p class="text-center">Documents à télécharger</p>
@@ -47,4 +49,26 @@
             </div>
         </div>
     </section>
+{# Contact #}
+    <section class="title" id="contact">
+        <div class="section-title bg-4 mt-5 mb-5">
+            <div class="container">
+                <p class="text-center">Contact</p>
+            </div>
+        </div>
+    </section>
+    {# <section class="mb-5">
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-1">
+                <p class="fs-4 fw-bold">Contacter la directrice EATA</p>
+                {{ form(formEata) }}
+            </div>
+            <div class="col-lg-4 offset-lg-2">
+                <p class="fs-4 fw-bold">Contacter le bureau EATA</p>
+                {{ form(formAsso) }}
+            </div>
+        </div>
+        </div>
+    </section> #}
 {% endblock %}
