@@ -132,7 +132,7 @@ class PageController extends AbstractController
         return $this->render('page/parents.html.twig');
     }
 
-    #[Route('/informations', name: 'app_page_informations')]
+    #[Route('/page-informations', name: 'app_page_informations')]
     public function informations(InformationRepository $informationRepository, DocumentRepository $documentRepository): Response
     {
         $formEata = $this->createForm(ContactType::class);
