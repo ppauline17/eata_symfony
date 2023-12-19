@@ -35,3 +35,8 @@ services:
 
     App\Entity\Category:
         autowire: true
+
+    App\Form\ContactType:
+        arguments:
+            $emailEata: '%env(EMAIL_EATA)%'
+            $emailAsso: '%env(EMAIL_ASSO)%'

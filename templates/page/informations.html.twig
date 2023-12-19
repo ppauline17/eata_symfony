@@ -57,18 +57,25 @@
             </div>
         </div>
     </section>
-    {# <section class="mb-5">
+    <section class="mb-5">
         <div class="container">
-        <div class="row">
-            <div class="col-lg-4 offset-lg-1">
-                <p class="fs-4 fw-bold">Contacter la directrice EATA</p>
-                {{ form(formEata) }}
-            </div>
-            <div class="col-lg-4 offset-lg-2">
-                <p class="fs-4 fw-bold">Contacter le bureau EATA</p>
-                {{ form(formAsso) }}
+            <div class="row">
+                <div class="col-lg-5 mb-5">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1369.095877901929!2d0.30333845055615444!3d46.6624751567577!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fd97f1a4741c87%3A0x7e6187fc981a1623!2s3%20Rue%20de%20la%20Poste%2C%2086170%20Avanton!5e0!3m2!1sfr!2sfr!4v1702991479083!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-lg-6 offset-lg-1 shadow rounded p-5">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <p class="fs-4 fw-bold">Contactez-nous</p>
+                    {{ form(form) }}
+                    {% for error in form_errors(form) %}
+                <div class="alert alert-danger">{{ error.message }}</div>
+            {% endfor %}
+                </div>
             </div>
         </div>
-        </div>
-    </section> #}
+    </section>
 {% endblock %}

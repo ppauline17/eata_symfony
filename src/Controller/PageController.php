@@ -11,6 +11,7 @@ use App\Repository\DocumentRepository;
 use App\Repository\InformationRepository;
 use App\Repository\PriceRepository;
 use App\Repository\TeammateRepository;
+use App\Service\MailerService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -133,22 +134,42 @@ class PageController extends AbstractController
     }
 
     #[Route('/page-informations', name: 'app_page_informations')]
-    public function informations(InformationRepository $informationRepository, DocumentRepository $documentRepository): Response
+    public function informations(
+        Request $request,
+        InformationRepository $informationRepository, 
+        DocumentRepository $documentRepository,
+        MailerService $mailerService
+    ): Response
     {
-        $formEata = $this->createForm(ContactType::class);
-        $formAsso = $this->createForm(ContactType::class);
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
 
-        if ($formEata->isSubmitted() && $formEata->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            // envoi du mail au destinataire
+            $mailerService->sendEmail(
+                to: $form['to']->getData(),
+                from: $form['email']->getData(),
+                subject: 'Contact via le site web',
+                content: $form['message']->getData(),
+            );
+            // envoi d'une copie du mail à l'utilisateur
+            $mailerService->sendEmail(
+                to: $form['email']->getData(),
+                from: $form['to']->getData(),
+                subject: 'Votre demande de contact',
+                content: $form['message']->getData(),
+                template: 'sender'
+            );
 
-
-            return $this->redirectToRoute('app_page_informations', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash('success', 'Message envoyé !');
+            
+            return $this->redirectToRoute('app_page_informations', ['_fragment' => 'contact'], Response::HTTP_SEE_OTHER);
         }
         
         return $this->render('page/informations.html.twig', [
             "informations" => $informationRepository->findOneBy(['label' => 'app_page_infospratiques_informations']),
             'documents' => $documentRepository->findAllWithoutAssociation(),
-            'formEata' => $formEata,
-            'formAsso' => $formAsso,
+            'form' => $form,
         ]);
     }
 
