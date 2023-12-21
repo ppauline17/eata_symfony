@@ -151,6 +151,7 @@ class PageController extends AbstractController
                 replyTo: $form['email']->getData(),
                 subject: 'Contact via le site web',
                 content: $form['message']->getData(),
+                userEmail: $form['email']->getData(),
             );
             // envoi d'une copie du mail à l'utilisateur
             $mailerService->sendEmail(
@@ -158,7 +159,8 @@ class PageController extends AbstractController
                 replyTo: $form['to']->getData(),
                 subject: 'Votre demande de contact',
                 content: $form['message']->getData(),
-                template: 'sender'
+                template: 'sender',
+                userEmail: $form['email']->getData(),
             );
 
             $this->addFlash('success', 'Message envoyé !');
