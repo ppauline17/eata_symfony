@@ -32,6 +32,10 @@ services:
             $imagesDirectory: '%photo_dir%'
             $croppedImagesDirectory: '%cropped_photo_dir%'
             $documentsDirectory: '%document_dir%'
+    
+    App\Service\MailerService:
+        arguments:
+            $from: '%env(EMAIL_HEBERGEUR)%'
 
     App\Entity\Category:
         autowire: true

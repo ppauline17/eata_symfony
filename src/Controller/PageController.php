@@ -148,14 +148,14 @@ class PageController extends AbstractController
             // envoi du mail au destinataire
             $mailerService->sendEmail(
                 to: $form['to']->getData(),
-                from: $form['email']->getData(),
+                replyTo: $form['email']->getData(),
                 subject: 'Contact via le site web',
                 content: $form['message']->getData(),
             );
             // envoi d'une copie du mail à l'utilisateur
             $mailerService->sendEmail(
                 to: $form['email']->getData(),
-                from: $form['to']->getData(),
+                replyTo: $form['to']->getData(),
                 subject: 'Votre demande de contact',
                 content: $form['message']->getData(),
                 template: 'sender'

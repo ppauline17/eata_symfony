@@ -7,22 +7,29 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class MailerService {
 
-    public function __construct(private MailerInterface $mailer){
+    public function __construct(private MailerInterface $mailer, private $from){
         $this->mailer = $mailer;
+        $this->from = $from;
+    }
+
+    public function getFrom()
+    {
+        return $this->from;
     }
 
     public function sendEmail(
-        string $from = 'hello@example.com',
+        string $userEmail = 'user@email.com',
         string $to = 'you@example.com',
+        string $replyTo = 'you@example.com',
         string $subject = 'Time for Symfony Mailer!',
         string $content = 'Exemple de contenu',
         string $template = 'contact',
     ) : void
     {
         $email = (new TemplatedEmail())
-            ->from($from)
+            ->from($this->getFrom())
             ->to($to)
-            ->replyTo($to)
+            ->replyTo($replyTo)
             ->subject($subject)
 
             // path of the Twig template to render
@@ -31,7 +38,7 @@ class MailerService {
             // pass variables (name => value) to the template
             ->context([
                 'content' => $content,
-                'from' => $from
+                'userEmail' => $userEmail
             ]);
 
         $this->mailer->send($email);
